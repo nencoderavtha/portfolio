@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exter.ai — Disruptive AI Agency</title>
+    
+    <!-- Fonts: only Montserrat (body) + Syne (headings) are used -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="has-mascot">
+
+    <!-- Skip link for keyboard users -->
+    <a href="#scene-1" class="skip-link">Skip to content</a>
+
+    <!-- Loading Screen (only shown on pages that load the mascot sequence) -->
+    <div id="loader" class="site-loader">
+        <div class="site-loader__label">LOADING EXTER...</div>
+        <div id="loader-bar-container" class="site-loader__bar">
+            <div id="loader-bar" class="site-loader__progress"></div>
+        </div>
+    </div>
+
+    <!-- Film Grain + Vignette (Aged Cinematic Layers) -->
+    <div class="film-grain"></div>
+    <div class="vignette"></div>
+    
+    <!-- Mobile scroll progress bar (amber). Inert on desktop via CSS. -->
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="./" class="logo">exter.ai</a>
+            <nav class="main-nav" aria-label="Primary">
+                <a href="./about.html" class="nav-link">About</a>
+                <a href="./work.html" class="nav-link">Work</a>
+                <a href="./book.html" class="nav-cta">Book a call</a>
+            </nav>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open menu">
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile navigation drawer -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+        <div class="mobile-drawer__backdrop" data-drawer-close></div>
+        <div class="mobile-drawer__panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
+            <button class="mobile-drawer__close" type="button" data-drawer-close aria-label="Close menu">
+                <span aria-hidden="true">×</span>
+            </button>
+            <nav class="mobile-drawer__nav" aria-label="Mobile primary">
+                <a href="./about.html">About</a>
+                <a href="./work.html">Work</a>
+                <a href="./book.html" class="mobile-drawer__cta">Book a call</a>
+            </nav>
+            <div class="mobile-drawer__meta">
+                <p>An AI-native studio shipping worldwide.</p>
+                <a href="mailto:hello@exter.ai" class="email-pill">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="2"/>
+                        <path d="M3 7l9 6 9-6"/>
+                    </svg>
+                    hello@exter.ai
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diffused Spotlighting -->
+    <div class="spotlight"></div>
+
+    <!-- Central Sticky Anchor (Canvas for Image Sequence) -->
+    <div class="canvas-container">
+        <canvas id="mascot-canvas"></canvas>
+    </div>
+
+    <!-- Scrollytelling Content -->
+    <main id="smooth-wrapper" class="scroll-container">
+        
+        <!-- Scene 1: Hero -->
+        <section class="scene" id="scene-1">
+            <div class="content-wrapper align-left">
+                <h1 class="tagline">
+                    <span class="word">CAPTURE.</span><br>
+                    <span class="word">ENGAGE.</span><br>
+                    <span class="word">CONVERT.</span>
+                </h1>
+                <p class="hero-subtext">An AI-native studio building websites, automations, and brand for ambitious founders.</p>
+                <div class="hero-actions">
+                    <a href="./book.html" class="btn-primary">Book a call</a>
+                    <a href="./work.html" class="btn-secondary">See our work</a>
+                </div>
+                <div class="trust-strip">
+                    Based in India · Available worldwide · Reply within 24 hours
+                </div>
+            </div>
+            <!-- Mobile-only scroll cue (CSS hides on desktop) -->
+            <div class="scroll-cue" aria-hidden="true">
+                <span>scroll</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9l6 6 6-6"/>
+                </svg>
+            </div>
+        </section>
+
+        <!--
+            Spacer Scene: intentionally empty.
+            Provides scroll runway for the mascot canvas image-sequence to animate
+            between the hero exit and Scene 2's entry. Do NOT delete — removing
+            this section will collapse the scrubbed mascot transition.
+        -->
+        <section class="scene spacer-scene" aria-hidden="true"></section>
+
+        <!-- Scene 2: Agency Intro (Far Right) -->
+        <section class="scene scene-2" id="scene-2">
+            <div class="content-wrapper align-far-right">
+                <div class="agency-card white-card y-track blur-in" style="width: 480px;">
+                    <h2 class="card-title">Built different.</h2>
+                    <p class="card-body">We use AI to deliver what bigger agencies charge 10x for. Same quality, a fraction of the time, none of the bloat. You get a small team that ships — not a slide deck.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 3: Services (Far Right) -->
+        <section class="scene scene-3" id="scene-3">
+            <div class="content-wrapper align-far-right">
+                <div class="section-intro">
+                    <span class="eyebrow" aria-hidden="true">Services</span>
+                    <h2 class="section-title">What we make.</h2>
+                    <p class="section-subtitle">Disruptive AI solutions for high-growth founders.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card white-card hand-drawn-aesthetic card-1">
+                        <h3 class="service-title">AI Receptionist</h3>
+                        <p>AI receptionists that book appointments, answer questions, and never sleep. You own the accounts and data.</p>
+                    </div>
+
+                    <div class="service-card white-card hand-drawn-aesthetic card-2">
+                        <h3 class="service-title">3D & Web</h3>
+                        <p>High-end web experiences that tell your brand story through 3D and motion. Disruptive design that converts.</p>
+                    </div>
+
+                    <div class="service-card white-card hand-drawn-aesthetic card-3">
+                        <h3 class="service-title">Fullstack Dev</h3>
+                        <p>Full applications built on modern stacks. We ship working software that scales, not just Figma files.</p>
+                    </div>
+
+                    <div class="service-card white-card hand-drawn-aesthetic card-4">
+                        <h3 class="service-title">AI Video Branding</h3>
+                        <p>Brand videos created with AI — cheaper than a film crew, faster than studios, sharper than stock.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [NEW] Scene 4: How We Work -->
+        <section class="scene" id="scene-4">
+            <div class="content-wrapper align-far-right">
+                <div class="section-intro">
+                    <span class="eyebrow" aria-hidden="true">Process</span>
+                    <h2 class="section-title">How we work.</h2>
+                    <p class="section-subtitle">Three weeks, three phases, zero confusion.</p>
+                </div>
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <h3 class="step-title">Discovery</h3>
+                        <p class="step-body">We learn your business and goals. You get a written plan with scope, timeline, and fixed price. No surprises.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <h3 class="step-title">Build</h3>
+                        <p class="step-body">We design and develop in parallel using AI tools that 10x our speed. You get a working preview by day 10.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <h3 class="step-title">Launch</h3>
+                        <p class="step-body">We test, polish, and ship. You get full ownership of everything. Plus 30 days of free support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 5: Selected Work (Far Right) -->
+        <section class="scene scene-5" id="scene-5">
+            <div class="content-wrapper align-far-right">
+                <div class="section-intro">
+                    <span class="eyebrow" aria-hidden="true">Work</span>
+                    <h2 class="section-title">Recent work.</h2>
+                </div>
+                <div class="work-grid">
+                    <div class="work-card white-card">
+                        <div class="work-content">
+                            <div class="work-category">AI Receptionist / Automation</div>
+                            <h3 class="work-title">Dental Clinic Voice AI</h3>
+                            <p class="work-description">Built a voice AI that books appointments and handles after-hours calls. Integrated with CRM systems for seamless operations.</p>
+                            <ul class="work-bullets">
+                                <li>Handles 40+ calls/week</li>
+                                <li>Books appointments 24/7</li>
+                                <li>Setup time: 4 days</li>
+                            </ul>
+                            <a href="./work-template.html" class="btn-secondary">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 6: Book Appointment (Far Right) -->
+        <section class="scene scene-6" id="scene-6">
+            <div class="content-wrapper align-far-right">
+                <div class="project-cta-layout">
+                    <h2 class="project-title">Got a<br>project in<br>mind?</h2>
+                    
+                    <div class="button-wrapper z-reveal blur-in">
+                        <div class="crown-doodle" id="crown-doodle">
+                            <svg viewBox="0 0 100 60" class="crown-svg">
+                                <path class="crown-path" d="M10,50 L20,10 L50,30 L80,10 L90,50 Z" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <a href="./book.html" class="cta-button">Book a call</a>
+                    </div>
+                    
+                    <p class="card-body" style="text-align: right; color: rgba(255,255,255,0.65); max-width: 300px;">No pitch decks. Just a conversation about what you're building.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 7: Why Work With Us? (Far Right) -->
+        <section class="scene scene-7" id="scene-7">
+            <div class="content-wrapper align-far-right">
+                <div class="vision-card white-card y-track blur-in" style="width: 560px;">
+                    <h2 class="card-title">Why work with us?</h2>
+                    <ul class="work-bullets" style="margin-top: 1.5rem; text-align: right;">
+                        <li style="justify-content: flex-end;">You get the founders on every call. No account managers.</li>
+                        <li style="justify-content: flex-end;">We sign NDAs before discovery calls.</li>
+                        <li style="justify-content: flex-end;">You own everything we build — code, accounts, data.</li>
+                        <li style="justify-content: flex-end;">Fixed-price proposals. No hourly surprises.</li>
+                        <li style="justify-content: flex-end;">30 days of free support after launch.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer: Separated Solid Block -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="./" class="logo">exter.ai</a>
+                    <p>An AI-native studio for founders who can't afford to look small. Based in India, shipping worldwide.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>QUICK LINKS</h4>
+                    <ul>
+                        <li><a href="./work.html">Work</a></li>
+                        <li><a href="./about.html">About</a></li>
+                        <li><a href="./book.html">Book a call</a></li>
+                        <li><a href="mailto:hello@exter.ai">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>SOCIAL</h4>
+                    <ul>
+                        <!-- TODO: replace with real social URLs before launch -->
+                        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer">X / Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2026 Exter.ai. All rights reserved.</div>
+                <div class="legal-footer-links">
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./terms.html">Terms</a>
+                    <a href="./cookies.html">Cookies</a>
+                </div>
+                <a href="#scene-1" class="back-to-top" aria-label="Back to top">
+                    <span>Back to top</span>
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 19V5M6 11l6-6 6 6"/>
+                    </svg>
+                </a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- GSAP + ScrollTrigger + Lenis Smooth Scroll (loaded once, at end of body) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <!-- Mobile sticky CTA pill (visible only on mobile, after hero) -->
+    <a href="./book.html" class="sticky-cta" aria-label="Book a call">
+        <span>Book a call</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+    </a>
+
+    <!-- Mobile Character Loop Video (Homepage Only) -->
+    <video
+      class="mobile-character-loop"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="/videos/character-climb-poster.jpg"
+      aria-hidden="true"
+    >
+      <source src="/videos/character-climb-loop.mp4" type="video/mp4" />
+    </video>
+
+    <script type="module" src="./script.js"></script>
+</body>
+</html>
