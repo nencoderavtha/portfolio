@@ -16,7 +16,10 @@ export default defineConfig({
         about: resolve(__dirname, 'about.html'),
         book: resolve(__dirname, 'book.html'),
         work: resolve(__dirname, 'work.html'),
-        "work-template": resolve(__dirname, 'work-template.html')
+        "work-template": resolve(__dirname, 'work-template.html'),
+        privacy: resolve(__dirname, 'privacy.html'),
+        cookies: resolve(__dirname, 'cookies.html'),
+        terms: resolve(__dirname, 'terms.html')
       }
     }
   }
