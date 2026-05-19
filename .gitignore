@@ -1,1 +1,32 @@
-.vercel
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Vercel
+.vercel/
+
+# Logs
+ngrok.log
+*.log
+
+# AI editor config folders (not needed in repo)
+.agent/
+.claude/
+.codebuddy/
+.codex/
+.continue/
+.cursor/
+.gemini/
+.kiro/
+.opencode/
+.qoder/
+.roo/
+.trae/
+.windsurf/
+.github/
+
+# OS
+.DS_Store
+Thumbs.db
