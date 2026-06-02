@@ -370,6 +370,48 @@ document.addEventListener("DOMContentLoaded", () => {
         // Scene Synchronization
         const getProgress = (frame) => frame / (frameCount - 1);
 
+        // Creative Hero Exit: Split text and scatter characters on scroll
+        function splitTextIntoChars(selector) {
+            document.querySelectorAll(selector).forEach(el => {
+                const text = el.innerText;
+                el.innerHTML = text.split('').map(char => `<span class="char" style="display:inline-block; will-change: transform, opacity;">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+            });
+        }
+        
+        splitTextIntoChars("#scene-1 .word");
+        
+        const chars = gsap.utils.toArray("#scene-1 .word .char");
+        gsap.to(chars, {
+            scrollTrigger: {
+                trigger: ".scroll-container",
+                start: `${getProgress(10) * 100}% top`,
+                end: `${getProgress(60) * 100}% top`,
+                scrub: 1
+            },
+            x: () => (Math.random() - 0.5) * 800,
+            y: () => (Math.random() - 0.5) * 800 + 200, // Bias downwards
+            rotationZ: () => (Math.random() - 0.5) * 360,
+            rotationX: () => (Math.random() - 0.5) * 360,
+            rotationY: () => (Math.random() - 0.5) * 360,
+            scale: () => Math.random() * 2 + 0.1,
+            opacity: 0,
+            filter: "blur(20px)",
+            ease: "power2.inOut",
+            stagger: 0.01 // Slight delay between characters
+        });
+
+        gsap.to(".hero-subtext, .hero-actions, .trust-strip", {
+            opacity: 0,
+            y: 50,
+            filter: "blur(10px)",
+            scrollTrigger: {
+                trigger: ".scroll-container",
+                start: `${getProgress(15) * 100}% top`,
+                end: `${getProgress(45) * 100}% top`,
+                scrub: true
+            }
+        });
+
         /* 
         // --- CONTENT ANIMATIONS REMOVED PER REQUEST ---
         // Hero Exit
