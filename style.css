@@ -775,6 +775,7 @@ body.drawer-open {
 
 .word {
     display: inline-block;
+    white-space: nowrap;
     transform-origin: center;
     will-change: transform, clip-path, opacity;
     backface-visibility: hidden;
