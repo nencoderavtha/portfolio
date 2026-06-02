@@ -383,13 +383,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const chars = gsap.utils.toArray("#scene-1 .word .char");
         gsap.to(chars, {
             scrollTrigger: {
-                trigger: ".scroll-container",
-                start: `${getProgress(10) * 100}% top`,
-                end: `${getProgress(60) * 100}% top`,
+                trigger: "#scene-1",
+                start: "5% top",
+                end: "45% top",
                 scrub: 1
             },
             x: () => (Math.random() - 0.5) * 800,
-            y: () => (Math.random() - 0.5) * 800 + 200, // Bias downwards
+            y: () => (Math.random() - 0.5) * 800 - 200, // Bias upwards slightly since they're sticky
             rotationZ: () => (Math.random() - 0.5) * 360,
             rotationX: () => (Math.random() - 0.5) * 360,
             rotationY: () => (Math.random() - 0.5) * 360,
@@ -397,17 +397,17 @@ document.addEventListener("DOMContentLoaded", () => {
             opacity: 0,
             filter: "blur(20px)",
             ease: "power2.inOut",
-            stagger: 0.01 // Slight delay between characters
+            stagger: 0.01
         });
 
         gsap.to(".hero-subtext, .hero-actions, .trust-strip", {
             opacity: 0,
-            y: 50,
+            y: -50,
             filter: "blur(10px)",
             scrollTrigger: {
-                trigger: ".scroll-container",
-                start: `${getProgress(15) * 100}% top`,
-                end: `${getProgress(45) * 100}% top`,
+                trigger: "#scene-1",
+                start: "5% top",
+                end: "35% top",
                 scrub: true
             }
         });
