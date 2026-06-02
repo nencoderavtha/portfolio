@@ -1,5 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     // ========================================================
+    // Failsafe: Hide loader after 5 seconds no matter what
+    // ========================================================
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader && loader.style.display !== 'none') {
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => loader.style.display = 'none', 500);
+        }
+    }, 5000);
+
+    // ========================================================
     // 0. Mobile navigation drawer — runs on every page
     // ========================================================
     (function initMobileDrawer() {
@@ -258,6 +270,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!force && lastFrame === sequence.frame) return;
             lastFrame = sequence.frame;
             const img = images[sequence.frame];
+            
+            // Fix: Prevent crashing if the image failed to load
+            if (!img.complete || img.naturalWidth === 0) return;
+
             const canvasRatio = canvas.width / canvas.height;
             const imgRatio = img.naturalWidth / img.naturalHeight;
             let drawWidth, drawHeight, x, y;
