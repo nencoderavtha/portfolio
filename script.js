@@ -370,6 +370,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Scene Synchronization
         const getProgress = (frame) => frame / (frameCount - 1);
 
+        /* 
+        // --- CONTENT ANIMATIONS REMOVED PER REQUEST ---
         // Hero Exit
         gsap.to(heroWords, {
             opacity: 0, y: -100, filter: "blur(10px)", stagger: 0.05, ease: "power2.in",
@@ -423,6 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         scene7Tl.fromTo("#scene-7 .content-wrapper", { opacity: 0, filter: "blur(15px)", y: 60 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 1.5 });
+        */
 
         // Idle Effects
         gsap.to("#mascot-canvas", { y: 5, rotation: 0.3, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut" });
