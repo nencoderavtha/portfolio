@@ -230,7 +230,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     batchProcessed++;
                     const progress = (imagesLoaded / frameCount) * 100;
                     if (loaderBar) loaderBar.style.width = `${progress}%`;
-                    if (imagesLoaded === 1) initCanvas(img);
+                    if (imagesLoaded === 1) {
+                        initCanvas(img);
+                    } else {
+                        render(true); // Ensure current frame is drawn if it loaded late
+                    }
                     if (imagesLoaded >= 40) { // Hide loader early (after Scene 1 batch)
                         if (loader) {
                             gsap.to(loader, { opacity: 0, duration: 0.5, onComplete: () => {
@@ -267,12 +271,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function render(force = false) {
             if (!images[sequence.frame]) return;
-            if (!force && lastFrame === sequence.frame) return;
-            lastFrame = sequence.frame;
             const img = images[sequence.frame];
             
             // Fix: Prevent crashing if the image failed to load
             if (!img.complete || img.naturalWidth === 0) return;
+
+            if (!force && lastFrame === sequence.frame) return;
+            lastFrame = sequence.frame;
 
             const canvasRatio = canvas.width / canvas.height;
             const imgRatio = img.naturalWidth / img.naturalHeight;
