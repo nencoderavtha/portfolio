@@ -2071,3 +2071,202 @@ body.mobile-static .content-wrapper {
         font-size: clamp(1.6rem, 9vw, 2.4rem);
     }
 }
+
+/* ============================================================
+   Navigation Dropdown — Desktop hover reveal
+   ============================================================ */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    min-width: 220px;
+    background: rgba(26, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 12px 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-menu a {
+    display: block;
+    padding: 10px 24px;
+    margin: 0 !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+    opacity: 1 !important;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff !important;
+    padding-left: 28px;
+}
+
+.nav-dropdown-menu a[aria-current="page"] {
+    color: var(--accent-cream) !important;
+}
+
+/* ============================================================
+   FAQ Section — Cinematic dark theme
+   ============================================================ */
+.faq-list {
+    margin-top: 1.5rem;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.faq-item summary {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    padding: 1.25rem 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s;
+}
+
+.faq-item summary:hover {
+    color: var(--accent-cream);
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--brand-red, #FF0000);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 0 1.25rem 0;
+    animation: faqSlideIn 0.3s ease;
+}
+
+.faq-answer p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes faqSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   Footer 4-column grid (expanded links)
+   ============================================================ */
+@media (min-width: 769px) {
+    .footer-content {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+}
+
+/* ============================================================
+   Service Pages — Scroll reveal animations
+   ============================================================ */
+.service-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.step-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.step-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.result-highlight .stat {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.result-highlight .stat.revealed {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.cta-block {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.cta-block.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delay for step cards */
+.step-card:nth-child(1) { transition-delay: 0s; }
+.step-card:nth-child(2) { transition-delay: 0.1s; }
+.step-card:nth-child(3) { transition-delay: 0.2s; }
+.step-card:nth-child(4) { transition-delay: 0.3s; }
+
+/* Stagger for stat items */
+.result-highlight .stat:nth-child(1) { transition-delay: 0s; }
+.result-highlight .stat:nth-child(2) { transition-delay: 0.15s; }
+.result-highlight .stat:nth-child(3) { transition-delay: 0.3s; }

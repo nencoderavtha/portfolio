@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Cost Estimator | Exter.ai</title>
+    <meta name="description" content="Get an instant estimate for your next web project. Calculate costs for landing pages, 3D sites, and fullstack applications with Exter.ai.">
+    <link rel="canonical" href="https://exter-ai.com/tools/website-cost-estimator.html">
+
+    <meta property="og:title" content="Website Cost Estimator | Exter.ai">
+    <meta property="og:description" content="Calculate your website project cost instantly. No emails required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://exter-ai.com/tools/website-cost-estimator.html">
+    <meta property="og:image" content="https://exter-ai.com/og-tools.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+
+    <!-- Microsoft Clarity (Placeholder) -->
+    <script type="text/javascript">
+        
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+"x0ak3inuyf";
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script");
+    </script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4YBYGT5FN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-W4YBYGT5FN');
+      
+      const aiReferrers = ['chatgpt.com','perplexity.ai','gemini.google.com','claude.ai','copilot.microsoft.com','you.com','phind.com'];
+      const ref = document.referrer ? new URL(document.referrer).hostname : '';
+      const aiSrc = aiReferrers.find(d => ref.includes(d)) || 'not_ai';
+      gtag('set', 'user_properties', { ai_referral_source: aiSrc });
+    </script>
+
+    <!-- Schema: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Website Cost Estimator",
+      "operatingSystem": "Web",
+      "applicationCategory": "BusinessApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <!-- Schema: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why do 3D websites cost more?",
+          "acceptedAnswer": { "@type": "Answer", "text": "3D websites require complex WebGL rendering, custom 3D modeling, and highly optimized animation sequencing to run smoothly on mobile devices." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are there hidden fees?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Exter.ai operates on fixed-price proposals. The estimate you see is what you pay." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is included in fullstack development?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Fullstack development includes the frontend UI, backend server architecture, database design, authentication, and deployment." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer rush delivery?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, rush delivery cuts the timeline in half for a 30% premium." }
+        },
+        {
+          "@type": "Question",
+          "name": "Who owns the code?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You own 100% of the code, assets, and intellectual property once the project is paid." }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Schema: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://exter-ai.com/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://exter-ai.com/tools/"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Website Cost Estimator"
+      }]
+    }
+    </script>
+
+    <style>
+        .tool-hero { padding: 180px 8% 40px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .tool-hero h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; line-height: 1.1; }
+        
+        .calculator-container { max-width: 1200px; margin: 0 auto; padding: 40px 8% 100px; display: grid; grid-template-columns: 1fr 400px; gap: 4rem; align-items: start; }
+        @media(max-width: 900px) { .calculator-container { grid-template-columns: 1fr; gap: 2rem; } }
+        
+        .input-panel { background: #111; padding: 3rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
+        .output-panel { background: var(--brand-red); padding: 3rem; border-radius: 16px; color: #fff; position: sticky; top: 120px; }
+        
+        .form-group { margin-bottom: 2.5rem; }
+        .form-group label.group-label { display: block; font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 1rem; color: #fff; }
+        
+        .radio-grid, .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+        .radio-card, .checkbox-card { border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 1rem; cursor: pointer; transition: all 0.2s; position: relative; }
+        .radio-card input, .checkbox-card input { position: absolute; opacity: 0; }
+        .radio-card:has(input:checked), .checkbox-card:has(input:checked) { background: rgba(255,255,255,0.1); border-color: var(--accent-cream); }
+        .radio-card span, .checkbox-card span { font-weight: 600; }
+
+        .range-slider { width: 100%; appearance: none; height: 4px; background: rgba(255,255,255,0.2); border-radius: 4px; outline: none; margin-top: 1rem; }
+        .range-slider::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; background: var(--accent-cream); border-radius: 50%; cursor: pointer; }
+
+        .result-box { margin-bottom: 2rem; }
+        .result-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin-bottom: 0.5rem; font-family: var(--font-heading); }
+        .result-value { font-size: 3.5rem; font-family: var(--font-heading); font-weight: 800; line-height: 1; margin: 0; color: var(--accent-cream); }
+        
+        .feature-list { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.2); list-style: none; padding-left: 0; font-size: 0.9rem; line-height: 1.8; }
+        .feature-list li::before { content: "✓ "; color: var(--accent-cream); }
+
+        .cta-btn { display: inline-block; width: 100%; text-align: center; background: #fff; color: var(--brand-red); font-family: var(--font-heading); font-weight: 800; text-transform: uppercase; text-decoration: none; padding: 16px; border-radius: 50px; margin-top: 2rem; transition: transform 0.3s; }
+        .cta-btn:hover { transform: translateY(-2px); }
+    </style>
+
+    <style>
+        /* Critical Above-the-fold CSS */
+        :root { --bg-dark: #050505; --accent-cream: #F5F5F0; --brand-red: #E53935; --font-heading: 'Syne', sans-serif; --font-body: 'Montserrat', sans-serif; }
+        body { margin: 0; background: var(--bg-dark); color: var(--accent-cream); font-family: var(--font-body); font-weight: 300; -webkit-font-smoothing: antialiased; }
+        .site-header { position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s; }
+        .header-container { max-width: 1400px; margin: 0 auto; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 8%; position: relative; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } .film-grain { display: none !important; } }
+    </style>
+
+
+    <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+</head>
+<body class="static-page">
+    <div class="film-grain"></div><div class="vignette"></div>
+    
+    <header class="site-header">
+        <div class="header-container">
+            <a href="../" class="logo">exter.ai</a>
+            <nav class="main-nav" aria-label="Primary">
+<div class="nav-dropdown">
+                    <a href="../services/" class="nav-link">Services <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="../services/ai-receptionist.html">AI Receptionist</a>
+                        <a href="../services/3d-web-design.html">3D Web Design</a>
+                        <a href="../services/fullstack-development.html">Fullstack Development</a>
+                        <a href="../services/ai-video-branding.html">AI Video Branding</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="../tools/" class="nav-link">Tools <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="../tools/ai-receptionist-roi-calculator.html">ROI Calculator</a>
+                        <a href="../tools/website-cost-estimator.html">Cost Estimator</a>
+                        <a href="../tools/ai-readiness-quiz.html">AI Readiness Quiz</a>
+                    </div>
+                </div>
+                <a href="../work.html" class="nav-link">Work</a>
+                <a href="../blog/" class="nav-link">Blog</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../book.html" class="nav-cta">Book a call</a>
+</nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="tool-hero">
+            <h1>Website Cost Estimator</h1>
+            <p>Get a real-time estimate for your project. We offer fixed pricing with no surprise invoices.</p>
+        </section>
+
+        <section class="calculator-container">
+            <div class="input-panel">
+                <div class="form-group">
+                    <label class="group-label">Project Type</label>
+                    <div class="radio-grid">
+                        <label class="radio-card"><input type="radio" name="type" value="landing" data-base="1500" checked><span>Landing Page</span></label>
+                        <label class="radio-card"><input type="radio" name="type" value="multi" data-base="3000"><span>Multi-page Site</span></label>
+                        <label class="radio-card"><input type="radio" name="type" value="3d" data-base="6000"><span>3D Immersive Site</span></label>
+                        <label class="radio-card"><input type="radio" name="type" value="app" data-base="10000"><span>Fullstack Web App</span></label>
+                        <label class="radio-card"><input type="radio" name="type" value="ecomm" data-base="7500"><span>E-commerce Store</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label" style="display:flex; justify-content:space-between">
+                        Number of Pages <span id="val-pages">5</span>
+                    </label>
+                    <input type="range" id="input-pages" class="range-slider" min="1" max="50" value="5">
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label">Features & Integrations</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-card"><input type="checkbox" value="1000" data-name="CMS Integration"><span>CMS Integration</span></label>
+                        <label class="checkbox-card"><input type="checkbox" value="500" data-name="Blog Architecture"><span>Blog Architecture</span></label>
+                        <label class="checkbox-card"><input type="checkbox" value="1500" data-name="Multilingual Support"><span>Multilingual Support</span></label>
+                        <label class="checkbox-card"><input type="checkbox" value="800" data-name="Custom Animations"><span>Custom Animations</span></label>
+                        <label class="checkbox-card"><input type="checkbox" value="2500" data-name="3D Scenes"><span>3D Scenes</span></label>
+                        <label class="checkbox-card"><input type="checkbox" value="2000" data-name="User Dashboard"><span>User Dashboard</span></label>
+                        <label class="checkbox-card"><input type="checkbox" value="1200" data-name="Payments/Stripe"><span>Payments/Stripe</span></label>
+                        <label class="checkbox-card"><input type="checkbox" value="1000" data-name="Authentication"><span>Authentication</span></label>
+                        <label class="checkbox-card"><input type="checkbox" value="1500" data-name="API Integrations"><span>API Integrations</span></label>
+                        <label class="checkbox-card"><input type="checkbox" value="2000" data-name="Admin Panel"><span>Admin Panel</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="group-label">Timeline Requirement</label>
+                    <div class="radio-grid" style="grid-template-columns: 1fr 1fr">
+                        <label class="radio-card"><input type="radio" name="timeline" value="standard" checked><span>Standard (3-4 weeks)</span></label>
+                        <label class="radio-card"><input type="radio" name="timeline" value="rush"><span>Rush (1-2 weeks) +30%</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="output-panel">
+                <div class="result-box">
+                    <div class="result-label" id="out-tier">Standard Build</div>
+                    <div class="result-value" id="out-price">$0</div>
+                </div>
+                
+                <div>
+                    <strong>Est. Delivery: </strong><span id="out-time">3-4 weeks</span>
+                </div>
+
+                <ul class="feature-list" id="out-features">
+                    <!-- populated by js -->
+                </ul>
+
+                <a href="../book.html" class="cta-btn">Get an exact quote in 24 hrs</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="../" class="logo">exter.ai</a>
+            </div>
+<div class="footer-links">
+                <h4>SERVICES</h4>
+                <ul>
+                    <li><a href="../services/ai-receptionist.html">AI Receptionist</a></li>
+                    <li><a href="../services/3d-web-design.html">3D Web Design</a></li>
+                    <li><a href="../services/fullstack-development.html">Fullstack Dev</a></li>
+                    <li><a href="../services/ai-video-branding.html">AI Video Branding</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>RESOURCES</h4>
+                <ul>
+                    <li><a href="../blog/">Blog</a></li>
+                    <li><a href="../tools/ai-receptionist-roi-calculator.html">ROI Calculator</a></li>
+                    <li><a href="../tools/website-cost-estimator.html">Cost Estimator</a></li>
+                    <li><a href="../tools/ai-readiness-quiz.html">AI Readiness Quiz</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../team/sathvik-yadala.html">Team</a></li>
+                    <li><a href="../work.html">Work / Case Studies</a></li>
+                    <li><a href="../book.html">Book a Call</a></li>
+                </ul>
+            </div>
+<div class="footer-social">
+                <h4>CONNECT</h4>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/sathvik-yadala-11b085231" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://www.instagram.com/directedbysathvik?igsh=d3NtYWswd2NyeXg3" target="_blank">Instagram</a></li>
+                    <li><a href="https://x.com/directdbysatvik" target="_blank">X / Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script defer type="module" src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('input');
+            const pageSlider = document.getElementById('input-pages');
+            const pageLabel = document.getElementById('val-pages');
+            
+            const outPrice = document.getElementById('out-price');
+            const outTier = document.getElementById('out-tier');
+            const outTime = document.getElementById('out-time');
+            const outFeatures = document.getElementById('out-features');
+
+            function calculate() {
+                let total = 0;
+                let features = [];
+                
+                // Base cost from Type
+                const activeType = document.querySelector('input[name="type"]:checked');
+                total += parseInt(activeType.dataset.base);
+                features.push(activeType.nextElementSibling.textContent);
+
+                // Pages
+                const pages = parseInt(pageSlider.value);
+                pageLabel.textContent = pages;
+                if(pages > 1) {
+                    total += (pages - 1) * 200; // $200 per extra page
+                    features.push(`${pages} Pages`);
+                }
+
+                // Checkboxes
+                document.querySelectorAll('.checkbox-card input:checked').forEach(cb => {
+                    total += parseInt(cb.value);
+                    features.push(cb.dataset.name);
+                });
+
+                // Rush
+                const isRush = document.querySelector('input[name="timeline"][value="rush"]').checked;
+                if(isRush) {
+                    total *= 1.30;
+                    outTime.textContent = '1-2 weeks (Rush)';
+                } else {
+                    outTime.textContent = '3-4 weeks (Standard)';
+                }
+
+                // Set Tier
+                if(total < 5000) outTier.textContent = "Simple Build";
+                else if (total < 10000) outTier.textContent = "Standard Build";
+                else if (total < 20000) outTier.textContent = "Complex Build";
+                else outTier.textContent = "Enterprise Build";
+
+                // Format Price Range
+                const format = (v) => new Intl.NumberFormat('en-US', {style:'currency', currency:'USD', maximumFractionDigits:0}).format(v);
+                const low = total * 0.9;
+                const high = total * 1.1;
+                outPrice.textContent = `${format(low)} - ${format(high)}`;
+
+                // Render list
+                outFeatures.innerHTML = features.map(f => `<li>${f}</li>`).join('');
+
+                if(window.dataLayer) {
+                    window.dataLayer.push({ event: 'tool_interaction', tool_name: 'cost_estimator', action: 'calculate' });
+                }
+            }
+
+            inputs.forEach(i => i.addEventListener('input', calculate));
+            calculate();
+        });
+    </script>
+</body>
+</html>

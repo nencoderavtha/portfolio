@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Receptionist ROI Calculator | Exter.ai</title>
+    <meta name="description" content="Calculate your business's missed revenue from unanswered calls and see the exact ROI of an Exter.ai receptionist.">
+    <link rel="canonical" href="https://exter-ai.com/tools/ai-receptionist-roi-calculator.html">
+
+    <meta property="og:title" content="AI Receptionist ROI Calculator | Exter.ai">
+    <meta property="og:description" content="See how much revenue you're losing to missed calls and calculate your AI ROI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://exter-ai.com/tools/ai-receptionist-roi-calculator.html">
+    <meta property="og:image" content="https://exter-ai.com/og-tools.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+
+    <!-- Microsoft Clarity (Placeholder) -->
+    <script type="text/javascript">
+        
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+"x0ak3inuyf";
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script");
+    </script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4YBYGT5FN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-W4YBYGT5FN');
+      
+      const aiReferrers = ['chatgpt.com','perplexity.ai','gemini.google.com','claude.ai','copilot.microsoft.com','you.com','phind.com'];
+      const ref = document.referrer ? new URL(document.referrer).hostname : '';
+      const aiSrc = aiReferrers.find(d => ref.includes(d)) || 'not_ai';
+      gtag('set', 'user_properties', { ai_referral_source: aiSrc });
+    </script>
+
+    <!-- Schema: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AI Receptionist ROI Calculator",
+      "operatingSystem": "Web",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <!-- Schema: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is missed revenue calculated?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We multiply your daily missed calls by your average revenue per customer, then scale to monthly and annual figures." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does an AI Receptionist save money?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It handles 100% of incoming calls 24/7, eliminating missed revenue while costing a fraction of human staffing." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it book appointments?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, our AI receptionists integrate with your existing CRM and calendar to book appointments directly." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to set up?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A standard AI receptionist deployment by Exter.ai takes about 4 days." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are there ongoing fees?",
+          "acceptedAnswer": { "@type": "Answer", "text": "There are usage costs for the LLM and telephony (usually a few cents per minute) but no bloated retainer fees." }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Schema: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://exter-ai.com/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://exter-ai.com/tools/"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "AI Receptionist ROI Calculator"
+      }]
+    }
+    </script>
+
+    <style>
+        .tool-hero { padding: 180px 8% 40px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .tool-hero h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; line-height: 1.1; }
+        
+        .calculator-container { max-width: 1200px; margin: 0 auto; padding: 40px 8% 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        @media(max-width: 800px) { .calculator-container { grid-template-columns: 1fr; gap: 2rem; } }
+        
+        .input-panel { background: #111; padding: 3rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
+        .output-panel { background: var(--brand-red); padding: 3rem; border-radius: 16px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+        .output-panel::before { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent 50%); }
+        
+        .form-group { margin-bottom: 2rem; }
+        .form-group label { display: flex; justify-content: space-between; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 1rem; }
+        .range-slider { width: 100%; appearance: none; height: 4px; background: rgba(255,255,255,0.2); border-radius: 4px; outline: none; }
+        .range-slider::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; background: var(--accent-cream); border-radius: 50%; cursor: pointer; }
+        
+        .result-box { margin-bottom: 2rem; z-index: 1; }
+        .result-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin-bottom: 0.5rem; font-family: var(--font-heading); }
+        .result-value { font-size: 3rem; font-family: var(--font-heading); font-weight: 800; line-height: 1; margin: 0; }
+        .result-value.highlight { color: var(--accent-cream); font-size: 4rem; }
+        
+        .cta-box { z-index: 1; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); }
+        .cta-btn { display: inline-block; background: #fff; color: var(--brand-red); font-family: var(--font-heading); font-weight: 800; text-transform: uppercase; text-decoration: none; padding: 16px 32px; border-radius: 50px; transition: transform 0.3s; }
+        .cta-btn:hover { transform: translateY(-2px); }
+    </style>
+
+    <style>
+        /* Critical Above-the-fold CSS */
+        :root { --bg-dark: #050505; --accent-cream: #F5F5F0; --brand-red: #E53935; --font-heading: 'Syne', sans-serif; --font-body: 'Montserrat', sans-serif; }
+        body { margin: 0; background: var(--bg-dark); color: var(--accent-cream); font-family: var(--font-body); font-weight: 300; -webkit-font-smoothing: antialiased; }
+        .site-header { position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s; }
+        .header-container { max-width: 1400px; margin: 0 auto; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 8%; position: relative; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } .film-grain { display: none !important; } }
+    </style>
+
+
+    <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+</head>
+<body class="static-page">
+    <div class="film-grain"></div><div class="vignette"></div>
+    
+    <header class="site-header">
+        <div class="header-container">
+            <a href="../" class="logo">exter.ai</a>
+            <nav class="main-nav" aria-label="Primary">
+<div class="nav-dropdown">
+                    <a href="../services/" class="nav-link">Services <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="../services/ai-receptionist.html">AI Receptionist</a>
+                        <a href="../services/3d-web-design.html">3D Web Design</a>
+                        <a href="../services/fullstack-development.html">Fullstack Development</a>
+                        <a href="../services/ai-video-branding.html">AI Video Branding</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="../tools/" class="nav-link">Tools <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="../tools/ai-receptionist-roi-calculator.html">ROI Calculator</a>
+                        <a href="../tools/website-cost-estimator.html">Cost Estimator</a>
+                        <a href="../tools/ai-readiness-quiz.html">AI Readiness Quiz</a>
+                    </div>
+                </div>
+                <a href="../work.html" class="nav-link">Work</a>
+                <a href="../blog/" class="nav-link">Blog</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../book.html" class="nav-cta">Book a call</a>
+</nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="tool-hero">
+            <h1>AI Receptionist ROI Calculator</h1>
+            <p>See exactly how much revenue your business is losing to missed calls, and calculate the payback period of an AI receptionist.</p>
+        </section>
+
+        <section class="calculator-container">
+            <div class="input-panel">
+                <div class="form-group">
+                    <label><span>Daily Calls Received</span> <span id="val-calls">30</span></label>
+                    <input type="range" id="input-calls" class="range-slider" min="5" max="500" value="30">
+                </div>
+                <div class="form-group">
+                    <label><span>% of Calls Missed</span> <span id="val-missed">25%</span></label>
+                    <input type="range" id="input-missed" class="range-slider" min="5" max="80" value="25">
+                </div>
+                <div class="form-group">
+                    <label><span>Avg. Revenue per Customer ($)</span> <span id="val-rev">$200</span></label>
+                    <input type="range" id="input-rev" class="range-slider" min="50" max="5000" step="50" value="200">
+                </div>
+                <div class="form-group">
+                    <label><span>Current Monthly Receptionist Cost ($)</span> <span id="val-cost">$3,000</span></label>
+                    <input type="range" id="input-cost" class="range-slider" min="0" max="10000" step="100" value="3000">
+                </div>
+            </div>
+
+            <div class="output-panel">
+                <div class="result-box">
+                    <div class="result-label">Annual Missed Revenue</div>
+                    <div class="result-value highlight" id="out-annual">...</div>
+                </div>
+                <div class="result-box">
+                    <div class="result-label">Monthly Missed Calls</div>
+                    <div class="result-value" id="out-missed-calls">...</div>
+                </div>
+                <div class="result-box">
+                    <div class="result-label">Monthly Missed Revenue</div>
+                    <div class="result-value" id="out-monthly-rev">...</div>
+                </div>
+                <div class="cta-box">
+                    <p style="margin-bottom: 1.5rem; font-family: var(--font-body);">Stop losing money. Deploy an AI receptionist that answers instantly, 24/7.</p>
+                    <a href="../book.html" class="cta-btn">Get live in 4 days → Book a free call</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="../" class="logo">exter.ai</a>
+                <p>An AI-native studio for founders who can't afford to look small.</p>
+            </div>
+<div class="footer-links">
+                <h4>SERVICES</h4>
+                <ul>
+                    <li><a href="../services/ai-receptionist.html">AI Receptionist</a></li>
+                    <li><a href="../services/3d-web-design.html">3D Web Design</a></li>
+                    <li><a href="../services/fullstack-development.html">Fullstack Dev</a></li>
+                    <li><a href="../services/ai-video-branding.html">AI Video Branding</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>RESOURCES</h4>
+                <ul>
+                    <li><a href="../blog/">Blog</a></li>
+                    <li><a href="../tools/ai-receptionist-roi-calculator.html">ROI Calculator</a></li>
+                    <li><a href="../tools/website-cost-estimator.html">Cost Estimator</a></li>
+                    <li><a href="../tools/ai-readiness-quiz.html">AI Readiness Quiz</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../team/sathvik-yadala.html">Team</a></li>
+                    <li><a href="../work.html">Work / Case Studies</a></li>
+                    <li><a href="../book.html">Book a Call</a></li>
+                </ul>
+            </div>
+<div class="footer-social">
+                <h4>CONNECT</h4>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/sathvik-yadala-11b085231" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                    <li><a href="https://www.instagram.com/directedbysathvik?igsh=d3NtYWswd2NyeXg3" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    <li><a href="https://x.com/directdbysatvik" target="_blank" rel="noopener noreferrer">X / Twitter</a></li>
+                    <!-- TODO: Add YouTube, GitHub profile URLs when provided -->
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script defer type="module" src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = {
+                calls: document.getElementById('input-calls'),
+                missed: document.getElementById('input-missed'),
+                rev: document.getElementById('input-rev'),
+                cost: document.getElementById('input-cost')
+            };
+            const labels = {
+                calls: document.getElementById('val-calls'),
+                missed: document.getElementById('val-missed'),
+                rev: document.getElementById('val-rev'),
+                cost: document.getElementById('val-cost')
+            };
+            const outputs = {
+                annual: document.getElementById('out-annual'),
+                missedCalls: document.getElementById('out-missed-calls'),
+                monthlyRev: document.getElementById('out-monthly-rev')
+            };
+
+            const formatMoney = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+            const formatNum = (val) => new Intl.NumberFormat('en-US').format(val);
+
+            function calculate() {
+                const calls = parseInt(inputs.calls.value);
+                const missedPct = parseInt(inputs.missed.value) / 100;
+                const rev = parseInt(inputs.rev.value);
+                
+                labels.calls.textContent = formatNum(calls);
+                labels.missed.textContent = inputs.missed.value + '%';
+                labels.rev.textContent = formatMoney(rev);
+                labels.cost.textContent = formatMoney(inputs.cost.value);
+
+                const dailyMissed = calls * missedPct;
+                const monthlyMissed = dailyMissed * 30;
+                const monthlyRev = monthlyMissed * rev;
+                const annualRev = monthlyRev * 12;
+
+                outputs.annual.textContent = formatMoney(annualRev);
+                outputs.missedCalls.textContent = formatNum(Math.round(monthlyMissed));
+                outputs.monthlyRev.textContent = formatMoney(monthlyRev);
+
+                if(window.dataLayer) {
+                    window.dataLayer.push({ event: 'tool_interaction', tool_name: 'roi_calculator', action: 'calculate' });
+                }
+            }
+
+            Object.values(inputs).forEach(input => input.addEventListener('input', calculate));
+            calculate();
+        });
+    </script>
+</body>
+</html>

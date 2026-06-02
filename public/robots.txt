@@ -1,0 +1,60 @@
+# ============================================================
+# EXTER.AI — ROBOTS.TXT
+# Controls which crawlers can access the site.
+# ALL search engines and AI crawlers are ALLOWED.
+# ============================================================
+
+User-agent: *
+Allow: /
+Sitemap: https://exter-ai.com/sitemap.xml
+
+# Google Search Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+# Bing / Microsoft Crawlers
+User-agent: Bingbot
+Allow: /
+
+# AI Search Engine Crawlers — ALLOW ALL
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Slurp
+Allow: /

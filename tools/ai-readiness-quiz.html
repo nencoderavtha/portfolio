@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Readiness Assessment | Exter.ai</title>
+    <meta name="description" content="Take this 8-question quiz to find out if your business is ready to implement AI automations, voice receptionists, and scaling strategies.">
+    <link rel="canonical" href="https://exter-ai.com/tools/ai-readiness-quiz.html">
+
+    <meta property="og:title" content="AI Readiness Assessment | Exter.ai">
+    <meta property="og:description" content="Is your business ready for AI? Take the 2-minute quiz.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://exter-ai.com/tools/ai-readiness-quiz.html">
+    <meta property="og:image" content="https://exter-ai.com/og-tools.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@800&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+
+    <!-- Microsoft Clarity (Placeholder) -->
+    <script type="text/javascript">
+        
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+"x0ak3inuyf";
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script");
+    </script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W4YBYGT5FN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-W4YBYGT5FN');
+      
+      const aiReferrers = ['chatgpt.com','perplexity.ai','gemini.google.com','claude.ai','copilot.microsoft.com','you.com','phind.com'];
+      const ref = document.referrer ? new URL(document.referrer).hostname : '';
+      const aiSrc = aiReferrers.find(d => ref.includes(d)) || 'not_ai';
+      gtag('set', 'user_properties', { ai_referral_source: aiSrc });
+    </script>
+
+    <!-- Schema: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does the AI Readiness Quiz work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The quiz asks 8 strategic questions about your business operations, CRM usage, and growth goals to calculate an AI Readiness Score out of 24." }
+        },
+        {
+          "@type": "Question",
+          "name": "What if my score is low?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A low score means you should focus on centralizing your data and setting up a CRM before investing heavily in AI automations." }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens after the quiz?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You will receive a personalized recommendation tier and a list of specific AI services that match your current business stage." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is AI only for large enterprises?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Startups and small businesses benefit the most from AI because it allows them to scale operations and customer support without hiring large teams." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need technical skills to deploy AI?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not at all. Exter.ai is an AI-native studio that builds, configures, and deploys the entire system for you." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the best first step into AI?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For service businesses, an AI Receptionist is usually the highest-ROI first step because it immediately stops revenue leakage from missed calls." }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Schema: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://exter-ai.com/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://exter-ai.com/tools/"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "AI Readiness Assessment"
+      }]
+    }
+    </script>
+
+    <style>
+        .tool-hero { padding: 180px 8% 40px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .tool-hero h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; line-height: 1.1; }
+        
+        .quiz-container { max-width: 800px; margin: 0 auto; padding: 40px 8% 100px; }
+        
+        .progress-bar-container { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 6px; margin-bottom: 3rem; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--brand-red); width: 0%; transition: width 0.4s ease; }
+        
+        .question-card { background: #111; padding: 3rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); display: none; animation: fadeIn 0.5s ease forwards; }
+        .question-card.active { display: block; }
+        
+        .question-card h2 { font-family: var(--font-heading); font-size: 1.5rem; margin-top: 0; margin-bottom: 2rem; color: #fff; }
+        
+        .options-grid { display: grid; gap: 1rem; }
+        .option-btn { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 1.2rem; border-radius: 8px; font-family: var(--font-body); font-size: 1.1rem; text-align: left; cursor: pointer; transition: all 0.2s; font-weight: 600; }
+        .option-btn:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.5); }
+        .option-btn:active { transform: scale(0.98); }
+
+        .results-card { background: var(--brand-red); padding: 4rem; border-radius: 16px; text-align: center; display: none; color: #fff; position: relative; overflow: hidden; }
+        .results-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent 50%); pointer-events: none; }
+        .results-card.active { display: block; animation: scaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        .score-circle { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #fff; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 3rem; font-weight: 800; }
+        
+        .tier-label { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 1rem; text-transform: uppercase; }
+        .tier-desc { font-size: 1.1rem; line-height: 1.8; opacity: 0.9; margin-bottom: 2rem; }
+        
+        .cta-btn { display: inline-block; background: #fff; color: var(--brand-red); font-family: var(--font-heading); font-weight: 800; text-transform: uppercase; text-decoration: none; padding: 16px 32px; border-radius: 50px; transition: transform 0.3s; }
+        .cta-btn:hover { transform: translateY(-2px); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    </style>
+
+    <style>
+        /* Critical Above-the-fold CSS */
+        :root { --bg-dark: #050505; --accent-cream: #F5F5F0; --brand-red: #E53935; --font-heading: 'Syne', sans-serif; --font-body: 'Montserrat', sans-serif; }
+        body { margin: 0; background: var(--bg-dark); color: var(--accent-cream); font-family: var(--font-body); font-weight: 300; -webkit-font-smoothing: antialiased; }
+        .site-header { position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s; }
+        .header-container { max-width: 1400px; margin: 0 auto; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 8%; position: relative; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } .film-grain { display: none !important; } }
+    </style>
+
+
+    <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+</head>
+<body class="static-page">
+    <div class="film-grain"></div><div class="vignette"></div>
+    
+    <header class="site-header">
+        <div class="header-container">
+            <a href="../" class="logo">exter.ai</a>
+            <nav class="main-nav" aria-label="Primary">
+<div class="nav-dropdown">
+                    <a href="../services/" class="nav-link">Services <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="../services/ai-receptionist.html">AI Receptionist</a>
+                        <a href="../services/3d-web-design.html">3D Web Design</a>
+                        <a href="../services/fullstack-development.html">Fullstack Development</a>
+                        <a href="../services/ai-video-branding.html">AI Video Branding</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="../tools/" class="nav-link">Tools <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="../tools/ai-receptionist-roi-calculator.html">ROI Calculator</a>
+                        <a href="../tools/website-cost-estimator.html">Cost Estimator</a>
+                        <a href="../tools/ai-readiness-quiz.html">AI Readiness Quiz</a>
+                    </div>
+                </div>
+                <a href="../work.html" class="nav-link">Work</a>
+                <a href="../blog/" class="nav-link">Blog</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../book.html" class="nav-cta">Book a call</a>
+</nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="tool-hero">
+            <h1>AI Readiness Assessment</h1>
+            <p>Answer 8 quick questions to find out if your business infrastructure is ready to scale with AI automations.</p>
+        </section>
+
+        <section class="quiz-container">
+            <div class="progress-bar-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div id="quiz-flow">
+                <!-- Injected via JS -->
+            </div>
+
+            <div class="results-card" id="results-card">
+                <div class="score-circle"><span id="score-val">0</span></div>
+                <div class="tier-label" id="tier-name">Tier</div>
+                <div class="tier-desc" id="tier-desc">Desc</div>
+                <a href="../book.html" class="cta-btn">Let's build your AI roadmap</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="../" class="logo">exter.ai</a>
+            </div>
+<div class="footer-links">
+                <h4>SERVICES</h4>
+                <ul>
+                    <li><a href="../services/ai-receptionist.html">AI Receptionist</a></li>
+                    <li><a href="../services/3d-web-design.html">3D Web Design</a></li>
+                    <li><a href="../services/fullstack-development.html">Fullstack Dev</a></li>
+                    <li><a href="../services/ai-video-branding.html">AI Video Branding</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>RESOURCES</h4>
+                <ul>
+                    <li><a href="../blog/">Blog</a></li>
+                    <li><a href="../tools/ai-receptionist-roi-calculator.html">ROI Calculator</a></li>
+                    <li><a href="../tools/website-cost-estimator.html">Cost Estimator</a></li>
+                    <li><a href="../tools/ai-readiness-quiz.html">AI Readiness Quiz</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../team/sathvik-yadala.html">Team</a></li>
+                    <li><a href="../work.html">Work / Case Studies</a></li>
+                    <li><a href="../book.html">Book a Call</a></li>
+                </ul>
+            </div>
+<div class="footer-social">
+                <h4>CONNECT</h4>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/sathvik-yadala-11b085231" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://www.instagram.com/directedbysathvik?igsh=d3NtYWswd2NyeXg3" target="_blank">Instagram</a></li>
+                    <li><a href="https://x.com/directdbysatvik" target="_blank">X / Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script defer type="module" src="../script.js"></script>
+    
+    <script>
+        const questions = [
+            "Do you currently use any automation in your business?",
+            "Do you have a CRM system in place?",
+            "Do you receive more than 20 customer calls/inquiries per day?",
+            "Is your customer data centralized in one system?",
+            "Has your team experimented with AI tools?",
+            "Do you have budget allocated for technology improvements?",
+            "Are you losing revenue due to missed calls or slow response times?",
+            "Is scaling operations a priority in the next 6 months?"
+        ];
+
+        let currentStep = 0;
+        let score = 0;
+
+        const quizFlow = document.getElementById('quiz-flow');
+        const progressBar = document.getElementById('progress-bar');
+        const progContainer = document.getElementById('progress-container');
+        const resultsCard = document.getElementById('results-card');
+
+        function renderQuestion(index) {
+            quizFlow.innerHTML = `
+                <div class="question-card active">
+                    <p style="font-family:var(--font-heading); color:var(--brand-red); font-weight:800; margin-top:0;">QUESTION ${index + 1} OF 8</p>
+                    <h2>${questions[index]}</h2>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="answer(3)">Yes</button>
+                        <button class="option-btn" onclick="answer(1)">Somewhat</button>
+                        <button class="option-btn" onclick="answer(0)">No</button>
+                    </div>
+                </div>
+            `;
+            progressBar.style.width = `${(index / 8) * 100}%`;
+        }
+
+        window.answer = function(val) {
+            score += val;
+            currentStep++;
+            if (currentStep < 8) {
+                renderQuestion(currentStep);
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizFlow.style.display = 'none';
+            progContainer.style.display = 'none';
+            progressBar.style.width = '100%';
+            
+            document.getElementById('score-val').textContent = score;
+            const tierName = document.getElementById('tier-name');
+            const tierDesc = document.getElementById('tier-desc');
+
+            if (score <= 6) {
+                tierName.textContent = "Not Ready Yet";
+                tierDesc.innerHTML = "Your business needs to focus on fundamentals first. Before implementing AI, we recommend setting up a standard CRM, centralizing your customer data, and building manual standard operating procedures. Once data is organized, AI can scale it.<br><br><strong>Recommended Service:</strong> Fullstack Development (to build a core dashboard or CRM integration).";
+            } else if (score <= 12) {
+                tierName.textContent = "Getting There";
+                tierDesc.innerHTML = "You have some systems in place but data might be fragmented. You are ready for isolated AI integrations that don't require massive workflow overhauls, such as an AI voice agent to handle inbound calls and stop revenue leakage.<br><br><strong>Recommended Service:</strong> AI Receptionist.";
+            } else if (score <= 18) {
+                tierName.textContent = "Ready for AI";
+                tierDesc.innerHTML = "Your foundation is solid. You have the data, the CRM, and the intent to scale. You are in the perfect position to deploy end-to-end AI automations, generative brand assets, and fully integrated voice agents.<br><br><strong>Recommended Services:</strong> AI Receptionist & AI Video Branding.";
+            } else {
+                tierName.textContent = "AI-Native Material";
+                tierDesc.innerHTML = "Your business is primed for hyper-growth. You understand the value of tech leverage. It's time to build custom LLM orchestrations, immersive 3D digital experiences, and aggressive automations that give you an unfair advantage over competitors.<br><br><strong>Recommended Services:</strong> 3D Web Design & Fullstack Development.";
+            }
+
+            resultsCard.classList.add('active');
+
+            if(window.dataLayer) {
+                window.dataLayer.push({ event: 'tool_interaction', tool_name: 'ai_readiness_quiz', action: 'complete', score: score });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestion(0);
+        });
+    </script>
+</body>
+</html>

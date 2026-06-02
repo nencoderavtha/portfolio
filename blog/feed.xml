@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Exter.ai Blog</title>
+    <link>https://exter-ai.com/blog/</link>
+    <description>AI insights, startup guides, and behind-the-scenes from the Exter.ai studio.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jun 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://exter-ai.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <!-- When you create your first blog post, copy this item template and fill it out:
+    <item>
+      <title>Your Blog Post Title</title>
+      <link>https://exter-ai.com/blog/your-post-slug.html</link>
+      <description>A short summary of your blog post.</description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <guid>https://exter-ai.com/blog/your-post-slug.html</guid>
+    </item>
+    -->
+  </channel>
+</rss>

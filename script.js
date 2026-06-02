@@ -524,7 +524,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ========================================================
+    // 5.5. Service Pages Scroll Reveal
+    // ========================================================
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.service-section, .step-card, .stat, .cta-block').forEach(el => {
+            revealObserver.observe(el);
+        });
+    }
+
+    // ========================================================
     // 6. Mobile premium polish — scroll progress + shrunk header
+
     //    Runs only when the viewport is in mobile breakpoint.
     //    Uses matchMedia + rAF throttle to keep the main thread free.
     // ========================================================
@@ -573,4 +592,85 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('resize', onScroll, { passive: true });
         onScroll();
     })();
+
+    // ========================================================
+    // 7. GA4 Custom Events Tracking
+    // ========================================================
+    function trackGA4Event(eventName, params = {}) {
+        if (typeof gtag === 'function') {
+            gtag('event', eventName, params);
+        } else if (window.dataLayer) {
+            window.dataLayer.push({ event: eventName, ...params });
+        }
+    }
+
+    // 7.1. Book Call Clicks
+    document.body.addEventListener('click', (e) => {
+        const target = e.target.closest('a');
+        if (target && (target.href.includes('book.html') || target.textContent.toLowerCase().includes('book a call'))) {
+            trackGA4Event('book_call_click', {
+                page_path: window.location.pathname,
+                cta_location: target.className || 'text_link'
+            });
+        }
+    });
+
+    // 7.2. Contact Form Submit
+    const bookForm = document.querySelector('form');
+    if (bookForm && window.location.pathname.includes('book.html')) {
+        bookForm.addEventListener('submit', () => {
+            trackGA4Event('contact_form_submit', {
+                form_id: bookForm.id || 'book_form',
+                page_path: window.location.pathname
+            });
+        });
+    }
+
+    // 7.3. Service Page View
+    if (window.location.pathname.includes('/services/') && window.location.pathname !== '/services/index.html' && window.location.pathname !== '/services/') {
+        const serviceType = window.location.pathname.split('/').pop().replace('.html', '');
+        trackGA4Event('service_page_view', { service_type: serviceType });
+    }
+
+    // 7.4. External Link Clicks
+    document.body.addEventListener('click', (e) => {
+        const target = e.target.closest('a');
+        if (target && target.hostname && target.hostname !== window.location.hostname) {
+            trackGA4Event('external_link_click', {
+                destination_domain: target.hostname
+            });
+        }
+    });
+
+    // 7.5. Blog Scroll 75%
+    if (window.location.pathname.includes('/blog/') && document.querySelector('article')) {
+        let firedScroll = false;
+        const scrollObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !firedScroll) {
+                firedScroll = true;
+                trackGA4Event('blog_scroll_75', {
+                    post_slug: window.location.pathname.split('/').pop(),
+                    time_on_page: Math.round(performance.now() / 1000)
+                });
+                scrollObserver.disconnect();
+            }
+        }, { threshold: 0 });
+        
+        // Find an element roughly 75% down the article
+        const articleElements = document.querySelectorAll('article > *, .article-content > *');
+        if (articleElements.length > 0) {
+            const targetIndex = Math.floor(articleElements.length * 0.75);
+            scrollObserver.observe(articleElements[targetIndex]);
+        }
+    }
+
+    // ========================================================
+    // 8. Low-end device optimizations
+    // ========================================================
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4)) {
+        document.body.classList.add('reduced-motion');
+        const grain = document.querySelector('.film-grain');
+        if(grain) grain.style.animation = 'none';
+        if(typeof lenis !== 'undefined') lenis.destroy();
+    }
 });
