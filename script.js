@@ -209,8 +209,11 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (canvas) {
         const context = canvas.getContext("2d");
         const frameCount = 400;
+        const isLocalFile = window.location.protocol === 'file:';
         const currentFrame = index => (
-            `/webp/Man_hanging_on_rope_poses_202605132219${index.toString().padStart(3, '0')}.webp`
+            isLocalFile 
+                ? `./public/webp/Man_hanging_on_rope_poses_202605132219${index.toString().padStart(3, '0')}.webp`
+                : `/webp/Man_hanging_on_rope_poses_202605132219${index.toString().padStart(3, '0')}.webp`
         );
 
         const images = [];
@@ -521,6 +524,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // the element, this prevents wasted bandwidth + decoder cycles.
     const mobileVideo = !reduceMotion ? document.querySelector('.mobile-character-loop') : null;
     if (mobileVideo) {
+        if (window.location.protocol === 'file:') {
+            // Fix video source for local testing
+            const source = mobileVideo.querySelector('source');
+            if (source) source.src = './public/videos/character-climb-loop.mp4';
+            mobileVideo.load();
+        }
+        
         const handleCanPlay = () => mobileVideo.classList.add('loaded');
         
         if (mobileVideo.readyState >= 3) {
