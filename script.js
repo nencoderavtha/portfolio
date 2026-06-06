@@ -487,9 +487,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const encryptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+<>_[]{}|\\";
         
         function setupTextGlitch(selector, triggerElementSelector) {
-            const elements = document.querySelectorAll(selector);
             const triggerEl = document.querySelector(triggerElementSelector);
+            if (!triggerEl) return;
             const sceneEl = triggerEl.closest('.scene');
+            if (!sceneEl) return;
+            const elements = document.querySelectorAll(selector);
+            if (!elements.length) return;
             
             elements.forEach(el => {
                 const originalText = el.innerText;
@@ -561,57 +564,63 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        setupTextGlitch("#scene-2 .card-title, #scene-2 .card-body", "#scene-2 .hacker-card");
+        if (document.querySelector("#scene-2 .hacker-card")) {
+            setupTextGlitch("#scene-2 .card-title, #scene-2 .card-body", "#scene-2 .hacker-card");
 
-        const scene2GlitchTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "#scene-2 .hacker-card",
-                start: "top 85%",
-                end: "top 35%",
-                scrub: 1 // Slower scrub for the card itself
-            }
-        });
+            const scene2GlitchTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#scene-2 .hacker-card",
+                    start: "top 85%",
+                    end: "top 35%",
+                    scrub: 1 // Slower scrub for the card itself
+                }
+            });
 
-        // Stuttering glitch scale/opacity reveal
-        scene2GlitchTl.fromTo("#scene-2 .hacker-card", 
-            { opacity: 0, scale: 0.9, y: 50, skewX: 10 }, 
-            { opacity: 1, scale: 1, y: 0, skewX: 0, duration: 1, ease: "steps(6)" }
-        );
+            // Stuttering glitch scale/opacity reveal
+            scene2GlitchTl.fromTo("#scene-2 .hacker-card", 
+                { opacity: 0, scale: 0.9, y: 50, skewX: 10 }, 
+                { opacity: 1, scale: 1, y: 0, skewX: 0, duration: 1, ease: "steps(6)" }
+            );
+        }
 
         // Idle Effects
         gsap.to("#mascot-canvas", { y: 5, rotation: 0.3, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
         // Smooth, interesting reveal for "Why work with us?" section
-        const whyWorkTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "#scene-7 .vision-card",
-                start: "top 85%", // Starts as soon as it enters viewport
-                end: "top 25%",   // Finishes completely while perfectly in view
-                scrub: 1.5
-            }
-        });
-        
-        // Ultra-premium subtle scale and fade for the card
-        whyWorkTl.fromTo("#scene-7 .vision-card", 
-            { opacity: 0, y: 60, scale: 0.97 }, 
-            { opacity: 1, y: 0, scale: 1, duration: 1.5, ease: "power3.out" }
-        );
-        
-        // High-end text masking wipe for bullet points (Awwwards style)
-        whyWorkTl.fromTo("#scene-7 .work-bullets li", 
-            { opacity: 0, y: 30, clipPath: "inset(100% 0% 0% 0%)" }, 
-            { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, stagger: 0.15, ease: "power3.out" },
-            "-=1" // Overlap heavily with the card entrance
-        );
+        if (document.querySelector("#scene-7 .vision-card")) {
+            const whyWorkTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#scene-7 .vision-card",
+                    start: "top 85%", // Starts as soon as it enters viewport
+                    end: "top 25%",   // Finishes completely while perfectly in view
+                    scrub: 1.5
+                }
+            });
+            
+            // Ultra-premium subtle scale and fade for the card
+            whyWorkTl.fromTo("#scene-7 .vision-card", 
+                { opacity: 0, y: 60, scale: 0.97 }, 
+                { opacity: 1, y: 0, scale: 1, duration: 1.5, ease: "power3.out" }
+            );
+            
+            // High-end text masking wipe for bullet points (Awwwards style)
+            whyWorkTl.fromTo("#scene-7 .work-bullets li", 
+                { opacity: 0, y: 30, clipPath: "inset(100% 0% 0% 0%)" }, 
+                { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, stagger: 0.15, ease: "power3.out" },
+                "-=1" // Overlap heavily with the card entrance
+            );
+        }
         gsap.to(".spotlight", { opacity: 0.4, duration: 5, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
         // Crown Doodle
-        ScrollTrigger.create({
-            trigger: "#scene-6",
-            start: "top 50%",
-            onEnter: () => { gsap.to(".crown-path", { strokeDashoffset: 0, duration: 2, ease: "power2.out" }); },
-            onLeaveBack: () => { gsap.to(".crown-path", { strokeDashoffset: 400, duration: 1 }); }
-        });
+        if (document.querySelector("#scene-6")) {
+            ScrollTrigger.create({
+                trigger: "#scene-6",
+                start: "top 50%",
+                onEnter: () => { gsap.to(".crown-path", { strokeDashoffset: 0, duration: 2, ease: "power2.out" }); },
+                onLeaveBack: () => { gsap.to(".crown-path", { strokeDashoffset: 400, duration: 1 }); }
+            });
+        }
 
         // Start loading
         if (window.innerWidth > 768) {
