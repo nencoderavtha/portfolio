@@ -1468,27 +1468,21 @@ body.drawer-open {
 
     /* --- Hero kinetic reveal (mobile-only load animation) --- */
     /* Override desktop GSAP's word state — on mobile we drive purely via CSS */
+    /* Hero text animation removed — render instantly with no entrance motion. */
     #scene-1 .word {
         display: inline-block;
-        opacity: 0;
-        transform: translateY(28px);
-        filter: blur(8px);
-        animation: heroWordIn 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+        opacity: 1;
+        transform: none;
+        filter: none;
+        animation: none;
     }
-    #scene-1 .word:nth-of-type(1) { animation-delay: 0.12s; }
-    #scene-1 .word:nth-of-type(2) { animation-delay: 0.24s; }
-    #scene-1 .word:nth-of-type(3) { animation-delay: 0.36s; }
-
     #scene-1 .hero-subtext,
     #scene-1 .hero-actions,
     #scene-1 .trust-strip {
-        opacity: 0;
-        transform: translateY(16px);
-        animation: heroFadeUp 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+        opacity: 1;
+        transform: none;
+        animation: none;
     }
-    #scene-1 .hero-subtext { animation-delay: 0.55s; }
-    #scene-1 .hero-actions { animation-delay: 0.7s; }
-    #scene-1 .trust-strip { animation-delay: 0.85s; }
 
     @keyframes heroWordIn {
         to {
@@ -2098,6 +2092,20 @@ body.mobile-static .content-wrapper {
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
+}
+
+/* Mobile: shrink oversized titles. These selectors are placed after the base
+   .hacker-card .card-title rule so they win the cascade (media queries add no
+   specificity, so source order decides between equal-specificity rules). */
+@media (max-width: 767px) {
+    .hacker-card .card-title {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+    }
+    #scene-faq .section-title {
+        font-size: clamp(1.5rem, 6.5vw, 2rem);
+    }
 }
 .reveal-on-scroll.in-view {
     opacity: 1;

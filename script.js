@@ -340,26 +340,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Hero Assembly
         const heroWords = gsap.utils.toArray("#scene-1 .word");
         
-        // INSTANTLY hide hero elements to prevent FOUC (flickering) before loader fades
-        if (heroWords.length) {
-            gsap.set(heroWords, { clipPath: "inset(0% 100% 0% 0%)", filter: "brightness(2) blur(3px)", x: -50, opacity: 0 });
-            gsap.set(".hero-subtext", { opacity: 0, y: 10 });
-        }
-
+        // Hero text animation removed: render words/subtext instantly with no
+        // entrance reveal. assembleHero is kept (callers below still invoke it)
+        // but now just guarantees the static, fully-visible state.
         function assembleHero() {
             if (!heroWords.length) return;
-            gsap.to(heroWords, {
-                clipPath: "inset(0% 0% 0% 0%)",
-                filter: "brightness(1) blur(0px)",
-                x: 0,
-                opacity: 1,
-                duration: 1.5,
-                stagger: 0.15,
-                ease: "expo.out",
-                overwrite: true,
-                clearProps: "clipPath"
-            });
-            gsap.to(".hero-subtext", { opacity: 1, y: 0, duration: 1, delay: 1, overwrite: true });
+            gsap.set(heroWords, { clipPath: "none", filter: "none", x: 0, opacity: 1 });
+            gsap.set(".hero-subtext", { opacity: 1, y: 0 });
         }
 
         ScrollTrigger.create({
@@ -371,59 +358,23 @@ document.addEventListener("DOMContentLoaded", () => {
         // Scene Synchronization
         const getProgress = (frame) => frame / (frameCount - 1);
 
-        // Creative Hero Exit: Split text and scatter characters on scroll
-        function splitTextIntoChars(selector) {
-            document.querySelectorAll(selector).forEach(el => {
-                const text = el.innerText;
-                el.innerHTML = text.split('').map(char => `<span class="char" style="display:inline-block; will-change: transform, opacity;">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+        // Hero text scatter animation removed. The hero is sticky-pinned over a
+        // tall (300vh) runway on desktop, so the text must still clear before
+        // Scene 2 arrives — do that with a plain opacity fade (no movement, no
+        // scatter) so the text stays put and simply dissolves. Desktop only:
+        // mobile uses normal document flow, so the hero scrolls away naturally
+        // and needs no exit animation.
+        if (window.innerWidth > 768) {
+            gsap.to("#scene-1 .tagline, .hero-subtext, .hero-actions, .trust-strip", {
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: "#scene-1",
+                    start: "35% top",
+                    end: "60% top",
+                    scrub: true
+                }
             });
         }
-        
-        splitTextIntoChars("#scene-1 .word");
-        
-        const chars = gsap.utils.toArray("#scene-1 .word .char");
-        
-        // Move the entire tagline upwards to simulate natural scrolling while sticky
-        gsap.to("#scene-1 .tagline", {
-            y: -300,
-            scrollTrigger: {
-                trigger: "#scene-1",
-                start: "25% top",
-                end: "60% top",
-                scrub: 1
-            }
-        });
-
-        gsap.to(chars, {
-            scrollTrigger: {
-                trigger: "#scene-1",
-                start: "25% top",
-                end: "60% top",
-                scrub: 1
-            },
-            x: () => (Math.random() - 0.5) * 400,
-            y: () => (Math.random() - 0.5) * 400, 
-            z: () => Math.random() * 300 - 50,
-            rotationZ: () => (Math.random() - 0.5) * 90,
-            rotationX: () => (Math.random() - 0.5) * 90,
-            rotationY: () => (Math.random() - 0.5) * 90,
-            scale: () => Math.random() * 1.5 + 0.8,
-            opacity: 0,
-            filter: "blur(20px)",
-            ease: "power2.inOut",
-            stagger: 0.01
-        });
-
-        gsap.to(".hero-subtext, .hero-actions, .trust-strip", {
-            opacity: 0,
-            y: -150,
-            scrollTrigger: {
-                trigger: "#scene-1",
-                start: "35% top",
-                end: "60% top",
-                scrub: true
-            }
-        });
 
         /* 
         // --- CONTENT ANIMATIONS REMOVED PER REQUEST ---
