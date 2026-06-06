@@ -580,6 +580,10 @@ body.drawer-open {
     pointer-events: none; 
 }
 
+#scene-1 {
+    min-height: 300vh;
+}
+
 #scene-2 {
     min-height: 180vh; /* Scaled down for faster flow */
 }
@@ -613,6 +617,17 @@ body.drawer-open {
 #scene-1 .content-wrapper {
     align-items: flex-start;
     padding-left: 8%;
+}
+
+/* Allow the FAQ section to flow natively instead of being sticky, 
+   so expanding accordions don't push text off-screen */
+#scene-faq .content-wrapper {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100vh;
+    justify-content: flex-start;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
 }
 
 /* Layout Alignment Modifiers */
@@ -2025,6 +2040,64 @@ body.mobile-static .content-wrapper {
         transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
     transition-delay: var(--reveal-delay, 0s);
     will-change: opacity, transform;
+}
+
+/* =========================================
+   HACKER CARD (Built Different Block)
+   ========================================= */
+.hacker-card {
+    background: rgba(5, 5, 5, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 3rem;
+    position: relative;
+    color: #ffffff;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    border-left: 4px solid var(--accent-red);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.terminal-header .dot.red { background: #ff5f56; }
+.terminal-header .dot.yellow { background: #ffbd2e; }
+.terminal-header .dot.green { background: #27c93f; }
+
+.terminal-title {
+    margin-left: auto;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+}
+
+.hacker-card .card-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.hacker-card .card-body {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
 }
 .reveal-on-scroll.in-view {
     opacity: 1;

@@ -356,7 +356,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 duration: 1.5,
                 stagger: 0.15,
                 ease: "expo.out",
-                overwrite: true
+                overwrite: true,
+                clearProps: "clipPath"
             });
             gsap.to(".hero-subtext", { opacity: 1, y: 0, duration: 1, delay: 1, overwrite: true });
         }
@@ -381,19 +382,32 @@ document.addEventListener("DOMContentLoaded", () => {
         splitTextIntoChars("#scene-1 .word");
         
         const chars = gsap.utils.toArray("#scene-1 .word .char");
+        
+        // Move the entire tagline upwards to simulate natural scrolling while sticky
+        gsap.to("#scene-1 .tagline", {
+            y: -300,
+            scrollTrigger: {
+                trigger: "#scene-1",
+                start: "25% top",
+                end: "60% top",
+                scrub: 1
+            }
+        });
+
         gsap.to(chars, {
             scrollTrigger: {
                 trigger: "#scene-1",
-                start: "5% top",
-                end: "45% top",
+                start: "25% top",
+                end: "60% top",
                 scrub: 1
             },
-            x: () => (Math.random() - 0.5) * 800,
-            y: () => (Math.random() - 0.5) * 800 - 200, // Bias upwards slightly since they're sticky
-            rotationZ: () => (Math.random() - 0.5) * 360,
-            rotationX: () => (Math.random() - 0.5) * 360,
-            rotationY: () => (Math.random() - 0.5) * 360,
-            scale: () => Math.random() * 2 + 0.1,
+            x: () => (Math.random() - 0.5) * 400,
+            y: () => (Math.random() - 0.5) * 400, 
+            z: () => Math.random() * 300 - 50,
+            rotationZ: () => (Math.random() - 0.5) * 90,
+            rotationX: () => (Math.random() - 0.5) * 90,
+            rotationY: () => (Math.random() - 0.5) * 90,
+            scale: () => Math.random() * 1.5 + 0.8,
             opacity: 0,
             filter: "blur(20px)",
             ease: "power2.inOut",
@@ -402,12 +416,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         gsap.to(".hero-subtext, .hero-actions, .trust-strip", {
             opacity: 0,
-            y: -50,
-            filter: "blur(10px)",
+            y: -150,
             scrollTrigger: {
                 trigger: "#scene-1",
-                start: "5% top",
-                end: "35% top",
+                start: "35% top",
+                end: "60% top",
                 scrub: true
             }
         });
@@ -452,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tl.to(children, { opacity: 0, filter: "blur(10px)", y: -50, duration: 1, stagger: stagger });
         }
 
-        syncScene("scene-2", [35, 65], [65, 95], [95, 125]);
+        // syncScene("scene-2", [35, 65], [65, 95], [95, 125]); // Replaced with custom glitch effect
         syncScene("scene-3", [100, 130], [130, 165], [165, 195]);
         syncScene("scene-4", [170, 200], [200, 235], [235, 265]);
         syncScene("scene-5", [220, 255], [255, 305], [305, 330]);
@@ -469,8 +482,127 @@ document.addEventListener("DOMContentLoaded", () => {
         scene7Tl.fromTo("#scene-7 .content-wrapper", { opacity: 0, filter: "blur(15px)", y: 60 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 1.5 });
         */
 
+        // --- CUSTOM PIXEL GLITCH EFFECT FOR SCENE 2 ---
+        const binaryChars = "01";
+        const encryptedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+<>_[]{}|\\";
+        
+        function setupTextGlitch(selector, triggerElementSelector) {
+            const elements = document.querySelectorAll(selector);
+            const triggerEl = document.querySelector(triggerElementSelector);
+            const sceneEl = triggerEl.closest('.scene');
+            
+            elements.forEach(el => {
+                const originalText = el.innerText;
+                const length = originalText.length;
+                const proxy = { progress: 0 };
+                
+                const setGlitchedText = (p) => {
+                    let result = "";
+                    for (let i = 0; i < length; i++) {
+                        if (originalText[i] === " " || originalText[i] === "\n") {
+                            result += originalText[i];
+                            continue;
+                        }
+                        
+                        if (p < 0.33) {
+                            result += binaryChars[Math.floor(Math.random() * binaryChars.length)];
+                        } else if (p < 0.66) {
+                            result += encryptedChars[Math.floor(Math.random() * encryptedChars.length)];
+                        } else {
+                            const resolveProgress = (p - 0.66) / 0.34;
+                            if (i < resolveProgress * length) {
+                                result += originalText[i];
+                            } else {
+                                result += encryptedChars[Math.floor(Math.random() * encryptedChars.length)];
+                            }
+                        }
+                    }
+                    el.innerText = result;
+                };
+
+                gsap.to(proxy, {
+                    progress: 1,
+                    scrollTrigger: {
+                        trigger: sceneEl, // Use the non-sticky parent scene for predictable scrolling
+                        start: "top 60%", // Starts decoding early
+                        end: "top 20%",   // Fully decoded well before the middle
+                        scrub: 0.1
+                    },
+                    onUpdate: () => {
+                        if (el.dataset.exitFlicker !== "true") {
+                            setGlitchedText(proxy.progress);
+                        }
+                    },
+                    onEnter: () => setGlitchedText(0)
+                });
+                
+                // Exit Phase: Snap to password dots when 80% scrolled through
+                ScrollTrigger.create({
+                    trigger: sceneEl,
+                    start: "bottom 20%", // 0.80 part of the scene scrolled
+                    end: "bottom top",
+                    onEnter: () => {
+                        el.dataset.exitFlicker = "true";
+                        let result = "";
+                        for (let i = 0; i < length; i++) {
+                            if (originalText[i] === " " || originalText[i] === "\n") {
+                                result += originalText[i];
+                            } else {
+                                result += "•"; // Thick password dot
+                            }
+                        }
+                        el.innerText = result;
+                    },
+                    onLeaveBack: () => {
+                        el.dataset.exitFlicker = "false";
+                        setGlitchedText(1);
+                    }
+                });
+            });
+        }
+
+        setupTextGlitch("#scene-2 .card-title, #scene-2 .card-body", "#scene-2 .hacker-card");
+
+        const scene2GlitchTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#scene-2 .hacker-card",
+                start: "top 85%",
+                end: "top 35%",
+                scrub: 1 // Slower scrub for the card itself
+            }
+        });
+
+        // Stuttering glitch scale/opacity reveal
+        scene2GlitchTl.fromTo("#scene-2 .hacker-card", 
+            { opacity: 0, scale: 0.9, y: 50, skewX: 10 }, 
+            { opacity: 1, scale: 1, y: 0, skewX: 0, duration: 1, ease: "steps(6)" }
+        );
+
         // Idle Effects
         gsap.to("#mascot-canvas", { y: 5, rotation: 0.3, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut" });
+
+        // Smooth, interesting reveal for "Why work with us?" section
+        const whyWorkTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#scene-7 .vision-card",
+                start: "top 85%", // Starts as soon as it enters viewport
+                end: "top 25%",   // Finishes completely while perfectly in view
+                scrub: 1.5
+            }
+        });
+        
+        // Ultra-premium subtle scale and fade for the card
+        whyWorkTl.fromTo("#scene-7 .vision-card", 
+            { opacity: 0, y: 60, scale: 0.97 }, 
+            { opacity: 1, y: 0, scale: 1, duration: 1.5, ease: "power3.out" }
+        );
+        
+        // High-end text masking wipe for bullet points (Awwwards style)
+        whyWorkTl.fromTo("#scene-7 .work-bullets li", 
+            { opacity: 0, y: 30, clipPath: "inset(100% 0% 0% 0%)" }, 
+            { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, stagger: 0.15, ease: "power3.out" },
+            "-=1" // Overlap heavily with the card entrance
+        );
         gsap.to(".spotlight", { opacity: 0.4, duration: 5, repeat: -1, yoyo: true, ease: "sine.inOut" });
 
         // Crown Doodle
