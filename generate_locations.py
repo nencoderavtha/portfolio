@@ -203,7 +203,7 @@ base_template = """<!DOCTYPE html>
             <div class="footer-social">
                 <h4>CONNECT</h4>
                 <ul>
-                    <li><a href="https://www.linkedin.com/in/sathvik-yadala-11b085231" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                    <li><a href="https://www.linkedin.com/company/exter-ai/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                     <li><a href="https://www.instagram.com/directedbysathvik?igsh=d3NtYWswd2NyeXg3" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                     <li><a href="https://x.com/directdbysatvik" target="_blank" rel="noopener noreferrer">X / Twitter</a></li>
                     <!-- TODO: Add YouTube, GitHub profile URLs when provided -->
