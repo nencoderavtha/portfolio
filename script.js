@@ -775,7 +775,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 7.1. Book Call Clicks
     document.body.addEventListener('click', (e) => {
         const target = e.target.closest('a');
-        if (target && (target.href.includes('book.html') || target.textContent.toLowerCase().includes('book a call'))) {
+        if (target && (target.href.includes('book') || target.textContent.toLowerCase().includes('book a call'))) {
             trackGA4Event('book_call_click', {
                 page_path: window.location.pathname,
                 cta_location: target.className || 'text_link'
@@ -785,7 +785,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 7.2. Contact Form Submit
     const bookForm = document.querySelector('#booking-form');
-    if (bookForm && window.location.pathname.includes('book.html')) {
+    if (bookForm) {
         bookForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
