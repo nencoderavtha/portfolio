@@ -820,17 +820,23 @@ document.addEventListener("DOMContentLoaded", () => {
                         submitBtn.disabled = false;
                     }, 3000);
                 } else {
-                    const data = await response.json();
-                    if (Object.hasOwn(data, 'errors')) {
+                    let data;
+                    try {
+                        data = await response.json();
+                    } catch (e) {
+                        data = {};
+                    }
+                    if (data && Object.hasOwn(data, 'errors')) {
                         alert(data.errors.map(error => error.message).join(', '));
                     } else {
-                        alert('Oops! There was a problem submitting your form');
+                        alert('Oops! There was a problem submitting your form (Status: ' + response.status + ')');
                     }
                     submitBtn.textContent = originalBtnText;
                     submitBtn.disabled = false;
                 }
             } catch (error) {
-                alert('Oops! There was a problem submitting your form');
+                console.error("Formspree Error:", error);
+                alert('Oops! There was a problem submitting your form: ' + error.message + '\n\nIf you have an adblocker, it might be blocking the submission.');
                 submitBtn.textContent = originalBtnText;
                 submitBtn.disabled = false;
             }
