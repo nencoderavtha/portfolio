@@ -784,13 +784,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 7.2. Contact Form Submit
-    const bookForm = document.querySelector('form');
+    const bookForm = document.querySelector('#booking-form');
     if (bookForm && window.location.pathname.includes('book.html')) {
-        bookForm.addEventListener('submit', () => {
+        bookForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
             trackGA4Event('contact_form_submit', {
                 form_id: bookForm.id || 'book_form',
                 page_path: window.location.pathname
             });
+
+            const submitBtn = bookForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(bookForm.action, {
+                    method: 'POST',
+                    body: new FormData(bookForm),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    bookForm.reset();
+                    submitBtn.textContent = 'Message Sent!';
+                    submitBtn.style.backgroundColor = '#4CAF50';
+                    submitBtn.style.color = '#FFFFFF';
+                    setTimeout(() => {
+                        submitBtn.textContent = originalBtnText;
+                        submitBtn.style.backgroundColor = '';
+                        submitBtn.style.color = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    const data = await response.json();
+                    if (Object.hasOwn(data, 'errors')) {
+                        alert(data.errors.map(error => error.message).join(', '));
+                    } else {
+                        alert('Oops! There was a problem submitting your form');
+                    }
+                    submitBtn.textContent = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                alert('Oops! There was a problem submitting your form');
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
         });
     }
 
