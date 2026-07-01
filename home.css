@@ -659,7 +659,7 @@ body.xk-home .site-header.scrolled {
    done with margin, NOT transform, because GSAP owns the char's transform
    (vertical scroll parallax) and would overwrite a CSS transform each frame. */
 .xk-cta__char img {
-    margin-left: -450px;
+    margin-left: -400px;
 }
 
 .xk-cta__body {
