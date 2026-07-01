@@ -10,10 +10,18 @@
   const root = document.querySelector('.xk-home');
   if (!root) return;
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const gsap = window.gsap;
-  const ScrollTrigger = window.ScrollTrigger;
-  const hasGsap = !!(gsap && ScrollTrigger);
+  function init() {
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+    
+    // Wait for GSAP CDN to load if Vite executes this module too early
+    if (!gsap || !ScrollTrigger) {
+      setTimeout(init, 50);
+      return;
+    }
+    
+    const hasGsap = true;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // --- Always-on: reveal-on-scroll via IntersectionObserver (robust) ---
   const reveals = document.querySelectorAll('.xk-reveal');
@@ -270,4 +278,8 @@
   window.addEventListener('load', refresh);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
   setTimeout(refresh, 2600); // after intro curtain has cleared
+  
+  } // end of init function
+  
+  init();
 })();
