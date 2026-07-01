@@ -445,12 +445,14 @@
 
         <!-- ===================== CTA ===================== -->
         <section class="xk-section xk-cta" id="contact">
-            <!-- Floating 3D Elements -->
-            <img src="./glass.png" class="floating-glass" alt="" aria-hidden="true">
-            <img src="./donut.png" class="floating-donut" alt="" aria-hidden="true">
+            <!-- 3D floating decorations -->
+            <div style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;">
+                <img src="./glass.png" alt="Glass" class="xk-float xk-float--b" style="position: absolute; top: -100px; left: -100px; width: 300px; opacity: 0.8; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5)); transform: rotate(-15deg);">
+                <img src="./donut.png" alt="Donut" class="xk-float xk-float--c" style="position: absolute; bottom: -50px; right: -80px; width: 250px; opacity: 0.9; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5)); transform: rotate(20deg);">
+            </div>
             
-            <div class="xk-cta__char" aria-hidden="true" style="overflow: visible;">
-                <img src="./artboard-2.png" alt="Closing Character" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; transform: scale(1.6) translateY(5%); transform-origin: top center;">
+            <div class="xk-cta__char" aria-hidden="true">
+                <img src="./artboard-2.png" alt="Closing Character">
             </div>
             <div class="xk-cta__body">
                 <h2 class="xk-display xk-cta__type">

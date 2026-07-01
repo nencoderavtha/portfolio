@@ -385,7 +385,6 @@ body.xk-home .site-header.scrolled { background: rgba(5, 5, 5, 0.82); backdrop-f
     grid-template-columns: 0.9fr 1.3fr;
     gap: 4vw;
     align-items: center;
-    overflow: hidden; /* Prevent horizontal scroll from absolute floaters */
     min-height: 92svh;
 }
 .xk-cta__char { width: 100%; height: clamp(340px, 44vw, 620px); }
@@ -561,6 +560,8 @@ body.xk-home .site-header.scrolled { background: rgba(5, 5, 5, 0.82); backdrop-f
     .xk-work__name { font-size: clamp(1.1rem, 4.5vw, 1.5rem); }
     .xk-work__cat  { text-align: left; font-size: 0.77rem; }
     .xk-work__preview, .xk-cursor { display: none !important; }
+    .xk-work__more { font-size: 0.8rem; margin-left: 0; justify-content: flex-start; }
+    .xk-work__more svg { width: 14px; height: 14px; }
 
     /* ============================================================
        CTA
