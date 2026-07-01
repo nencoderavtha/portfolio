@@ -545,7 +545,12 @@ body.xk-home .site-header.scrolled { background: rgba(5, 5, 5, 0.82); backdrop-f
        WORK LIST
        ============================================================ */
     .xk-work { padding-top: 18vh; }
-    .xk-work__title { font-size: clamp(2.6rem, 18vw, 6rem); }
+    .xk-work__title { 
+        font-size: clamp(1.8rem, 8vw, 2.5rem); 
+        transform-origin: left center;
+        text-align: left;
+    }
+    .xk-ticker { display: none; }
     .xk-work__row {
         padding: 1.2rem 0.2rem;
         flex-direction: column;
