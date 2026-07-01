@@ -647,6 +647,19 @@ body.xk-home .site-header.scrolled {
 .xk-cta__char {
     width: 100%;
     height: clamp(340px, 44vw, 620px);
+    /* Let the grid column collapse to its fr share instead of stretching to
+       the 1108px character PNG's intrinsic width (min-width:auto did that,
+       which shoved the "Let's Talk" copy off-screen to the right). The img
+       keeps its intrinsic size and simply overflows the column. */
+    min-width: 0;
+}
+
+/* Keep the oversized character at its exact intrinsic size, but slide the
+   figure to the left so the copy has room on the right. Horizontal shift is
+   done with margin, NOT transform, because GSAP owns the char's transform
+   (vertical scroll parallax) and would overwrite a CSS transform each frame. */
+.xk-cta__char img {
+    margin-left: -450px;
 }
 
 .xk-cta__body {
@@ -807,6 +820,16 @@ body.xk-home .site-header.scrolled {
         order: -1;
         height: clamp(300px, 70vw, 460px);
         max-width: 460px;
+    }
+
+    /* Reset the desktop-only left shift + hide the desktop decorations once the
+       CTA stacks into a single column (tablet & mobile both match this query). */
+    .xk-cta__char img {
+        margin-left: 0;
+    }
+
+    .xk-cta__decor {
+        display: none;
     }
 }
 

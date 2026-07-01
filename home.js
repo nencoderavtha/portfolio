@@ -153,29 +153,19 @@
   }
 
   // ---------------------------------------------------------
-  // 4. Work list — cursor-following preview + round badge
+  // 4. Work list — round "VIEW" badge follows the cursor on hover
   // ---------------------------------------------------------
-  const preview = document.querySelector('.xk-work__preview');
   const cursor = document.querySelector('.xk-cursor');
   const rows = gsap.utils.toArray('.xk-work__row');
   const finePointer = window.matchMedia('(hover: hover)').matches;
 
-  if (preview && cursor && rows.length && finePointer) {
-    const previewLabel = preview.querySelector('.xk-slot__label');
-    const previewDim = preview.querySelector('.xk-slot__dim');
-    const previewImg = preview.querySelector('.xk-work__preview-img');
-    const previewSlot = preview.querySelector('.xk-slot');
-
-    const xTo = gsap.quickTo(preview, 'x', { duration: 0.5, ease: 'power3' });
-    const yTo = gsap.quickTo(preview, 'y', { duration: 0.5, ease: 'power3' });
+  if (cursor && rows.length && finePointer) {
     const cxTo = gsap.quickTo(cursor, 'x', { duration: 0.25, ease: 'power3' });
     const cyTo = gsap.quickTo(cursor, 'y', { duration: 0.25, ease: 'power3' });
 
     let active = false;
     const move = (e) => {
       if (!active) return;
-      xTo(e.clientX);
-      yTo(e.clientY);
       cxTo(e.clientX);
       cyTo(e.clientY);
     };
@@ -184,41 +174,24 @@
     rows.forEach((row) => {
       row.addEventListener('pointerenter', (e) => {
         active = true;
-        if (previewLabel) previewLabel.textContent = row.dataset.name || 'Project';
-        if (previewDim) previewDim.textContent = row.dataset.cat || '';
-        
-        if (previewImg && row.dataset.image) {
-            previewImg.src = row.dataset.image;
-            previewImg.style.display = 'block';
-            if (previewSlot) previewSlot.style.display = 'none';
-        } else {
-            if (previewImg) previewImg.style.display = 'none';
-            if (previewSlot) previewSlot.style.display = 'flex';
-        }
-        // jump preview to pointer before showing (avoids fly-in from corner)
-        gsap.set(preview, { x: e.clientX, y: e.clientY });
+        // jump badge to pointer before showing (avoids fly-in from corner)
         gsap.set(cursor, { x: e.clientX, y: e.clientY });
-        preview.classList.add('is-active');
         cursor.classList.add('is-active');
       });
       row.addEventListener('pointerleave', () => {
         active = false;
-        preview.classList.remove('is-active');
         cursor.classList.remove('is-active');
-        // Instantly snap preview off-screen to prevent drift
-        gsap.set(preview, { x: -9999, y: -9999 });
+        // Instantly snap badge off-screen to prevent drift
         gsap.set(cursor, { x: -9999, y: -9999 });
       });
     });
 
-    // Safety net: kill preview if mouse leaves the entire work section
+    // Safety net: kill badge if mouse leaves the entire work section
     const workSection = document.querySelector('.xk-work');
     if (workSection) {
       workSection.addEventListener('pointerleave', () => {
         active = false;
-        preview.classList.remove('is-active');
         cursor.classList.remove('is-active');
-        gsap.set(preview, { x: -9999, y: -9999 });
         gsap.set(cursor, { x: -9999, y: -9999 });
       });
     }
