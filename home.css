@@ -825,8 +825,6 @@ body.xk-home .site-header.scrolled {
         justify-content: flex-start;
     }
 
-    v
-
     /* Kinetic type — restored rotations, sized to sit inside padded width */
     .xk-hero__type {
         font-size: clamp(2rem, 10vw, 5rem);
