@@ -579,7 +579,7 @@ body.xk-home .site-header.scrolled { background: rgba(5, 5, 5, 0.82); backdrop-f
     .xk-cta__type { font-size: clamp(3.4rem, 17vw, 7rem); }
     .xk-cta__type .xk-line:nth-child(2) { margin-left: 3vw; }
     .xk-cta__row { gap: 1rem; margin-top: -1rem; position: relative; z-index: 2; }
-    .xk-mobile-hero-floats { display: block; position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .xk-mobile-hero-floats { display: block; position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow-x: clip; overflow-y: visible; }
 }
 
 /* ------------------------------------------------------------
