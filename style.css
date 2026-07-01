@@ -1218,34 +1218,25 @@ body.drawer-open {
         -webkit-overflow-scrolling: touch;
     }
 
-    /* --- Header & nav (floating glass, shrinks on scroll) ---
-       Flat 12px gutters (no env()): horizontal notches don't exist in
-       portrait, and calc() + env() was misbehaving and clipping the right. */
+    /* --- Header & nav (Inherits desktop edge-to-edge style) --- */
     .site-header {
-        top: calc(8px + var(--safe-top));
+        top: 0;
         left: 0;
-        right: 0;
-        margin: 0 auto;
-        width: calc(100% - 24px);
-        max-width: 500px;
-        box-sizing: border-box;
-        padding: 4px 12px 4px 16px;
-        background: rgba(26, 0, 0, 0.6);
-        backdrop-filter: blur(14px) saturate(140%);
-        -webkit-backdrop-filter: blur(14px) saturate(140%);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 999px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-        transition:
-            padding 0.3s ease,
-            background 0.3s ease,
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
+        width: 100%;
+        max-width: none;
+        padding: 1.2rem 5%;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        transition: none;
     }
     .site-header.shrunk {
-        padding: 2px 10px 2px 14px;
-        background: rgba(26, 0, 0, 0.78);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        padding: 1.2rem 5%;
+        background: transparent;
+        box-shadow: none;
     }
     /* Tiny amber scroll-progress bar pinned to the very top of the viewport */
     .scroll-progress {
