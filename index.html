@@ -34,17 +34,16 @@
     <!-- Fonts: only Montserrat (body) + Syne (headings) are used -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@800&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@400;500;600;700;800&display=block" rel="stylesheet">
 
     <!-- Preloads for Hero -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@800&display=block" as="style">
-    <link rel="preload" as="image" href="/videos/character-climb-poster.jpg">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@400;500;600;700;800&display=block" as="style">
 
-    
+
 
     <!-- Microsoft Clarity (Placeholder) -->
     <script type="text/javascript">
-        
+
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+"x0ak3inuyf";
@@ -59,7 +58,7 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-W4YBYGT5FN');
-      
+
       const aiReferrers = ['chatgpt.com','perplexity.ai','gemini.google.com','claude.ai','copilot.microsoft.com','you.com','phind.com'];
       const ref = document.referrer ? new URL(document.referrer).hostname : '';
       const aiSrc = aiReferrers.find(d => ref.includes(d)) || 'not_ai';
@@ -218,38 +217,40 @@
     <style>
         /* Critical Above-the-fold CSS */
         :root { --bg-dark: #050505; --accent-cream: #F5F5F0; --brand-red: #E53935; --font-heading: 'Syne', sans-serif; --font-body: 'Montserrat', sans-serif; }
-        body { margin: 0; background: var(--bg-dark); color: var(--accent-cream); font-family: var(--font-body); font-weight: 300; -webkit-font-smoothing: antialiased; }
-        .site-header { position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s; }
-        .header-container { max-width: 1400px; margin: 0 auto; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+        body { margin: 0; background: #050505; color: var(--accent-cream); font-family: var(--font-body); font-weight: 300; -webkit-font-smoothing: antialiased; }
+        .site-header { position: absolute; top: 0; width: 100%; z-index: 1000; transition: all 0.3s; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 2%; }
         .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; }
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 8%; position: relative; }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } .film-grain { display: none !important; } }
     </style>
 
 
     <link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript></noscript>
+    <noscript><link rel="stylesheet" href="/style.css"></noscript>
+    <!-- Kinetic homepage layer (loads after style.css so the dark field wins) -->
+    <link rel="stylesheet" href="/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 </head>
-<body class="has-mascot">
+<body class="xk-home">
 
     <!-- Skip link for keyboard users -->
-    <a href="#scene-1" class="skip-link">Skip to content</a>
+    <a href="#xk-hero" class="skip-link">Skip to content</a>
 
-    <!-- Loading Screen (only shown on pages that load the mascot sequence) -->
-    <div id="loader" class="site-loader">
-        <div class="site-loader__label">LOADING EXTER...</div>
-        <div id="loader-bar-container" class="site-loader__bar">
-            <div id="loader-bar" class="site-loader__progress"></div>
-        </div>
+    <!-- Intro curtain: fragments sweep in, wordmark sets, curtain wipes up -->
+    <div class="xk-intro" aria-hidden="true">
+        <span class="xk-intro__shape xk-intro__shape--1"></span>
+        <span class="xk-intro__shape xk-intro__shape--2"></span>
+        <span class="xk-intro__shape xk-intro__shape--3"></span>
+        <span class="xk-intro__shape xk-intro__shape--4"></span>
+        <span class="xk-intro__word">exter<b>.ai</b></span>
     </div>
 
     <!-- Film Grain + Vignette (Aged Cinematic Layers) -->
     <div class="film-grain"></div>
     <div class="vignette"></div>
-    
+
     <!-- Mobile scroll progress bar (amber). Inert on desktop via CSS. -->
     <div class="scroll-progress" aria-hidden="true"></div>
 
@@ -258,28 +259,11 @@
         <div class="header-container">
             <a href="./" class="logo">exter.ai</a>
             <nav class="main-nav" aria-label="Primary">
-<div class="nav-dropdown">
-                    <a href="./services/" class="nav-link">Services <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
-                    <div class="nav-dropdown-menu">
-                        <a href="./services/ai-receptionist.html">AI Receptionist</a>
-                        <a href="./services/3d-web-design.html">3D Web Design</a>
-                        <a href="./services/fullstack-development.html">Fullstack Development</a>
-                        <a href="./services/ai-video-branding.html">AI Video Branding</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="./tools/" class="nav-link">Tools <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
-                    <div class="nav-dropdown-menu">
-                        <a href="./tools/ai-receptionist-roi-calculator.html">ROI Calculator</a>
-                        <a href="./tools/website-cost-estimator.html">Cost Estimator</a>
-                        <a href="./tools/ai-readiness-quiz.html">AI Readiness Quiz</a>
-                    </div>
-                </div>
-                <a href="./work.html" class="nav-link">Work</a>
-                <a href="./blog/" class="nav-link">Blog</a>
                 <a href="./about.html" class="nav-link">About</a>
-                <a href="./book.html" class="nav-cta">Book a call</a>
-</nav>
+                <a href="./work.html" class="nav-link">Work</a>
+                <a href="./services/" class="nav-link">Services</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open menu">
                 <span class="nav-toggle__bar"></span>
                 <span class="nav-toggle__bar"></span>
@@ -322,301 +306,287 @@
     <!-- Diffused Spotlighting -->
     <div class="spotlight"></div>
 
-    <!-- Central Sticky Anchor (Canvas for Image Sequence) -->
-    <div class="canvas-container">
-        <canvas id="mascot-canvas"></canvas>
-    </div>
+    <!-- Kinetic homepage -->
+    <main id="main">
 
-    <!-- Scrollytelling Content -->
-    <main id="smooth-wrapper" class="scroll-container">
-        
-        <!-- Scene 1: Hero -->
-        <section class="scene" id="scene-1">
-            <div class="content-wrapper align-left">
-                <h1 class="tagline">
-                    <span class="word">CAPTURE.</span><br>
-                    <span class="word">ENGAGE.</span><br>
-                    <span class="word">CONVERT.</span>
-                </h1>
-                <p class="hero-subtext">An AI-native studio building websites, automations, and brand for ambitious founders.</p>
-                <div class="hero-actions">
-                    <a href="./book.html" class="btn-primary">Book a call</a>
-                    <a href="./work.html" class="btn-secondary">See our work</a>
+        <!-- ===================== HERO ===================== -->
+        <section class="xk-section xk-hero" id="xk-hero">
+            <!-- Floating illustration slots (decorative — swap for your art) -->
+            <div class="xk-floats" aria-hidden="true">
+                <div class="xk-float xk-float--a">
+                    <img src="./art-slot-a.png" alt="Art slot A" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
-                <div class="trust-strip">
-                    Based in India · Available worldwide · Reply within 24 hours
+                <div class="xk-float xk-float--b">
+                    <img src="./art-slot-b.png" alt="Art slot B" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <div class="xk-float xk-float--c">
+                    <img src="./art-slot-c.png" alt="Art slot C" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
             </div>
-            <!-- Mobile-only scroll cue (CSS hides on desktop) -->
-            <div class="scroll-cue" aria-hidden="true">
+
+            <!-- Hero character slot -->
+            <div class="xk-hero__char" aria-hidden="true">
+                <img src="./artboard-1.png" alt="Hero Character" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            </div>
+
+            <h1 class="xk-display xk-hero__type">
+                <span class="xk-line xk-line--cream">Capture</span>
+                <span class="xk-line xk-line--red">Engage</span>
+                <span class="xk-line xk-line--outline">Convert</span>
+            </h1>
+
+            <p class="xk-hero__lead">
+                An <strong>AI-native studio</strong> building websites, automations, and brand for ambitious founders.
+            </p>
+
+            <!-- Mobile-only: statement text fills the empty right-side gap in the hero -->
+            <p class="xk-hero__statement" aria-hidden="true">
+                We use AI to deliver what bigger agencies charge <em>10×</em> for. Same quality, a fraction of the time, none of the bloat.
+            </p>
+
+            <div class="xk-cue" aria-hidden="true">
                 <span>scroll</span>
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 9l6 6 6-6"/>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+        </section>
+
+        <!-- ===================== STATEMENT + SHOWREEL ===================== -->
+        <section class="xk-section xk-statement">
+            <p class="xk-statement__text xk-reveal">
+                We use AI to deliver what bigger agencies charge <em>10×</em> for. Same quality, a fraction of the time, none of the bloat.
+            </p>
+            <div class="xk-showreel xk-reveal" style="position: relative;">
+                <svg class="xk-scribble" viewBox="0 0 100 100" aria-hidden="true" style="top: -20px; left: -20px; width: 60px; height: 60px;">
+                    <path class="xk-scribble__path" pathLength="100" d="M50 10 Q 50 45 10 50 Q 50 55 50 90 Q 55 50 90 50 Q 50 45 50 10 Z" />
+                </svg>
+                <a class="xk-showreel__badge" href="./work.html" aria-label="See our work showreel">
+                    <span class="xk-showreel__word">Show<br>reel</span>
+                    <span class="xk-showreel__play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                </a>
+                <div class="xk-showreel__cap">See the work</div>
+            </div>
+        </section>
+
+        <!-- ===================== WORK ===================== -->
+        <section class="xk-section xk-work" id="work">
+            <div style="position: relative; display: inline-block;">
+                <h2 class="xk-display xk-work__title">Work</h2>
+                <svg class="xk-scribble" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true" style="top: auto; bottom: -15px; left: 0; width: 110%; height: 25px;">
+                    <path class="xk-scribble__path" pathLength="100" d="M10,20 C50,40 150,0 190,30" />
                 </svg>
             </div>
-        </section>
-
-        <!--
-            Spacer Scene: intentionally empty.
-            Provides scroll runway for the mascot canvas image-sequence to animate
-            between the hero exit and Scene 2's entry. Do NOT delete — removing
-            this section will collapse the scrubbed mascot transition.
-        -->
-        <section class="scene spacer-scene" aria-hidden="true"></section>
-
-        <!-- Scene 2: Agency Intro (Far Right) -->
-        <section class="scene scene-2" id="scene-2">
-            <div class="content-wrapper align-far-right">
-                <div class="hacker-card" style="width: 540px;">
-                    <div class="terminal-header">
-                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                        <span class="terminal-title">SYS_DECODE_ACTV</span>
-                    </div>
-                    <h2 class="card-title">Built different.</h2>
-                    <p class="card-body">We use AI to deliver what bigger agencies charge 10x for. Same quality, a fraction of the time, none of the bloat. You get a small team that ships - not a slide deck.</p>
-                </div>
+            <div class="xk-work__layout">
+                <ul class="xk-work__list">
+                    <li>
+                        <a class="xk-work__row" href="./work-template.html" data-name="Dental Clinic Voice AI" data-cat="AI Receptionist / Automation" data-image="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=600&h=720&q=80">
+                            <span class="xk-work__name">Dental Clinic Voice AI</span>
+                            <span class="xk-work__cat">AI Receptionist / Automation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="xk-work__row" href="./work/case-study-ai-receptionist.html" data-name="Healthcare Practice" data-cat="AI Receptionist" data-image="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&h=720&q=80">
+                            <span class="xk-work__name">Healthcare Practice</span>
+                            <span class="xk-work__cat">AI Receptionist · +22% bookings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="xk-work__row" href="./work/case-study-3d-website.html" data-name="Tech Startup" data-cat="3D Web Experience" data-image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&h=720&q=80" style="cursor: none;">
+                            <span class="xk-work__name">Tech Startup</span>
+                            <span class="xk-work__cat">3D Web Experience · 3× time on site</span>
+                        </a>
+                    </li>
+                </ul>
+                <a class="xk-work__more" href="./work.html">
+                    View all work
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                </a>
             </div>
         </section>
 
-        <!-- Scene 3: Services (Far Right) -->
-        <section class="scene scene-3" id="scene-3">
-            <div class="content-wrapper align-far-right">
-                <div class="section-intro">
-                    <span class="eyebrow" aria-hidden="true">Services</span>
-                    <h2 class="section-title">What we make.</h2>
-                    <p class="section-subtitle">Disruptive AI solutions for high-growth founders.</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card white-card hand-drawn-aesthetic card-1">
-                        <h3 class="service-title">AI Receptionist</h3>
-                        <p>AI receptionists that book appointments, answer questions, and never sleep. You own the accounts and data.</p>
-                    </div>
-
-                    <div class="service-card white-card hand-drawn-aesthetic card-2">
-                        <h3 class="service-title">3D & Web</h3>
-                        <p>High-end web experiences that tell your brand story through 3D and motion. Disruptive design that converts.</p>
-                    </div>
-
-                    <div class="service-card white-card hand-drawn-aesthetic card-3">
-                        <h3 class="service-title">Fullstack Dev</h3>
-                        <p>Full applications built on modern stacks. We ship working software that scales, not just Figma files.</p>
-                    </div>
-
-                    <div class="service-card white-card hand-drawn-aesthetic card-4">
-                        <h3 class="service-title">AI Video Branding</h3>
-                        <p>Brand videos created with AI — cheaper than a film crew, faster than studios, sharper than stock.</p>
-                    </div>
-                </div>
+        <!-- Marquee ticker strip — infinite services belt -->
+        <div class="xk-ticker" aria-hidden="true">
+            <div class="xk-ticker__track">
+                <span>AI Receptionist</span><span class="xk-ticker__sep">✦</span>
+                <span class="xk-ticker__accent">3D Web Design</span><span class="xk-ticker__sep">✦</span>
+                <span>Fullstack Dev</span><span class="xk-ticker__sep">✦</span>
+                <span class="xk-ticker__accent">AI Video Branding</span><span class="xk-ticker__sep">✦</span>
+                <span>Automation</span><span class="xk-ticker__sep">✦</span>
+                <span>Ship Worldwide</span><span class="xk-ticker__sep">✦</span>
+                <span>AI Receptionist</span><span class="xk-ticker__sep">✦</span>
+                <span class="xk-ticker__accent">3D Web Design</span><span class="xk-ticker__sep">✦</span>
+                <span>Fullstack Dev</span><span class="xk-ticker__sep">✦</span>
+                <span class="xk-ticker__accent">AI Video Branding</span><span class="xk-ticker__sep">✦</span>
+                <span>Automation</span><span class="xk-ticker__sep">✦</span>
+                <span>Ship Worldwide</span><span class="xk-ticker__sep">✦</span>
             </div>
-        </section>
+        </div>
 
-        <!-- [NEW] Scene 4: How We Work -->
-        <section class="scene" id="scene-4">
-            <div class="content-wrapper align-far-right">
-                <div class="section-intro">
-                    <span class="eyebrow" aria-hidden="true">Process</span>
-                    <h2 class="section-title">How we work.</h2>
-                    <p class="section-subtitle">Three weeks, three phases, zero confusion.</p>
-                </div>
-                <div class="process-grid">
-                    <div class="process-step">
-                        <div class="step-number">01</div>
-                        <h3 class="step-title">Discovery</h3>
-                        <p class="step-body">We learn your business and goals. You get a written plan with scope, timeline, and fixed price. No surprises.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">02</div>
-                        <h3 class="step-title">Build</h3>
-                        <p class="step-body">We design and develop in parallel using AI tools that 10x our speed. You get a working preview by day 10.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">03</div>
-                        <h3 class="step-title">Launch</h3>
-                        <p class="step-body">We test, polish, and ship. You get full ownership of everything. Plus 30 days of free support.</p>
-                    </div>
-                </div>
+        <!-- Cursor-following preview + badge (desktop hover only) -->
+        <div class="xk-work__preview" aria-hidden="true">
+            <img class="xk-work__preview-img" src="" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: none; filter: grayscale(100%);">
+            <div class="xk-slot">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15l-5-5L5 21"/><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+                <span class="xk-slot__label">Project</span>
+                <span class="xk-slot__dim">preview image slot</span>
             </div>
-        </section>
-
-        <!-- Scene 5: Selected Work (Far Right) -->
-        <section class="scene scene-5" id="scene-5">
-            <div class="content-wrapper align-far-right">
-                <div class="section-intro">
-                    <span class="eyebrow" aria-hidden="true">Work</span>
-                    <h2 class="section-title">Recent work.</h2>
-                </div>
-                <div class="work-grid">
-                    <div class="work-card white-card">
-                        <div class="work-content">
-                            <div class="work-category">AI Receptionist / Automation</div>
-                            <h3 class="work-title">Dental Clinic Voice AI</h3>
-                            <p class="work-description">Built a voice AI that books appointments and handles after-hours calls. Integrated with CRM systems for seamless operations.</p>
-                            <ul class="work-bullets">
-                                <li>Handles 40+ calls/week</li>
-                                <li>Books appointments 24/7</li>
-                                <li>Setup time: 4 days</li>
-                            </ul>
-                            <a href="./work-template.html" class="btn-secondary">View Case Study</a>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="xk-cursor" aria-hidden="true" style="width: 84px; height: 84px; z-index: 9999 !important;">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <span style="font-weight: 800; font-size: 11px; font-family: var(--font-heading, 'Syne', sans-serif); letter-spacing: 0.1em;">VIEW</span>
             </div>
-        </section>
+        </div>
 
-        <!-- Scene 6: Book Appointment (Far Right) -->
-        <section class="scene scene-6" id="scene-6">
-            <div class="content-wrapper align-far-right">
-                <div class="project-cta-layout">
-                    <h2 class="project-title">Got a<br>project<br>in mind?</h2>
-                    
-                    <div class="button-wrapper z-reveal blur-in">
-                        <div class="crown-doodle" id="crown-doodle">
-                            <svg viewBox="0 0 100 60" class="crown-svg">
-                                <path class="crown-path" d="M10,50 L20,10 L50,30 L80,10 L90,50 Z" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <a href="./book.html" class="cta-button">Book a call</a>
-                    </div>
-                    
-                    <p class="card-body" style="text-align: right; color: rgba(255,255,255,0.65); max-width: 300px;">No pitch decks. Just a conversation about what you're building.</p>
-                </div>
+
+        <!-- ===================== CTA ===================== -->
+        <section class="xk-section xk-cta" id="contact">
+            <!-- Floating 3D Elements -->
+            <img src="./glass.png" class="floating-glass" alt="" aria-hidden="true">
+            <img src="./donut.png" class="floating-donut" alt="" aria-hidden="true">
+            
+            <div class="xk-cta__char" aria-hidden="true" style="overflow: visible;">
+                <img src="./artboard-2.png" alt="Closing Character" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; transform: scale(1.6) translateY(5%); transform-origin: top center;">
             </div>
-        </section>
-
-        <!-- Scene 7: Why Work With Us? (Far Right) -->
-        <section class="scene scene-7" id="scene-7">
-            <div class="content-wrapper align-far-right">
-                <div class="vision-card white-card y-track blur-in" style="width: 560px;">
-                    <h2 class="card-title">Why work with us?</h2>
-                    <ul class="work-bullets" style="margin-top: 1.5rem; text-align: right;">
-                        <li style="justify-content: flex-end;">You get the founders on every call. No account managers.</li>
-                        <li style="justify-content: flex-end;">We sign NDAs before discovery calls.</li>
-                        <li style="justify-content: flex-end;">You own everything we build — code, accounts, data.</li>
-                        <li style="justify-content: flex-end;">Fixed-price proposals. No hourly surprises.</li>
-                        <li style="justify-content: flex-end;">30 days of free support after launch.</li>
-                    </ul>
+            <div class="xk-cta__body">
+                <h2 class="xk-display xk-cta__type">
+                    <span class="xk-line xk-line--cream">Let's</span>
+                    <span class="xk-line xk-line--red">Talk</span>
+                </h2>
+                <div class="xk-cta__row xk-reveal">
+                    <span class="xk-cta__hint">Got a project in mind? Email us</span>
+                    <a class="xk-cta__email" href="mailto:hello@exter.ai">
+                        hello@exter.ai
+                        <svg class="xk-ellipse" viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
+                            <path pathLength="760" d="M30 52 C 8 28, 70 16, 165 15 C 292 14, 318 42, 296 58 C 278 72, 150 80, 64 73 C 20 69, 14 56, 44 48"/>
+                        </svg>
+                    </a>
+                    <a class="xk-cta__btn" href="./book.html">
+                        Book a call
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        <svg class="xk-scribble" viewBox="0 0 120 100" aria-hidden="true">
+                            <path class="xk-scribble__path" pathLength="100" d="M10,80 C10,80 30,10 60,30 C90,50 40,90 40,60 C40,30 90,20 110,60 M110,60 L90,65 M110,60 L105,40" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- FAQ Section (Visible for AEO — matches FAQPage schema) -->
-        <section class="scene" id="scene-faq" style="min-height:auto;padding:80px 0">
-            <div class="content-wrapper align-far-right">
-                <div style="width:100%;max-width:640px">
-                    <div class="section-intro">
-                        <span class="eyebrow" aria-hidden="true">FAQ</span>
-                        <h2 class="section-title">Questions we get asked.</h2>
-                    </div>
-                    <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
-                        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <summary itemprop="name">What does Exter.ai do?</summary>
-                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <p itemprop="text">Exter.ai is an AI-native studio that builds websites, AI automations, AI receptionists, fullstack applications, and brand identities for ambitious founders. We use AI to ship faster and deliver enterprise-grade quality at startup speed, with fixed pricing and no pitch decks.</p>
-                            </div>
-                        </details>
-                        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <summary itemprop="name">What is Exter AI?</summary>
-                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <p itemprop="text">Exter AI (also known as exter-ai, exter.ai, or ExterAI) is a disruptive AI agency based in India that ships worldwide. Founded by Sathvik Yadala, the studio specializes in AI receptionists, 3D website design, fullstack development, and AI video branding for startups and ambitious founders.</p>
-                            </div>
-                        </details>
-                        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <summary itemprop="name">How much does Exter.ai charge?</summary>
-                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <p itemprop="text">We provide fixed-price proposals after a free discovery call. Every project gets a written plan with scope, timeline, and exact price before we start. No hourly billing, no surprise invoices.</p>
-                            </div>
-                        </details>
-                        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <summary itemprop="name">How long does a project take?</summary>
-                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <p itemprop="text">Typical timelines range from 4 days for an AI receptionist to 3 weeks for a full 3D website. We provide exact timelines in our proposal after the discovery call.</p>
-                            </div>
-                        </details>
-                        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <summary itemprop="name">What is an AI receptionist?</summary>
-                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <p itemprop="text">An AI receptionist is a voice-enabled artificial intelligence system that answers phone calls, qualifies leads, books appointments, and handles customer inquiries 24/7. Exter.ai builds custom AI receptionists that integrate with CRM systems, calendar tools, and phone networks. Typical setup time is 4 days.</p>
-                            </div>
-                        </details>
-                        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <summary itemprop="name">Do you work with international clients?</summary>
-                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <p itemprop="text">Yes. Exter.ai ships worldwide. We have clients across the US, UK, UAE, and Asia. We communicate in English, work across time zones, and handle everything from discovery to deployment remotely.</p>
-                            </div>
-                        </details>
-                    </div>
+        <section class="xk-section" id="faq" style="padding-top:6vh;padding-bottom:10vh">
+            <div style="width:100%;max-width:760px;margin:0 auto">
+                <div class="section-intro">
+                    <span class="eyebrow" aria-hidden="true">FAQ</span>
+                    <h2 class="section-title" style="font-family:var(--font-heading);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 2rem">Questions we get asked.</h2>
+                </div>
+                <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+                    <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <summary itemprop="name">What does Exter.ai do?</summary>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">Exter.ai is an AI-native studio that builds websites, AI automations, AI receptionists, fullstack applications, and brand identities for ambitious founders. We use AI to ship faster and deliver enterprise-grade quality at startup speed, with fixed pricing and no pitch decks.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <summary itemprop="name">What is Exter AI?</summary>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">Exter AI (also known as exter-ai, exter.ai, or ExterAI) is a disruptive AI agency based in India that ships worldwide. Founded by Sathvik Yadala, the studio specializes in AI receptionists, 3D website design, fullstack development, and AI video branding for startups and ambitious founders.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <summary itemprop="name">How much does Exter.ai charge?</summary>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">We provide fixed-price proposals after a free discovery call. Every project gets a written plan with scope, timeline, and exact price before we start. No hourly billing, no surprise invoices.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <summary itemprop="name">How long does a project take?</summary>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">Typical timelines range from 4 days for an AI receptionist to 3 weeks for a full 3D website. We provide exact timelines in our proposal after the discovery call.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <summary itemprop="name">What is an AI receptionist?</summary>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">An AI receptionist is a voice-enabled artificial intelligence system that answers phone calls, qualifies leads, books appointments, and handles customer inquiries 24/7. Exter.ai builds custom AI receptionists that integrate with CRM systems, calendar tools, and phone networks. Typical setup time is 4 days.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <summary itemprop="name">Do you work with international clients?</summary>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">Yes. Exter.ai ships worldwide. We have clients across the US, UK, UAE, and Asia. We communicate in English, work across time zones, and handle everything from discovery to deployment remotely.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
 
-        
         <!-- Cross-Linking Sections -->
-        <section class="section-wrap" style="padding: 100px 8%; background: #111;">
-            <div style="max-width: 1200px; margin: 0 auto;">
-                <h2 style="font-family: var(--font-heading); font-size: 3rem; margin-bottom: 2rem;">Explore More</h2>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
-                    <!-- Latest from the Blog -->
-                    <div>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--accent-cream); margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">Latest from the Blog</h3>
-                        <div style="display:flex; flex-direction: column; gap: 1.5rem;">
-                            <a href="./blog/what-is-an-ai-receptionist.html" style="text-decoration:none; color:inherit; display:block; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; transition: border-color 0.3s;">
-                                <h4 style="margin: 0 0 0.5rem; font-family: var(--font-heading); font-size: 1.2rem;">What Is an AI Receptionist?</h4>
-                                <p style="margin: 0 0 1rem; font-size: 0.9rem; opacity: 0.8;">An AI receptionist is an intelligent voice agent that handles 100% of your inbound calls...</p>
-                                <span style="color: var(--brand-red); font-weight: 600; font-size: 0.9rem;">Read More →</span>
-                            </a>
-                            <a href="./blog/ai-agency-vs-traditional-agency.html" style="text-decoration:none; color:inherit; display:block; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; transition: border-color 0.3s;">
-                                <h4 style="margin: 0 0 0.5rem; font-family: var(--font-heading); font-size: 1.2rem;">AI vs Traditional Agency</h4>
-                                <p style="margin: 0 0 1rem; font-size: 0.9rem; opacity: 0.8;">Comparing AI agencies and traditional agencies across speed, cost, and tech stacks...</p>
-                                <span style="color: var(--brand-red); font-weight: 600; font-size: 0.9rem;">Read More →</span>
-                            </a>
-                            <a href="./blog/how-much-does-a-website-cost-in-2026.html" style="text-decoration:none; color:inherit; display:block; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; transition: border-color 0.3s;">
-                                <h4 style="margin: 0 0 0.5rem; font-family: var(--font-heading); font-size: 1.2rem;">Website Cost Guide 2026</h4>
-                                <p style="margin: 0 0 1rem; font-size: 0.9rem; opacity: 0.8;">A complete pricing guide detailing how much websites and web apps cost in 2026...</p>
-                                <span style="color: var(--brand-red); font-weight: 600; font-size: 0.9rem;">Read More →</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Free Tools -->
-                    <div>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--accent-cream); margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">Free AI Tools</h3>
-                        <div style="display:flex; flex-direction: column; gap: 1.5rem;">
-                            <div style="padding: 1.5rem; background: rgba(229,57,53,0.1); border: 1px solid rgba(229,57,53,0.3); border-radius: 12px;">
-                                <h4 style="margin: 0 0 0.5rem; font-family: var(--font-heading); font-size: 1.2rem;">AI Receptionist ROI Calculator</h4>
-                                <p style="margin: 0 0 1rem; font-size: 0.9rem; opacity: 0.8;">Calculate missed revenue and payback period.</p>
-                                <a href="./tools/ai-receptionist-roi-calculator.html" style="color: var(--brand-red); font-weight: 600; font-size: 0.9rem; text-decoration: none;">Try it free →</a>
-                            </div>
-                            <div style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
-                                <h4 style="margin: 0 0 0.5rem; font-family: var(--font-heading); font-size: 1.2rem;">Website Cost Estimator</h4>
-                                <p style="margin: 0 0 1rem; font-size: 0.9rem; opacity: 0.8;">Get an instant price estimate for your next build.</p>
-                                <a href="./tools/website-cost-estimator.html" style="color: var(--brand-red); font-weight: 600; font-size: 0.9rem; text-decoration: none;">Try it free →</a>
-                            </div>
-                            <div style="padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;">
-                                <h4 style="margin: 0 0 0.5rem; font-family: var(--font-heading); font-size: 1.2rem;">AI Readiness Quiz</h4>
-                                <p style="margin: 0 0 1rem; font-size: 0.9rem; opacity: 0.8;">Is your business ready to scale with AI? Take the quiz.</p>
-                                <a href="./tools/ai-readiness-quiz.html" style="color: var(--brand-red); font-weight: 600; font-size: 0.9rem; text-decoration: none;">Try it free →</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Featured Case Studies -->
-                    <div>
-                        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--accent-cream); margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">Featured Work</h3>
-                        <div style="display:flex; flex-direction: column; gap: 1.5rem;">
-                            <a href="./work/case-study-ai-receptionist.html" style="text-decoration:none; color:inherit; display:block; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; transition: border-color 0.3s;">
-                                <h4 style="margin: 0 0 0.5rem; font-family: var(--font-heading); font-size: 1.2rem;">Healthcare Practice</h4>
-                                <p style="margin: 0 0 1rem; font-size: 0.9rem; opacity: 0.8;">AI Receptionist integration increasing bookings by 22%.</p>
-                                <span style="color: var(--brand-red); font-weight: 600; font-size: 0.9rem;">View Case Study →</span>
-                            </a>
-                            <a href="./work/case-study-3d-website.html" style="text-decoration:none; color:inherit; display:block; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; transition: border-color 0.3s;">
-                                <h4 style="margin: 0 0 0.5rem; font-family: var(--font-heading); font-size: 1.2rem;">Tech Startup</h4>
-                                <p style="margin: 0 0 1rem; font-size: 0.9rem; opacity: 0.8;">3D Immersive Website leading to 3x Time on Site.</p>
-                                <span style="color: var(--brand-red); font-weight: 600; font-size: 0.9rem;">View Case Study →</span>
-                            </a>
-                        </div>
-                    </div>
+        <section class="xk-section xk-more">
+            <div class="xk-more__head">
+                <div>
+                    <span class="xk-more__eyebrow">Explore more</span>
+                    <h2 class="xk-more__title">Read, watch,<br>and dig deeper.</h2>
                 </div>
+                <div class="xk-more__links">
+                    <a href="./work.html" class="xk-more__pill">
+                        All work
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </a>
+                    <a href="./blog/" class="xk-more__pill">
+                        All articles
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="xk-more__grid">
+                <!-- Featured work -->
+                <a class="xk-card xk-reveal" href="./work/case-study-ai-receptionist.html">
+                    <span class="xk-card__tag">Case study</span>
+                    <h3 class="xk-card__title">Healthcare Practice</h3>
+                    <p class="xk-card__desc">An AI receptionist integration that lifted appointment bookings by 22%.</p>
+                    <span class="xk-card__cta">View case study
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+                <a class="xk-card xk-reveal" href="./work/case-study-3d-website.html">
+                    <span class="xk-card__tag">Case study</span>
+                    <h3 class="xk-card__title">Tech Startup</h3>
+                    <p class="xk-card__desc">A 3D immersive website that tripled average time on site.</p>
+                    <span class="xk-card__cta">View case study
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+
+                <!-- Latest from the blog -->
+                <a class="xk-card xk-reveal" href="./blog/what-is-an-ai-receptionist.html">
+                    <span class="xk-card__tag">Blog</span>
+                    <h3 class="xk-card__title">What Is an AI Receptionist?</h3>
+                    <p class="xk-card__desc">The intelligent voice agent that handles 100% of your inbound calls, 24/7.</p>
+                    <span class="xk-card__cta">Read more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+                <a class="xk-card xk-reveal" href="./blog/ai-agency-vs-traditional-agency.html">
+                    <span class="xk-card__tag">Blog</span>
+                    <h3 class="xk-card__title">AI vs Traditional Agency</h3>
+                    <p class="xk-card__desc">How AI and traditional agencies compare on speed, cost, and tech stack.</p>
+                    <span class="xk-card__cta">Read more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+                <a class="xk-card xk-reveal" href="./blog/how-much-does-a-website-cost-in-2026.html">
+                    <span class="xk-card__tag">Blog</span>
+                    <h3 class="xk-card__title">Website Cost Guide 2026</h3>
+                    <p class="xk-card__desc">A complete pricing guide for what websites and web apps cost in 2026.</p>
+                    <span class="xk-card__cta">Read more
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
             </div>
         </section>
 
@@ -634,15 +604,6 @@
                     <li><a href="./services/3d-web-design.html">3D Web Design</a></li>
                     <li><a href="./services/fullstack-development.html">Fullstack Dev</a></li>
                     <li><a href="./services/ai-video-branding.html">AI Video Branding</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>RESOURCES</h4>
-                <ul>
-                    <li><a href="./blog/">Blog</a></li>
-                    <li><a href="./tools/ai-receptionist-roi-calculator.html">ROI Calculator</a></li>
-                    <li><a href="./tools/website-cost-estimator.html">Cost Estimator</a></li>
-                    <li><a href="./tools/ai-readiness-quiz.html">AI Readiness Quiz</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -672,7 +633,7 @@
                     <a href="./terms.html">Terms</a>
                     <a href="./cookies.html">Cookies</a>
                 </div>
-                <a href="#scene-1" class="back-to-top" aria-label="Back to top">
+                <a href="#xk-hero" class="back-to-top" aria-label="Back to top">
                     <span>Back to top</span>
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M12 19V5M6 11l6-6 6 6"/>
@@ -695,20 +656,7 @@
         </svg>
     </a>
 
-    <!-- Mobile Character Loop Video (Homepage Only) -->
-    <video
-      class="mobile-character-loop"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-      poster="/videos/character-climb-poster.jpg"
-      aria-hidden="true"
-    >
-      <source src="/videos/character-climb-loop.mp4" type="video/mp4" />
-    </video>
-
     <script defer type="module" src="./script.js"></script>
+    <script defer type="module" src="./home.js"></script>
 </body>
 </html>

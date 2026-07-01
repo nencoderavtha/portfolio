@@ -191,17 +191,18 @@ main {
 /* Diffused Spotlighting */
 /* Header Styles */
 .site-header {
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
-    padding: 1.5rem 5%;
+    padding: 1.8rem 3%;
     z-index: 1000;
     box-sizing: border-box;
-    transition: background 0.4s, backdrop-filter 0.4s;
+    background: transparent;
+    transition: none;
 }
 
 .site-header.scrolled {
-    background: transparent; /* Removed blocking background */
+    background: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
@@ -214,29 +215,31 @@ main {
 
 .logo {
     font-family: var(--font-heading);
-    font-size: clamp(1.2rem, 3vw, 1.5rem); /* Responsive font size */
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     color: #fff;
     letter-spacing: -0.5px;
     text-transform: lowercase;
     font-weight: 800;
     text-decoration: none;
-    white-space: nowrap; /* Prevent squashing */
+    white-space: nowrap;
 }
 
 .main-nav {
     display: flex;
     align-items: center;
+    gap: 2.4rem;
 }
 
 .main-nav a {
     color: #fff;
     text-decoration: none;
-    margin-left: 2rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0.7;
+    margin-left: 0;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    opacity: 0.85;
     transition: opacity 0.3s;
 }
 
@@ -247,20 +250,6 @@ main {
 .main-nav a.active,
 .main-nav a[aria-current="page"] {
     opacity: 1;
-    text-decoration: underline;
-    text-underline-offset: 6px;
-    text-decoration-thickness: 2px;
-}
-
-/* New Navigation CTA */
-.nav-cta {
-    background: #fff !important;
-    color: #1A0000 !important;
-    padding: 0.8rem 1.8rem !important;
-    border-radius: 50px;
-    margin-left: 2rem;
-    opacity: 1 !important;
-    font-weight: 800 !important;
 }
 
 /* ============================================================
