@@ -235,13 +235,19 @@
         .origin-section h2 {
             grid-column: 1 / -1;
             font-family: var(--font-heading);
-            font-size: 48px;
+            /* Responsive: 48px on desktop, shrinks on narrow screens so long
+               words (EXTERIOR/MANIFESTO) fit instead of cropping off the edge */
+            font-size: clamp(1.7rem, 4.5vw, 48px);
             margin-bottom: 20px;
             text-transform: uppercase;
+            overflow-wrap: break-word;
         }
 
         @media (max-width: 850px) {
-            .newspaper-article, .origin-section { grid-template-columns: 1fr; }
+            /* minmax(0,1fr) lets the single column shrink to the container instead of
+               being forced wide by the h2's min-content (which caused right-edge cropping) */
+            .newspaper-article, .origin-section { grid-template-columns: minmax(0, 1fr); }
+            .newspaper-article > *, .origin-section > * { min-width: 0; }
             .newspaper-paper { padding: 40px 6%; margin: 100px 4% 50px; }
             .manifesto-columns { column-count: 1; }
         }
@@ -257,11 +263,17 @@
                 letter-spacing: -1px;
             }
             .newspaper-article {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
                 gap: 30px;
             }
             .founder-entry {
                 margin-bottom: 20px;
+            }
+            .origin-section {
+                gap: 30px;
+            }
+            .origin-text {
+                overflow-wrap: break-word;
             }
         }
     </style>
@@ -399,7 +411,7 @@
             <div style="border-top: 4px double #1a1a1a; margin: 60px 0;"></div>
 
             <div class="origin-section">
-                <h2 style="font-family: var(--font-heading); font-size: 3rem; text-transform: uppercase;">The Exterior Manifesto</h2>
+                <h2>The Exterior Manifesto</h2>
                 <div class="manifesto-columns">
                     <p class="origin-text drop-cap">Exter.ai is short for 'exterior of the box.' We started because most agencies talk slow and ship slower. We believe AI lets a small team punch like a big one — and we're proving it. In a world where everyone is talking about AI, we are the ones actually building it into the DNA of high-growth companies.</p>
                     <p class="origin-text">Our approach is simple: no middlemen, no bloat, just pure execution from the people you see on this page. We don't just use AI; we live it. Every line of code, every design decision, and every strategy we ship is powered by the same systems we build for our clients. We aren't here to be your agency; we're here to be your technical edge.</p>
