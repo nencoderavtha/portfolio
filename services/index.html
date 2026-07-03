@@ -48,6 +48,10 @@
         .header-container { max-width: 1400px; margin: 0 auto; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; }
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 8%; position: relative; }
+        /* Keep dropdown menus hidden before style.css loads (prevents FOUC flash of both menus) */
+        .nav-dropdown { position: relative; display: inline-block; }
+        .nav-dropdown-menu { position: absolute; opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } .film-grain { display: none !important; } }
     </style>
 
