@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Case Studies — AI Receptionist, 3D Web, Fullstack Apps | Exter.ai</title>
-    <meta name="description" content="See how Exter.ai builds AI receptionists, 3D websites, and fullstack applications. Real projects, real results, real founders. View our case studies.">
+    <title>Showreel — Live 3D Web Builds | Exter.ai</title>
+    <meta name="description" content="A showreel of real, running web experiences built by Exter.ai. Hover a thumbnail to watch its intro, then open the live site in a new tab.">
     <meta name="keywords" content="Exter AI case studies, AI receptionist project, 3D website portfolio, AI agency work, exter-ai portfolio">
     <link rel="canonical" href="https://exter-ai.com/work.html">
 
@@ -118,6 +118,32 @@
         @media (max-width: 992px) {
             .work-index-grid { grid-template-columns: 1fr; }
         }
+        /* Showreel section */
+        .reel-section{padding:90px 8% 120px;border-top:1px solid rgba(255,255,255,.08)}
+        .reel-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;align-items:start}
+        .reel-card{display:block;text-decoration:none;color:#fff;position:relative}
+        .reel-frame{position:relative;width:100%;aspect-ratio:16/10;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#0d0809 center/cover no-repeat;box-shadow:0 18px 44px -24px rgba(0,0,0,.85);transition:transform .45s cubic-bezier(.19,1,.22,1),box-shadow .45s,border-color .35s}
+        .reel-card:hover .reel-frame{transform:translateY(-6px);border-color:rgba(229,57,53,.5);box-shadow:0 32px 60px -26px rgba(229,57,53,.4)}
+        .reel-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}
+        .reel-card:hover .reel-frame video{opacity:1}
+        .reel-frame::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(8,5,6,.5),transparent 55%);transition:opacity .4s}
+        .reel-card:hover .reel-frame::after{opacity:.3}
+        .reel-badge{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:6px 11px;border-radius:100px;background:rgba(8,5,6,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px);transition:opacity .3s}
+        .reel-badge i{width:6px;height:6px;border-radius:50%;background:var(--brand-red);box-shadow:0 0 0 0 rgba(229,57,53,.55);animation:reelpulse 1.8s infinite}
+        .reel-card:hover .reel-badge{opacity:0}
+        @keyframes reelpulse{0%{box-shadow:0 0 0 0 rgba(229,57,53,.5)}70%{box-shadow:0 0 0 8px rgba(229,57,53,0)}100%{box-shadow:0 0 0 0 rgba(229,57,53,0)}}
+        .reel-go{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(8,5,6,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px);transform:scale(.8);opacity:0;transition:.4s cubic-bezier(.19,1,.22,1)}
+        .reel-card:hover .reel-go{opacity:1;transform:scale(1);background:var(--brand-red);border-color:var(--brand-red)}
+        .reel-go svg{width:15px;height:15px}
+        .reel-meta{padding:16px 2px 0}
+        .reel-kick{font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--brand-red);margin-bottom:8px}
+        .reel-title{font-family:var(--font-heading);font-size:1.25rem;text-transform:uppercase;line-height:1.15;color:#fff;margin:0}
+        .reel-desc{font-family:var(--font-body);font-size:.9rem;line-height:1.6;color:rgba(255,255,255,.6);margin-top:10px}
+        .reel-open{margin-top:14px;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);transition:color .3s}
+        .reel-card:hover .reel-open{color:#fff}
+        .reel-open svg{width:13px;height:13px;color:var(--brand-red)}
+        @media(max-width:992px){.reel-grid{grid-template-columns:1fr 1fr}}
+        @media(max-width:600px){.reel-grid{grid-template-columns:1fr}}
     </style>
 
     <style>
@@ -163,7 +189,6 @@
                         <a href="./services/ai-video-branding.html">AI Video Branding</a>
                     </div>
                 </div>
-                <a href="./demos/" class="nav-link">Showreel</a>
                 <div class="nav-dropdown">
                     <a href="./tools/" class="nav-link">Tools <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
                     <div class="nav-dropdown-menu">
@@ -193,8 +218,7 @@
                 <span aria-hidden="true">×</span>
             </button>
             <nav class="mobile-drawer__nav" aria-label="Mobile primary">
-                <a href="./services/">Services</a>
-                <a href="./demos/">Showreel</a><a href="./work.html" aria-current="page">Work</a>
+                <a href="./services/">Services</a><a href="./work.html" aria-current="page">Work</a>
                 <a href="./blog/">Blog</a>
                 <a href="./about.html">About</a>
                 <a href="./book.html" class="mobile-drawer__cta">Book a call</a>
@@ -214,20 +238,55 @@
 
     <main id="main-content">
         <section class="static-hero">
-            <span class="label-small">CASE STUDIES</span>
-            <h1 class="hero-title">Selected work.</h1>
+            <span class="label-small">Live builds · Shipping now</span>
+            <h1 class="hero-title">Showreel.</h1>
         </section>
 
-        <section class="work-index-grid">
-            <!-- Work Card 1 -->
-            <a href="./work-template.html" class="work-card white-card" style="text-decoration: none;">
-                <div class="work-content" style="text-align: left;">
-                    <div class="work-category">AI Receptionist</div>
-                    <h3 class="work-title">Dental Clinic Voice AI</h3>
-                    <p class="work-description">Automation for a multi-location dental practice in Dallas.</p>
-                </div>
-            </a>
-            <!-- Add more as needed -->
+        <section class="reel-section" aria-label="Showreel">
+            <div class="reel-grid">
+                <!-- 01 NEAT -->
+                <a class="reel-card" href="https://neat-skincare-cylindrical-scroll.vercel.app/" target="_blank" rel="noopener" aria-label="Open the NEAT skincare site in a new tab">
+                    <div class="reel-frame" style="background-image:url('/demos/posters/neat-skincare.jpg')">
+                        <video muted loop playsinline preload="none"><source src="/demos/previews/neat-skincare.mp4" type="video/mp4"></video>
+                        <span class="reel-badge"><i></i>Hover to play</span>
+                        <span class="reel-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+                    </div>
+                    <div class="reel-meta">
+                        <div class="reel-kick">Skincare · WebGL</div>
+                        <h3 class="reel-title">NEAT — Hydration, Elevated</h3>
+                        <p class="reel-desc">A weightless serum suspended in the clouds. Drag to orbit the bottle in real-time 3D as the story scrolls.</p>
+                        <span class="reel-open">Open live<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+                    </div>
+                </a>
+                <!-- 02 CAR AFFAIR -->
+                <a class="reel-card" href="https://car-modier.vercel.app/" target="_blank" rel="noopener" aria-label="Open the Car Affair site in a new tab">
+                    <div class="reel-frame" style="background-image:url('/demos/posters/car-modifier.jpg')">
+                        <video muted loop playsinline preload="none"><source src="/demos/previews/car-modifier.mp4" type="video/mp4"></video>
+                        <span class="reel-badge"><i></i>Hover to play</span>
+                        <span class="reel-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+                    </div>
+                    <div class="reel-meta">
+                        <div class="reel-kick">Automotive · Motion</div>
+                        <h3 class="reel-title">Car Affair — Built, Not Bought</h3>
+                        <p class="reel-desc">Bespoke automotive modification as cinema. A scroll-scrubbed reveal that rebuilds the machine as you move.</p>
+                        <span class="reel-open">Open live<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+                    </div>
+                </a>
+                <!-- 03 LUXE ATELIER -->
+                <a class="reel-card" href="https://furniture-shop-tau-sepia.vercel.app/" target="_blank" rel="noopener" aria-label="Open the Luxe Atelier site in a new tab">
+                    <div class="reel-frame" style="background-image:url('/demos/posters/furniture.jpg')">
+                        <video muted loop playsinline preload="none"><source src="/demos/previews/furniture.mp4" type="video/mp4"></video>
+                        <span class="reel-badge"><i></i>Hover to play</span>
+                        <span class="reel-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+                    </div>
+                    <div class="reel-meta">
+                        <div class="reel-kick">Commerce · React</div>
+                        <h3 class="reel-title">Luxe Atelier — Artistry Meets Living</h3>
+                        <p class="reel-desc">Handcrafted furniture with a Tuscan soul. A full storefront with buttery transitions and a living catalogue.</p>
+                        <span class="reel-open">Open live<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+                    </div>
+                </a>
+            </div>
         </section>
     </main>
 
@@ -299,5 +358,16 @@
     </a>
 
     <script src="./script.js" type="module"></script>
+    <script>
+        // Showreel: hover plays each site's intro loop from the start; leave resets to poster.
+        (function(){
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            document.querySelectorAll('.reel-card').forEach(function(card){
+                var v = card.querySelector('video'); if(!v) return;
+                card.addEventListener('mouseenter', function(){ if(reduce) return; try{ v.currentTime = 0; }catch(e){} v.play().catch(function(){}); });
+                card.addEventListener('mouseleave', function(){ v.pause(); try{ v.currentTime = 0; }catch(e){} });
+            });
+        })();
+    </script>
 </body>
 </html>
