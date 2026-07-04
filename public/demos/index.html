@@ -71,11 +71,14 @@
         .card.in{opacity:1;transform:none}
 
         .frame{position:relative;width:100%;aspect-ratio:16/10;border-radius:13px;overflow:hidden;
-            border:1px solid var(--line);background:#0d0809;
+            border:1px solid var(--line);background:#0d0809 center/cover no-repeat;
             box-shadow:0 16px 40px -22px rgba(0,0,0,.8);
             transition:transform .45s cubic-bezier(.19,1,.22,1),box-shadow .45s,border-color .35s}
         .card:hover .frame{transform:translateY(-6px);border-color:rgba(229,57,53,.45);box-shadow:0 30px 55px -26px rgba(229,57,53,.4)}
-        .frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#0d0809}
+        /* poster (frame background) shows by default; the intro video fades in on hover */
+        .frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+            opacity:0;transition:opacity .45s ease}
+        .card:hover .frame video{opacity:1}
         .frame::after{content:"";position:absolute;inset:0;pointer-events:none;
             background:linear-gradient(to top,rgba(8,5,6,.5),transparent 50%);opacity:.9;transition:opacity .4s}
         .card:hover .frame::after{opacity:.3}
@@ -148,8 +151,8 @@
         <main class="reel">
             <!-- 01 -->
             <a class="card" href="https://neat-skincare-cylindrical-scroll.vercel.app/" target="_blank" rel="noopener" aria-label="Open the NEAT skincare site in a new tab">
-                <div class="frame">
-                    <video muted loop playsinline preload="none" poster="/demos/posters/neat-skincare.jpg">
+                <div class="frame" style="background-image:url('/demos/posters/neat-skincare.jpg')">
+                    <video muted loop playsinline preload="none">
                         <source src="/demos/previews/neat-skincare.mp4" type="video/mp4">
                     </video>
                     <span class="badge"><i></i>Hover to play</span>
@@ -164,8 +167,8 @@
 
             <!-- 02 -->
             <a class="card" href="https://car-modier.vercel.app/" target="_blank" rel="noopener" aria-label="Open the Car Affair site in a new tab">
-                <div class="frame">
-                    <video muted loop playsinline preload="none" poster="/demos/posters/car-modifier.jpg">
+                <div class="frame" style="background-image:url('/demos/posters/car-modifier.jpg')">
+                    <video muted loop playsinline preload="none">
                         <source src="/demos/previews/car-modifier.mp4" type="video/mp4">
                     </video>
                     <span class="badge"><i></i>Hover to play</span>
@@ -180,8 +183,8 @@
 
             <!-- 03 -->
             <a class="card" href="https://furniture-shop-tau-sepia.vercel.app/" target="_blank" rel="noopener" aria-label="Open the Luxe Atelier site in a new tab">
-                <div class="frame">
-                    <video muted loop playsinline preload="none" poster="/demos/posters/furniture.jpg">
+                <div class="frame" style="background-image:url('/demos/posters/furniture.jpg')">
+                    <video muted loop playsinline preload="none">
                         <source src="/demos/previews/furniture.mp4" type="video/mp4">
                     </video>
                     <span class="badge"><i></i>Hover to play</span>
@@ -207,7 +210,7 @@
             // Hover = play the landing-animation loop; leave = pause + reset to thumbnail.
             document.querySelectorAll('.card').forEach(function(card){
                 var v = card.querySelector('video'); if(!v) return;
-                card.addEventListener('mouseenter', function(){ if(reduce) return; v.play().catch(function(){}); });
+                card.addEventListener('mouseenter', function(){ if(reduce) return; try{ v.currentTime = 0; }catch(e){} v.play().catch(function(){}); });
                 card.addEventListener('mouseleave', function(){ v.pause(); try{ v.currentTime = 0; }catch(e){} });
                 // touch: tap-and-hold-ish — play briefly on touchstart
                 card.addEventListener('touchstart', function(){ if(!reduce) v.play().catch(function(){}); }, {passive:true});
