@@ -99,10 +99,13 @@
             filter: sepia(0.08) contrast(1.1) brightness(1);
         }
         
+        /* About keeps its original red backdrop (all other pages now match the
+           landing's #050505; this page is the intentional exception). */
+        html { background-color: #FF0000 !important; }
         body.static-page {
-            background-color: var(--bg-color);
+            background-color: #FF0000 !important;
         }
-        
+
         .newspaper-paper {
             background-color: #FFFFFF;
             color: #1a1a1a;
