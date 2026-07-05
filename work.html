@@ -147,6 +147,26 @@
         .reel-open svg{width:13px;height:13px;color:var(--brand-red)}
         @media(max-width:992px){.reel-grid{grid-template-columns:1fr 1fr}}
         @media(max-width:600px){.reel-grid{grid-template-columns:1fr}}
+
+        /* Case studies section */
+        .cases-section{padding:110px 8% 130px;background:#1A0000;border-top:1px solid rgba(255,255,255,.08)}
+        .cases-head{max-width:1200px;margin:0 auto 3.5rem;text-align:center}
+        .cases-eyebrow{font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--brand-red);display:block;margin-bottom:1rem}
+        .cases-title{font-family:var(--font-heading);font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;color:#fff;line-height:1.05;margin:0}
+        .cases-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.8rem;align-items:stretch}
+        .case-card{display:flex;flex-direction:column;text-decoration:none;color:#fff;padding:34px 30px;border-radius:18px;background:#0d0404;border:1px solid rgba(255,255,255,.09);transition:transform .45s cubic-bezier(.19,1,.22,1),border-color .35s,box-shadow .45s}
+        .case-card:hover{transform:translateY(-6px);border-color:rgba(229,57,53,.5);box-shadow:0 30px 60px -30px rgba(229,57,53,.45)}
+        .case-card__kick{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--brand-red);margin-bottom:14px}
+        .case-card__title{font-family:var(--font-heading);font-size:1.35rem;text-transform:uppercase;line-height:1.15;margin:0 0 14px}
+        .case-card__desc{font-family:var(--font-body);font-size:.92rem;line-height:1.65;color:rgba(255,255,255,.62);margin:0 0 24px}
+        .case-card__stats{display:flex;gap:1.5rem;margin-top:auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.08)}
+        .case-card__stat b{display:block;font-family:var(--font-heading);font-size:1.25rem;font-weight:800;color:#fff;line-height:1}
+        .case-card__stat span{display:block;font-family:var(--font-body);font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:5px}
+        .case-card__open{margin-top:22px;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-body);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);transition:color .3s}
+        .case-card:hover .case-card__open{color:#fff}
+        .case-card__open svg{width:13px;height:13px;color:var(--brand-red)}
+        @media(max-width:992px){.cases-grid{grid-template-columns:1fr 1fr}}
+        @media(max-width:600px){.cases-grid{grid-template-columns:1fr}}
     </style>
 
     <style>
@@ -288,6 +308,51 @@
                         <p class="reel-desc">Handcrafted furniture with a Tuscan soul. A full storefront with buttery transitions and a living catalogue.</p>
                         <span class="reel-open">Open live<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
                     </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="cases-section" aria-label="Case studies">
+            <div class="cases-head">
+                <span class="cases-eyebrow">Case Studies · Real results</span>
+                <h2 class="cases-title">Shipped. Measured. Profitable.</h2>
+            </div>
+            <div class="cases-grid">
+                <!-- WhatsApp Ordering AI -->
+                <a class="case-card" href="./work/case-study-whatsapp-ordering.html" aria-label="Read the WhatsApp Ordering AI case study">
+                    <div class="case-card__kick">WhatsApp AI · Restaurant</div>
+                    <h3 class="case-card__title">Restaurant WhatsApp AI Agent</h3>
+                    <p class="case-card__desc">A Hyderabad restaurant was losing orders every peak hour. We deployed a WhatsApp AI ordering agent — same day — and orders jumped, commission-free.</p>
+                    <div class="case-card__stats">
+                        <div class="case-card__stat"><b>+45%</b><span>Orders</span></div>
+                        <div class="case-card__stat"><b>₹2.4L+</b><span>Monthly rev</span></div>
+                        <div class="case-card__stat"><b>1 Day</b><span>To live</span></div>
+                    </div>
+                    <span class="case-card__open">Read case study<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+                </a>
+                <!-- AI Receptionist -->
+                <a class="case-card" href="./work/case-study-ai-receptionist.html" aria-label="Read the AI receptionist case study">
+                    <div class="case-card__kick">AI Receptionist · Dental</div>
+                    <h3 class="case-card__title">Dental Clinic Voice AI</h3>
+                    <p class="case-card__desc">A dental practice couldn't answer every call. A custom AI voice receptionist picked up 24/7, cut overhead, and lifted bookings.</p>
+                    <div class="case-card__stats">
+                        <div class="case-card__stat"><b>+15%</b><span>Bookings</span></div>
+                        <div class="case-card__stat"><b>+10%</b><span>Revenue</span></div>
+                        <div class="case-card__stat"><b>76%</b><span>Net margin</span></div>
+                    </div>
+                    <span class="case-card__open">Read case study<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+                </a>
+                <!-- 3D Website -->
+                <a class="case-card" href="./work/case-study-3d-website.html" aria-label="Read the 3D website case study">
+                    <div class="case-card__kick">3D Web · Startup</div>
+                    <h3 class="case-card__title">Immersive 3D Website</h3>
+                    <p class="case-card__desc">A tech startup needed to look bigger than it was. An immersive 3D web experience tripled average time on site and set them apart.</p>
+                    <div class="case-card__stats">
+                        <div class="case-card__stat"><b>3×</b><span>Time on site</span></div>
+                        <div class="case-card__stat"><b>WebGL</b><span>Real-time 3D</span></div>
+                        <div class="case-card__stat"><b>1st</b><span>In market</span></div>
+                    </div>
+                    <span class="case-card__open">Read case study<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
                 </a>
             </div>
         </section>

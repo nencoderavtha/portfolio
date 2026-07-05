@@ -41,6 +41,7 @@ export default defineConfig({
           'tools_website_cost_estimator': resolve(__dirname, 'tools/website-cost-estimator.html'),
           'work_case_study_3d_website': resolve(__dirname, 'work/case-study-3d-website.html'),
           'work_case_study_ai_receptionist': resolve(__dirname, 'work/case-study-ai-receptionist.html'),
+          'work_case_study_whatsapp_ordering': resolve(__dirname, 'work/case-study-whatsapp-ordering.html'),
         }
     }
   }

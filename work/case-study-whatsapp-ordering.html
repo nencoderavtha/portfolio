@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#FF0000">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Ordering AI — Restaurant Case Study | Exter.ai</title>
+    <meta name="description" content="How Exter.ai built a WhatsApp AI ordering agent for a Hyderabad restaurant — 45% more orders, ₹2.4L+ monthly revenue, same-day deployment.">
+    <meta name="keywords" content="WhatsApp AI agent, restaurant ordering AI, AI automation India, Exter AI case study, WhatsApp ordering bot, Razorpay AI agent">
+    <link rel="canonical" href="https://exter-ai.com/work/case-study-whatsapp-ordering.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="WhatsApp Ordering AI — +45% Orders, ₹2.4L/mo | Exter.ai">
+    <meta property="og:description" content="A Hyderabad restaurant was losing orders every night. We deployed a WhatsApp AI agent same-day. Orders up 45%, ₹2.4L+ in new monthly revenue.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://exter-ai.com/work/case-study-whatsapp-ordering.html">
+    <meta property="og:image" content="https://exter-ai.com/og-image.jpg">
+    <meta property="og:site_name" content="Exter.ai">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WhatsApp Ordering AI — +45% Orders | Exter.ai">
+    <meta name="twitter:description" content="Same-day deploy. 45% more WhatsApp orders. ₹2.4L+ monthly revenue. No extra staff.">
+    <meta name="twitter:image" content="https://exter-ai.com/og-image.jpg">
+
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Exter.ai">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Syne:wght@500;800&display=swap" rel="stylesheet">
+
+    <!-- Schema: Case Study -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "WhatsApp Ordering AI — Restaurant Case Study",
+      "description": "How a custom WhatsApp AI agent increased a Hyderabad restaurant's nightly order volume by 45% and added ₹2.4L+ in monthly revenue.",
+      "author": { "@type": "Organization", "name": "Exter.ai" },
+      "publisher": { "@type": "Organization", "name": "Exter.ai", "url": "https://exter-ai.com" },
+      "url": "https://exter-ai.com/work/case-study-whatsapp-ordering.html"
+    }
+    </script>
+
+    <style>
+        body.static-page { background-color: #050505; }
+        .static-hero {
+            padding: 220px 8% 120px;
+            background: var(--brand-red);
+            text-align: center;
+        }
+        .label-small {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            color: #fff;
+        }
+        .hero-sub {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.75);
+            margin-top: 1.5rem;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+        .case-content {
+            padding: 120px 8%;
+            background: #1A0000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .case-max { max-width: 800px; width: 100%; }
+        .case-section { margin-bottom: 6rem; }
+        .case-section h2 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+        .case-section p {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem;
+        }
+        /* Stats strip */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 6rem;
+        }
+        .stat-cell {
+            padding: 36px 28px;
+            background: #0d0404;
+            text-align: center;
+        }
+        .stat-cell span {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 12px;
+        }
+        .stat-cell strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--brand-red);
+            font-weight: 800;
+            line-height: 1;
+        }
+        /* Result box */
+        .result-box {
+            padding: 52px;
+            background: var(--brand-red);
+            border-radius: 24px;
+            color: #fff;
+            margin-top: 4rem;
+        }
+        .result-box h2 {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .result-item span {
+            font-size: 12px;
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.75;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .result-item h4 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1;
+        }
+        /* CTA */
+        .case-cta {
+            margin-top: 6rem;
+            text-align: center;
+            padding: 64px 48px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            background: rgba(229,57,53,0.05);
+        }
+        .case-cta p {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 2rem;
+        }
+        .case-cta h3 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: #fff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 40px;
+            background: var(--brand-red);
+            color: #fff;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 100px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px -10px rgba(229,57,53,0.5);
+        }
+        @media (max-width: 600px) {
+            .stats-strip, .result-grid { grid-template-columns: 1fr; }
+            .result-box { padding: 36px 24px; }
+            .case-cta { padding: 40px 24px; }
+        }
+    </style>
+    <style>
+        /* Critical Above-the-fold CSS */
+        :root { --bg-dark: #050505; --accent-cream: #F5F5F0; --brand-red: #E53935; --font-heading: 'Syne', sans-serif; --font-body: 'Montserrat', sans-serif; }
+        body { margin: 0; background: var(--bg-dark); color: var(--accent-cream); font-family: var(--font-body); font-weight: 300; -webkit-font-smoothing: antialiased; }
+        .site-header { position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s; }
+        .header-container { max-width: 1400px; margin: 0 auto; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; }
+        .nav-dropdown { position: relative; display: inline-block; }
+        .nav-dropdown-menu { position: absolute; opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    </style>
+
+    <link rel="preload" href="../style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript></noscript>
+</head>
+<body class="static-page">
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <div class="film-grain"></div>
+    <div class="vignette"></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="header-container">
+            <a href="../" class="logo">exter.ai</a>
+            <nav class="main-nav" aria-label="Primary">
+                <div class="nav-dropdown">
+                    <a href="../services/" class="nav-link">Services <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:3px;vertical-align:middle"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="../services/ai-receptionist.html">AI Receptionist</a>
+                        <a href="../services/3d-web-design.html">3D Web Design</a>
+                        <a href="../services/fullstack-development.html">Fullstack Development</a>
+                        <a href="../services/ai-video-branding.html">AI Video Branding</a>
+                    </div>
+                </div>
+                <a href="../work.html" class="nav-link">Work</a>
+                <a href="../blog/" class="nav-link">Blog</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="../book.html" class="nav-cta">Book a call</a>
+            </nav>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open menu">
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile navigation drawer -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+        <div class="mobile-drawer__backdrop" data-drawer-close></div>
+        <div class="mobile-drawer__panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
+            <button class="mobile-drawer__close" type="button" data-drawer-close aria-label="Close menu">
+                <span aria-hidden="true">×</span>
+            </button>
+            <nav class="mobile-drawer__nav" aria-label="Mobile primary">
+                <a href="../services/">Services</a>
+                <a href="../work.html" aria-current="page">Work</a>
+                <a href="../blog/">Blog</a>
+                <a href="../about.html">About</a>
+                <a href="../book.html" class="mobile-drawer__cta">Book a call</a>
+            </nav>
+            <div class="mobile-drawer__meta">
+                <p>An AI-native studio shipping worldwide.</p>
+                <a href="mailto:hello@exter.ai" class="email-pill">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>
+                    </svg>
+                    hello@exter.ai
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="static-hero">
+            <span class="label-small">Case Study: WhatsApp Ordering AI</span>
+            <h1 class="hero-title">Restaurant WhatsApp AI Agent.</h1>
+            <p class="hero-sub">A busy Hyderabad restaurant was losing orders every peak hour. We built and deployed their AI ordering agent the same day — verbal yes in the morning, live by dinner service.</p>
+        </section>
+
+        <section class="case-content">
+            <div class="case-max">
+
+                <!-- Stats strip -->
+                <div class="stats-strip" aria-label="Key results">
+                    <div class="stat-cell">
+                        <span>Order Volume</span>
+                        <strong>+45%</strong>
+                    </div>
+                    <div class="stat-cell">
+                        <span>Monthly Revenue</span>
+                        <strong>₹2.4L+</strong>
+                    </div>
+                    <div class="stat-cell">
+                        <span>Time to Live</span>
+                        <strong>1 Day</strong>
+                    </div>
+                </div>
+
+                <div class="case-section">
+                    <h2>The Challenge</h2>
+                    <p>A busy restaurant in Hyderabad was losing orders every single night during peak dinner hours. Phone lines were jammed, staff couldn't keep up with WhatsApp order messages piling in alongside Zomato and Swiggy notifications, and the kitchen had no real-time visibility into what was actually in stock.</p>
+                    <p>Regulars were giving up and ordering from a competitor down the street simply because nobody replied in time. The owner didn't need another delivery app — he needed someone to answer instantly, every time, without hiring three more people for the dinner rush.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2>The Solution</h2>
+                    <p>We built and deployed a custom WhatsApp AI ordering agent trained on the restaurant's live menu, pricing, and real-time stock levels. The agent takes the order conversationally, confirms it in seconds, processes payment directly into the restaurant's own Razorpay/UPI account, and pings the kitchen the moment it's placed — no missed tickets, no manual re-entry.</p>
+                    <p>The owner keeps a live dashboard to mark items out of stock, and the AI adjusts what it offers customers instantly. Setup was same-day: verbal yes in the morning, agent live by dinner service.</p>
+                </div>
+
+                <div class="case-section">
+                    <h2>The Financial Impact</h2>
+                    <p>Before the AI agent, the restaurant was capping out at roughly 40 WhatsApp orders a night simply because staff couldn't type fast enough during the rush — every order beyond that either went unanswered or walked to a competitor. With instant AI responses working around the clock, nightly WhatsApp order volume rose to 58, a 45% increase, without adding a single staff member.</p>
+                    <p>Because orders route straight into the restaurant's own UPI account rather than through a 20–25% commission delivery app, the owner keeps significantly more of every rupee earned through this channel. On an average order value of ₹450, the added order volume alone puts roughly ₹2,43,000 in additional monthly revenue back on the table — commission-free.</p>
+                </div>
+
+                <div class="result-box">
+                    <h2>The Result</h2>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <span>Increase in WhatsApp Orders</span>
+                            <h4>+45%</h4>
+                        </div>
+                        <div class="result-item">
+                            <span>Additional Monthly Revenue</span>
+                            <h4>₹2.4L+</h4>
+                        </div>
+                        <div class="result-item">
+                            <span>Time to Go Live</span>
+                            <h4>Same Day</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-cta">
+                    <h3>Want this for your restaurant?</h3>
+                    <p>We deploy WhatsApp AI ordering agents in days, not months. One conversation is all it takes to see if it fits.</p>
+                    <a href="../book.html" class="btn-primary">
+                        Book a call
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="../" class="logo">exter.ai</a>
+                <p>An AI-native studio for founders who can't afford to look small. Based in India, shipping worldwide.</p>
+            </div>
+            <div class="footer-links">
+                <h4>SERVICES</h4>
+                <ul>
+                    <li><a href="../services/ai-receptionist.html">AI Receptionist</a></li>
+                    <li><a href="../services/3d-web-design.html">3D Web Design</a></li>
+                    <li><a href="../services/fullstack-development.html">Fullstack Dev</a></li>
+                    <li><a href="../services/ai-video-branding.html">AI Video Branding</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>RESOURCES</h4>
+                <ul>
+                    <li><a href="../blog/">Blog</a></li>
+                    <li><a href="../tools/ai-receptionist-roi-calculator.html">ROI Calculator</a></li>
+                    <li><a href="../tools/website-cost-estimator.html">Cost Estimator</a></li>
+                    <li><a href="../tools/ai-readiness-quiz.html">AI Readiness Quiz</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../work.html">Work / Case Studies</a></li>
+                    <li><a href="../book.html">Book a Call</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>CONNECT</h4>
+                <ul>
+                    <li><a href="https://www.linkedin.com/company/exter-ai/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Exter.ai. All rights reserved.</div>
+            <div class="legal-footer-links">
+                <a href="../privacy.html">Privacy</a>
+                <a href="../terms.html">Terms</a>
+                <a href="../cookies.html">Cookies</a>
+            </div>
+            <a href="#" class="back-to-top" aria-label="Back to top">
+                <span>Back to top</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 19V5M6 11l6-6 6 6"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <a href="../book.html" class="sticky-cta" aria-label="Book a call">
+        <span>Book a call</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <script src="../script.js" type="module"></script>
+</body>
+</html>
