@@ -9,6 +9,7 @@
       }
     </style>
   </defs>
-  <text x="4" y="25" font-family="MonumentExtended, Arial Black, sans-serif" font-weight="800" font-size="23" fill="#FFFFFF">e</text>
-  <text x="20" y="25" font-family="MonumentExtended, Arial Black, sans-serif" font-weight="800" font-size="23" fill="#FF0000">.</text>
+  <text x="3" y="25" font-family="MonumentExtended, Arial Black, sans-serif" font-weight="800" font-size="21">
+    <tspan fill="#FFFFFF">e</tspan><tspan fill="#FF0000">.</tspan>
+  </text>
 </svg>
