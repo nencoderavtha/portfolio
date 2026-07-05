@@ -1,9 +1,3 @@
-# ============================================================
-# EXTER.AI — ROBOTS.TXT
-# Controls which crawlers can access the site.
-# ALL search engines and AI crawlers are ALLOWED.
-# ============================================================
-
 User-agent: *
 Allow: /
 Sitemap: https://exter-ai.com/sitemap.xml

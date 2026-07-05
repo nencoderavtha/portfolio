@@ -1,0 +1,18 @@
+{
+  "name": "Exter.ai",
+  "short_name": "Exter.ai",
+  "description": "AI-native studio building websites, automations, and brand identity for ambitious founders.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#FF0000",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

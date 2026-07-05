@@ -11,6 +11,10 @@ dist/
 ngrok.log
 *.log
 
+# Python cache
+__pycache__/
+*.pyc
+
 # AI editor config folders (not needed in repo)
 .agent/
 .claude/
@@ -30,3 +34,7 @@ ngrok.log
 # OS
 .DS_Store
 Thumbs.db
+
+# Temp / scratch
+*.tmp
+*.bak

@@ -1,0 +1,11 @@
+# Normalize all text files to LF on checkout
+* text=auto eol=lf
+
+# Binary files — no conversion
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.mp4 binary
+*.ico binary
+*.woff2 binary
