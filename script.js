@@ -882,12 +882,77 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ========================================================
-    // 8. Low-end device optimizations
+    // 9. Production Image Protection
     // ========================================================
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4)) {
-        document.body.classList.add('reduced-motion');
-        const grain = document.querySelector('.film-grain');
-        if(grain) grain.style.animation = 'none';
-        if(typeof lenis !== 'undefined') lenis.destroy();
-    }
+    (function initImageProtection() {
+
+        // 1. Block right-click globally
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target.tagName === 'IMG' || e.target.closest('.founder-photo, .work-image, .art-frame, [data-protected]')) {
+                e.preventDefault();
+                return false;
+            }
+            // Block on all images sitewide
+            if (e.target.tagName === 'IMG') { e.preventDefault(); return false; }
+        });
+
+        // 2. Block drag on all images
+        document.addEventListener('dragstart', function (e) {
+            if (e.target.tagName === 'IMG') { e.preventDefault(); return false; }
+        });
+
+        // 3. Inject transparent overlay div on every <img> to absorb right-click & drag
+        function protectImages() {
+            document.querySelectorAll('img:not([data-protected])').forEach(function (img) {
+                img.setAttribute('data-protected', '1');
+                img.setAttribute('draggable', 'false');
+                img.style.webkitUserDrag = 'none';
+                img.style.userSelect = 'none';
+                img.style.pointerEvents = 'none'; // mouse events go to parent, not img
+
+                // Wrap in a position:relative container if not already
+                const parent = img.parentElement;
+                if (getComputedStyle(parent).position === 'static') {
+                    parent.style.position = 'relative';
+                }
+
+                // Inject overlay
+                const shield = document.createElement('div');
+                shield.setAttribute('aria-hidden', 'true');
+                shield.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:10;cursor:default;user-select:none;-webkit-user-drag:none;';
+                shield.addEventListener('contextmenu', function (e) { e.preventDefault(); return false; });
+                shield.addEventListener('dragstart', function (e) { e.preventDefault(); return false; });
+                parent.appendChild(shield);
+            });
+        }
+
+        protectImages();
+
+        // Re-run for dynamically added images
+        const imgObserver = new MutationObserver(function () { protectImages(); });
+        imgObserver.observe(document.body, { childList: true, subtree: true });
+
+        // 4. Block keyboard shortcuts (Ctrl+S save-page, Ctrl+U view-source)
+        document.addEventListener('keydown', function (e) {
+            const blocked = (
+                (e.ctrlKey && e.key === 's') ||   // Ctrl+S
+                (e.ctrlKey && e.key === 'u') ||   // Ctrl+U view-source
+                (e.ctrlKey && e.shiftKey && e.key === 'I') || // Ctrl+Shift+I devtools
+                (e.ctrlKey && e.shiftKey && e.key === 'J') || // Ctrl+Shift+J devtools
+                (e.ctrlKey && e.shiftKey && e.key === 'C') || // Ctrl+Shift+C inspect
+                e.key === 'F12'                    // F12 devtools
+            );
+            if (blocked) { e.preventDefault(); return false; }
+        });
+
+        // 5. Console deterrent
+        const _c = console.log.bind(console);
+        console.log = function () {
+            _c('%c⚠ exter.ai — All content is protected. Unauthorised use is prohibited.', 'color:#E53935;font-weight:bold;font-size:14px;');
+        };
+        console.log('%c exter.ai', 'color:#E53935;font-weight:bold;font-size:18px;');
+
+    })();
+
 });
+

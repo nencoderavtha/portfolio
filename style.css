@@ -13,6 +13,37 @@
       .mobile-character-loop 1
 */
 
+/* ============================================================
+   Production Image Protection
+   ============================================================ */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none; /* JS shield div handles all interaction */
+}
+
+/* Prevent selection across all content containers */
+.founder-photo,
+.work-image,
+.art-frame,
+.hero-image-wrap,
+[class*="art-slot"] {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Prevent iOS long-press save */
+img, .founder-photo, [class*="art-slot"] {
+    -webkit-touch-callout: none;
+}
+
+
 :root {
     --bg-color: #050505;
     --text-color: #FFFFFF;
