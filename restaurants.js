@@ -209,12 +209,18 @@
 
     /* ---------- 5. Steps: scroll-scrubbed ride sequence (desktop only) ----------
        85 frames of the delivery ride play in sync with scroll while the four
-       step texts crossfade alongside. Mobile keeps the plain stacked layout. */
+       step texts crossfade alongside. Mobile keeps the plain stacked layout.
+
+       GSAP + ScrollTrigger are loaded via CDN defer scripts which may still be
+       downloading when this module IIFE executes. We poll until they arrive
+       (up to ~2.5 s) so the pinned section always initialises on desktop.     */
     var pinWrap = document.querySelector('.rs-steps__pin');
     var stepsEls = [].slice.call(document.querySelectorAll('.rs-steps__track .rs-step'));
     var rideCanvas = document.getElementById('rs-ride');
-    if (pinWrap && rideCanvas && stepsEls.length && !reduce && window.innerWidth > 860 &&
-        typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+
+    function initScrub() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return false;
+
         gsap.registerPlugin(ScrollTrigger);
         document.body.classList.add('rs-scrub');
 
@@ -280,6 +286,18 @@
                 if (rail) rail.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')';
             }
         });
+        return true;
+    }
+
+    if (pinWrap && rideCanvas && stepsEls.length && !reduce && window.innerWidth > 860) {
+        // Try immediately; if GSAP isn't ready yet, poll every 50 ms (max ~2.5 s)
+        if (!initScrub()) {
+            var attempts = 0;
+            var poll = setInterval(function () {
+                attempts++;
+                if (initScrub() || attempts >= 50) clearInterval(poll);
+            }, 50);
+        }
     }
 
     /* ---------- 6. Count-ups (stats + the big 28) ---------- */
