@@ -868,16 +868,18 @@
     width: 100%; height: 100%;
     overflow: visible;
 }
-/* light shaft: stands up out of the plane, from the elevated source down to the pool */
+/* light shafts: a fan of three blades around the beam axis = volumetric cone */
 .rs-beam__blade {
     position: absolute;
-    left: 50%; top: calc(50% - 84px);
-    width: 50%; height: 84px;
+    left: 50%; top: calc(50% - 92px);
+    width: 50%; height: 92px;
     transform-origin: left bottom;
-    transform: rotateX(90deg);
     overflow: visible;
     mix-blend-mode: screen;
 }
+.rs-beam__blade--main { transform: rotateX(90deg); }
+.rs-beam__blade--a { transform: rotateX(64deg); opacity: 0.4; }
+.rs-beam__blade--b { transform: rotateX(116deg); opacity: 0.4; }
 .rs-orbit__spin {
     position: absolute; inset: 0;
     transform-style: preserve-3d;
@@ -920,24 +922,28 @@
     14%  { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
     100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
 }
-/* cast shadow on the ring plane: darkens and stretches outward as the beam hits */
-.rs-orbit__node > span::before {
-    content: "";
+/* cast shadow: an SVG lying IN the ring plane, pointing radially outward
+   (the node's local +X). It swings ahead of the beam, snaps dead-outward at
+   the hit, then trails behind, exactly like a shadow under a passing light. */
+.rs-orbit__shadow {
     position: absolute;
-    left: 50%; top: calc(50% + 32px);
-    width: 54px; height: 14px;
-    border-radius: 50%;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(1, 2, 10, 0.9), transparent 72%);
-    transform: translate(-50%, -50%) scaleX(0.75);
-    opacity: 0.3;
-    filter: blur(3px);
-    animation: rs-shadow-cast 10.4615s linear infinite;
+    left: 50%; top: 50%;
+    width: 128px; height: 44px;
+    margin-top: -22px;
+    transform-origin: 10px 50%;
+    transform: rotateZ(13deg) scaleX(0.78);
+    opacity: 0.2;
+    filter: blur(2.5px);
+    overflow: visible;
+    animation: rs-cast 10.4615s linear infinite;
     pointer-events: none;
 }
-@keyframes rs-shadow-cast {
-    0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scaleX(0.75); }
-    5%  { opacity: 0.8; transform: translate(-50%, -34%) scaleX(1.45); }
-    14% { opacity: 0.3; transform: translate(-50%, -50%) scaleX(0.75); }
+@keyframes rs-cast {
+    0%, 100% { opacity: 0.2; transform: rotateZ(13deg) scaleX(0.78); }
+    2%  { opacity: 0.55; transform: rotateZ(10deg) scaleX(1.05); }
+    5%  { opacity: 0.9;  transform: rotateZ(0deg) scaleX(1.4); }
+    8%  { opacity: 0.55; transform: rotateZ(-10deg) scaleX(1.05); }
+    14% { opacity: 0.2;  transform: rotateZ(-13deg) scaleX(0.78); }
 }
 /* free-floating app icons: no chip background, real brand tiles with glow.
    Second animation = illumination flare when the rotating beam passes. */
@@ -978,6 +984,20 @@
     5%  { filter: brightness(0) invert(1) drop-shadow(0 0 22px rgba(170, 190, 255, 1)) drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)); }
     14% { filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(77, 107, 255, 0.65)); }
 }
+/* Uber's tile is near-black on a black page: lift it so the wordmark reads */
+.rs-orbit__node img[src*="uber"] {
+    filter: saturate(0.9) contrast(1.06) brightness(1.55);
+    box-shadow:
+        0 20px 34px -12px rgba(2, 4, 16, 0.95),
+        0 0 26px rgba(130, 155, 255, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.28);
+    animation-name: rs-logo-bob, rs-lit-uber;
+}
+@keyframes rs-lit-uber {
+    0%, 100% { filter: saturate(0.9) contrast(1.06) brightness(1.55); }
+    5%  { filter: saturate(1.05) contrast(1.08) brightness(2.05) drop-shadow(0 0 16px rgba(150, 172, 255, 0.95)); }
+    14% { filter: saturate(0.9) contrast(1.06) brightness(1.55); }
+}
 /* counter-spin keeps every chip upright: each node's phase offsets its placement angle */
 @keyframes rs-orbit-counter {
     0%   { transform: rotateZ(0deg) rotateX(-64deg) scale(0.94); opacity: 0.82; filter: blur(0.8px); }
@@ -997,15 +1017,15 @@
 /* Beam-pass phase per node: t_hit = (nodeAngle + 75deg) / 34.412deg-per-s,
    repeating every 10.4615s. Ping, cast shadow and flare share the moment;
    bob keeps its own scattered phase (first delay value). */
-.rs-orbit__node:nth-child(1) > span::after, .rs-orbit__node:nth-child(1) > span::before { animation-delay: -8.28s; }
-.rs-orbit__node:nth-child(2) > span::after, .rs-orbit__node:nth-child(2) > span::before { animation-delay: -7.12s; }
-.rs-orbit__node:nth-child(3) > span::after, .rs-orbit__node:nth-child(3) > span::before { animation-delay: -5.96s; }
-.rs-orbit__node:nth-child(4) > span::after, .rs-orbit__node:nth-child(4) > span::before { animation-delay: -4.79s; }
-.rs-orbit__node:nth-child(5) > span::after, .rs-orbit__node:nth-child(5) > span::before { animation-delay: -3.63s; }
-.rs-orbit__node:nth-child(6) > span::after, .rs-orbit__node:nth-child(6) > span::before { animation-delay: -2.47s; }
-.rs-orbit__node:nth-child(7) > span::after, .rs-orbit__node:nth-child(7) > span::before { animation-delay: -1.31s; }
-.rs-orbit__node:nth-child(8) > span::after, .rs-orbit__node:nth-child(8) > span::before { animation-delay: -0.15s; }
-.rs-orbit__node:nth-child(9) > span::after, .rs-orbit__node:nth-child(9) > span::before { animation-delay: -9.44s; }
+.rs-orbit__node:nth-child(1) > span::after, .rs-orbit__node:nth-child(1) .rs-orbit__shadow { animation-delay: -8.28s; }
+.rs-orbit__node:nth-child(2) > span::after, .rs-orbit__node:nth-child(2) .rs-orbit__shadow { animation-delay: -7.12s; }
+.rs-orbit__node:nth-child(3) > span::after, .rs-orbit__node:nth-child(3) .rs-orbit__shadow { animation-delay: -5.96s; }
+.rs-orbit__node:nth-child(4) > span::after, .rs-orbit__node:nth-child(4) .rs-orbit__shadow { animation-delay: -4.79s; }
+.rs-orbit__node:nth-child(5) > span::after, .rs-orbit__node:nth-child(5) .rs-orbit__shadow { animation-delay: -3.63s; }
+.rs-orbit__node:nth-child(6) > span::after, .rs-orbit__node:nth-child(6) .rs-orbit__shadow { animation-delay: -2.47s; }
+.rs-orbit__node:nth-child(7) > span::after, .rs-orbit__node:nth-child(7) .rs-orbit__shadow { animation-delay: -1.31s; }
+.rs-orbit__node:nth-child(8) > span::after, .rs-orbit__node:nth-child(8) .rs-orbit__shadow { animation-delay: -0.15s; }
+.rs-orbit__node:nth-child(9) > span::after, .rs-orbit__node:nth-child(9) .rs-orbit__shadow { animation-delay: -9.44s; }
 .rs-orbit__node:nth-child(1) img { animation-delay: -0.7s, -8.28s; }
 .rs-orbit__node:nth-child(2) img { animation-delay: -1.4s, -7.12s; }
 .rs-orbit__node:nth-child(3) img { animation-delay: -2.6s, -5.96s; }
@@ -1115,6 +1135,8 @@
     .rs-orbit__node img { width: 34px; height: 34px; border-radius: 9px; }
     .rs-orbit__node img.rs-logo-wide { width: auto; height: 15px; max-width: 68px; }
     .rs-orbit__node > span::after { width: 44px; height: 44px; }
+    .rs-orbit__shadow { width: 92px; height: 32px; margin-top: -16px; }
+    .rs-beam__blade { top: calc(50% - 64px); height: 64px; }
     .rs-chip3d--pay { left: 0; }
     .rs-chip3d--ride { right: 0; }
 }
@@ -1144,7 +1166,7 @@
     .rs-orbit-hub,
     .rs-hub-mark, .rs-hub-svg--front path,
     .rs-beam, .rs-orbit__ring circle,
-    .rs-orbit__node > span::after, .rs-orbit__node > span::before, .rs-orbit__node img,
+    .rs-orbit__node > span::after, .rs-orbit__shadow, .rs-orbit__node img,
     .rs-call.on .wave i, .rs-chip3d .rs-dotlive,
     .rs-dish, .rs-dish .steam, .rs-cta__trails i { animation: none !important; }
     .rs-msg { transition: opacity 0.2s ease; transform: none; filter: none; }
