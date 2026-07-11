@@ -192,27 +192,77 @@
         }, { threshold: 0.3 }).observe(feed);
     }
 
-    /* ---------- 5. Steps: horizontal pan (GSAP, desktop only) ---------- */
+    /* ---------- 5. Steps: scroll-scrubbed ride sequence (desktop only) ----------
+       85 frames of the delivery ride play in sync with scroll while the four
+       step texts crossfade alongside. Mobile keeps the plain stacked layout. */
     var pinWrap = document.querySelector('.rs-steps__pin');
-    var track = document.querySelector('.rs-steps__track');
-    if (pinWrap && track && !reduce && window.innerWidth > 860 &&
+    var stepsEls = [].slice.call(document.querySelectorAll('.rs-steps__track .rs-step'));
+    var rideCanvas = document.getElementById('rs-ride');
+    if (pinWrap && rideCanvas && stepsEls.length && !reduce && window.innerWidth > 860 &&
         typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
+        document.body.classList.add('rs-scrub');
+
+        var rideCtx = rideCanvas.getContext('2d');
+        var FRAMES = 85;
+        var imgs = new Array(FRAMES);
+        var loadedMax = -1;             // highest contiguous loaded frame
+        var curFrame = -1, pendingFrame = 0, rafLock = false;
+
+        function frameSrc(i) {
+            var n = String(i + 1);
+            while (n.length < 3) n = '0' + n;
+            return '/ride/frame-' + n + '.webp';
+        }
+        function render() {
+            rafLock = false;
+            var idx = Math.min(pendingFrame, loadedMax);
+            if (idx < 0 || idx === curFrame) return;
+            curFrame = idx;
+            rideCtx.clearRect(0, 0, rideCanvas.width, rideCanvas.height);
+            rideCtx.drawImage(imgs[idx], 0, 0, rideCanvas.width, rideCanvas.height);
+        }
+        function requestRender() {
+            if (!rafLock) { rafLock = true; requestAnimationFrame(render); }
+        }
+        for (var fi = 0; fi < FRAMES; fi++) {
+            (function (i) {
+                var im = new Image();
+                im.onload = function () {
+                    imgs[i] = im;
+                    while (loadedMax + 1 < FRAMES && imgs[loadedMax + 1]) loadedMax++;
+                    if (i === 0) {
+                        rideCanvas.width = im.naturalWidth;
+                        rideCanvas.height = im.naturalHeight;
+                        curFrame = -1;
+                    }
+                    requestRender();
+                };
+                im.src = frameSrc(i);
+            })(fi);
+        }
+
         var rail = document.querySelector('.rs-steps__rail i');
-        var distance = function () { return track.scrollWidth - window.innerWidth; };
-        gsap.to(track, {
-            x: function () { return -distance(); },
-            ease: 'none',
-            scrollTrigger: {
-                trigger: pinWrap,
-                start: 'top top',
-                end: function () { return '+=' + distance(); },
-                pin: true,
-                scrub: 1,
-                invalidateOnRefresh: true,
-                onUpdate: function (self) {
-                    if (rail) rail.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')';
-                }
+        var actIdx = -1;
+        function setStep(p) {
+            var idx = Math.min(stepsEls.length - 1, Math.floor(p * stepsEls.length));
+            if (idx === actIdx) return;
+            actIdx = idx;
+            stepsEls.forEach(function (el, i) { el.classList.toggle('is-act', i === idx); });
+        }
+        setStep(0);
+
+        ScrollTrigger.create({
+            trigger: pinWrap,
+            start: 'top top',
+            end: '+=300%',
+            pin: true,
+            scrub: 0.5,
+            onUpdate: function (self) {
+                pendingFrame = Math.round(self.progress * (FRAMES - 1));
+                requestRender();
+                setStep(self.progress);
+                if (rail) rail.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')';
             }
         });
     }

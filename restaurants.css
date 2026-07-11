@@ -589,20 +589,54 @@
    ============================================================ */
 .rs-steps { padding: 0; background: var(--rs-bg); }
 .rs-steps__pin { position: relative; overflow: hidden; }
-.rs-steps__track {
-    display: flex;
-    align-items: stretch;
-    height: 100dvh;
-    will-change: transform;
-}
+/* default (mobile / no-JS): a plain vertical stack, no sequence */
+.rs-steps__track { display: flex; flex-direction: column; }
 .rs-step {
-    flex: none;
-    width: min(620px, 88vw);
     display: flex; flex-direction: column; justify-content: center;
-    padding: 100px 5vw 80px;
+    width: 100%;
+    padding: 64px 8%;
     position: relative;
 }
-.rs-step:first-child { padding-left: 8vw; }
+.rs-steps__seq { display: none; }
+
+/* scrub mode (desktop, JS active): pinned split view, ride sequence right,
+   steps crossfading left in sync with the scrubbed frames */
+body.rs-scrub .rs-steps__pin {
+    height: 100dvh;
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: 3vw;
+    padding: 0 7vw;
+}
+body.rs-scrub .rs-steps__track {
+    display: block;
+    position: relative;
+    height: 72vh;
+}
+body.rs-scrub .rs-step {
+    position: absolute; inset: 0;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s var(--rs-ease), transform 0.5s var(--rs-ease);
+    pointer-events: none;
+}
+body.rs-scrub .rs-step.is-act { opacity: 1; transform: translateY(0); }
+body.rs-scrub .rs-steps__seq {
+    display: grid;
+    place-items: center;
+    position: relative;
+    height: 100%;
+}
+body.rs-scrub .rs-steps__seq canvas {
+    max-height: 84vh;
+    max-width: 100%;
+    width: auto;
+    /* feathered edges: the ride floats on the page, no visible plate */
+    -webkit-mask-image: radial-gradient(78% 78% at 50% 50%, #000 56%, transparent 96%);
+    mask-image: radial-gradient(78% 78% at 50% 50%, #000 56%, transparent 96%);
+}
 .rs-step__no {
     font-family: var(--font-heading);
     font-weight: 800;
@@ -731,14 +765,15 @@
 @keyframes rs-ring { 0% { opacity: 0.9; scale: 0.6; } 70% { opacity: 0; scale: 1.15; } 100% { opacity: 0; scale: 1.15; } }
 
 /* steps intro panel (first slide) */
-.rs-step--intro { width: min(560px, 92vw); }
 .rs-step--intro .rs-h2 { font-size: clamp(1.9rem, 3.2vw, 2.9rem); }
 
 /* progress rail */
 .rs-steps__rail {
+    display: none;
     position: absolute; left: 8vw; right: 8vw; bottom: 44px;
     height: 1px; background: var(--rs-line);
 }
+body.rs-scrub .rs-steps__rail { display: block; }
 .rs-steps__rail i {
     position: absolute; inset: 0;
     background: var(--rs-blue-hi);
@@ -1268,10 +1303,7 @@
     .rs-section { padding: 90px 6%; }
     .rs-routes { grid-template-columns: 1fr; }
     /* steps become a vertical stack on mobile: pin is disabled in JS */
-    .rs-steps__track { flex-direction: column; height: auto; }
-    .rs-step, .rs-step--intro { width: 100%; padding: 60px 6%; }
-    .rs-step:first-child { padding-left: 6%; }
-    .rs-steps__rail { display: none; }
+    .rs-step { padding: 56px 6%; }
     .rs-stats__row { grid-template-columns: repeat(2, 1fr); gap: 2.4rem 1.4rem; }
     .rs-callgrid { grid-template-columns: repeat(5, 1fr); }
     .rs-orbit-stage { height: 380px; }
@@ -1319,9 +1351,7 @@
     .rs-hub-svg--front .p-trace { opacity: 0; }
     .rs-hub-mark { transform: rotateX(7deg) rotateY(-14deg); }
     .rs-phone { transform: rotateY(0) rotateX(0); }
-    .rs-steps__track { flex-direction: column; height: auto; }
-    .rs-step { width: 100%; }
-    .rs-steps__rail { display: none; }
+    /* steps stay in the default stacked layout (scrub mode never activates) */
 }
 
 /* ============================================================
