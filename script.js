@@ -954,5 +954,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
     })();
 
-});
+    // ========================================================
+    // Restaurants Page Transition
+    // ========================================================
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
 
+        const href = link.getAttribute('href');
+        if (href && href.includes('restaurants.html')) {
+            e.preventDefault();
+            const clickX = e.clientX;
+            const clickY = e.clientY;
+
+            // Create overlays
+            const blueOverlay = document.createElement('div');
+            blueOverlay.className = 'rs-transition-overlay';
+            blueOverlay.style.backgroundColor = '#1a3bc8';
+            blueOverlay.style.clipPath = `circle(0px at ${clickX}px ${clickY}px)`;
+            
+            const darkOverlay = document.createElement('div');
+            darkOverlay.className = 'rs-transition-overlay';
+            darkOverlay.style.backgroundColor = '#030409';
+            darkOverlay.style.clipPath = `circle(0px at ${clickX}px ${clickY}px)`;
+
+            document.body.appendChild(blueOverlay);
+            document.body.appendChild(darkOverlay);
+
+            // GSAP Animation
+            if (typeof gsap !== 'undefined') {
+                gsap.to(blueOverlay, {
+                    clipPath: `circle(150% at ${clickX}px ${clickY}px)`,
+                    duration: 0.8,
+                    ease: 'power3.inOut'
+                });
+                gsap.to(darkOverlay, {
+                    clipPath: `circle(150% at ${clickX}px ${clickY}px)`,
+                    duration: 0.8,
+                    delay: 0.2, // Dark wave follows slightly after
+                    ease: 'power3.inOut',
+                    onComplete: () => {
+                        window.location.href = link.href;
+                    }
+                });
+            } else {
+                window.location.href = link.href;
+            }
+        }
+    });
+
+});

@@ -2363,3 +2363,17 @@ body.mobile-static .content-wrapper {
 .result-highlight .stat:nth-child(1) { transition-delay: 0s; }
 .result-highlight .stat:nth-child(2) { transition-delay: 0.15s; }
 .result-highlight .stat:nth-child(3) { transition-delay: 0.3s; }
+
+/* ============================================================
+   Restaurants Page Unfolding Transition Overlay
+   ============================================================ */
+.rs-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10005;
+    pointer-events: none;
+    clip-path: circle(0px at center);
+}

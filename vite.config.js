@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export default defineConfig({
+  plugins: [basicSsl()],
   server: {
     port: 8766,
     open: true,
@@ -18,6 +20,7 @@ export default defineConfig({
           'cookies': resolve(__dirname, 'cookies.html'),
           'main': resolve(__dirname, 'index.html'),
           'privacy': resolve(__dirname, 'privacy.html'),
+          'restaurants': resolve(__dirname, 'restaurants.html'),
           'terms': resolve(__dirname, 'terms.html'),
           'work': resolve(__dirname, 'work.html'),
           'blog_ai_agency_vs_traditional_agency': resolve(__dirname, 'blog/ai-agency-vs-traditional-agency.html'),
