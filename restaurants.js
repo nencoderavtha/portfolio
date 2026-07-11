@@ -88,6 +88,21 @@
         }, { threshold: 0.02 }).observe(canvas);
     }
 
+    /* ---------- 2b. Fit the hero phone composition on short laptop screens ---------- */
+    var phoneScale = document.querySelector('.rs-phone-scale');
+    if (phoneScale) {
+        var fitPhone = function () {
+            if (window.innerWidth <= 860) {
+                phoneScale.style.setProperty('--rs-phone-scale', '1');
+                return;
+            }
+            var s = Math.min(1, (window.innerHeight - 160) / 700);
+            phoneScale.style.setProperty('--rs-phone-scale', Math.max(0.62, s).toFixed(3));
+        };
+        window.addEventListener('resize', fitPhone);
+        fitPhone();
+    }
+
     /* ---------- 3. Phone tilt: pointer-driven, lerped, 1:1 feel ---------- */
     var phone = document.querySelector('.rs-phone');
     var stage = document.querySelector('.rs-hero__stage');

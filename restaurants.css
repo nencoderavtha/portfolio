@@ -143,7 +143,8 @@
     color: var(--rs-ink);
 }
 .rs-hero__title .rs-line { display: block; overflow: hidden; white-space: nowrap; }
-@media (max-width: 400px) { .rs-hero__title { font-size: 1.9rem; } }
+/* small screens: nowrap lines must fit the column, so the size turns fluid */
+@media (max-width: 640px) { .rs-hero__title { font-size: clamp(1.2rem, 6.2vw, 2rem); } }
 .rs-hero__title .rs-line > span {
     display: inline-block;
     transform: translateY(110%) rotateX(-38deg);
@@ -277,6 +278,16 @@
     min-height: min(560px, calc(100vh - 260px));
     z-index: 1;
 }
+/* scales the whole 3D composition (phone + chips + dish + glow) as one
+   unit on short laptop viewports; JS sets --rs-phone-scale, mobile stays 1 */
+.rs-phone-scale {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    transform: scale(var(--rs-phone-scale, 1));
+    transform-origin: 50% 46%;
+}
 .rs-phone-float { transform-style: preserve-3d; animation: rs-bob 7s ease-in-out infinite; will-change: transform; }
 @keyframes rs-bob {
     0%, 100% { transform: translateY(0); }
@@ -284,9 +295,7 @@
 }
 .rs-phone {
     position: relative;
-    /* width also capped by viewport height so the full phone + chips
-       always fit above the fold on short laptop screens */
-    width: min(310px, 78vw, calc((100vh - 240px) * 0.474));
+    width: min(310px, 78vw);
     aspect-ratio: 9 / 19;
     transform-style: preserve-3d;
     transform: rotateY(-12deg) rotateX(4deg);
@@ -1013,7 +1022,7 @@ body.rs-scrub .rs-steps__rail { display: block; }
 
 .rs-orbit {
     position: absolute;
-    width: min(640px, 92vw); height: min(640px, 92vw);
+    width: min(640px, 76vw); height: min(640px, 76vw);
     transform-style: preserve-3d;
     transform: rotateX(64deg);
 }
@@ -1296,7 +1305,8 @@ body.rs-scrub .rs-steps__rail { display: block; }
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1080px) {
-    .rs-hero { grid-template-columns: 1fr; gap: 1rem; padding-top: 120px; }
+    /* minmax(0,1fr): nowrap headline must not blow the column past the viewport */
+    .rs-hero { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-top: 120px; }
     .rs-hero__stage { min-height: 480px; order: 2; }
     .rs-voice__grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .rs-callgrid { grid-template-columns: repeat(6, 1fr); }
@@ -1320,8 +1330,8 @@ body.rs-scrub .rs-steps__rail { display: block; }
 }
 @media (max-width: 520px) {
     .rs-hero { padding-left: 6%; padding-right: 6%; }
-    .rs-actions { width: 100%; }
-    .rs-actions .rs-btn { flex: 1; justify-content: center; white-space: normal; text-align: center; }
+    .rs-actions { width: 100%; flex-direction: column; align-items: stretch; gap: 10px; }
+    .rs-actions .rs-btn { justify-content: center; text-align: center; font-size: 0.88rem; }
     .rs-callgrid { grid-template-columns: repeat(5, 1fr); gap: 7px; }
 }
 
