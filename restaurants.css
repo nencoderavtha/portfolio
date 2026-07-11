@@ -274,7 +274,7 @@
     display: grid;
     place-items: center;
     perspective: 1400px;
-    min-height: 560px;
+    min-height: min(560px, calc(100vh - 260px));
     z-index: 1;
 }
 .rs-phone-float { transform-style: preserve-3d; animation: rs-bob 7s ease-in-out infinite; will-change: transform; }
@@ -284,7 +284,9 @@
 }
 .rs-phone {
     position: relative;
-    width: min(310px, 78vw);
+    /* width also capped by viewport height so the full phone + chips
+       always fit above the fold on short laptop screens */
+    width: min(310px, 78vw, calc((100vh - 240px) * 0.474));
     aspect-ratio: 9 / 19;
     transform-style: preserve-3d;
     transform: rotateY(-12deg) rotateX(4deg);
