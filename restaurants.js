@@ -243,10 +243,19 @@
         counters.forEach(function (c) { cio.observe(c); });
     }
 
-    /* ---------- 7. Call grid: 28 lines light up in a scatter ---------- */
+    /* ---------- 7. Call grid: a live switchboard of 28 lines ---------- */
     var callGrid = document.getElementById('rs-callgrid');
     if (callGrid) {
-        var cells = [].slice.call(callGrid.children);
+        var cells = [].slice.call(callGrid.querySelectorAll('.rs-call'));
+        var timerEls = [].slice.call(callGrid.querySelectorAll('[data-timer]'));
+        var timerSecs = timerEls.map(function () { return 40 + Math.floor(Math.random() * 260); });
+
+        function fmt(total) {
+            var m = Math.floor(total / 60), s = total % 60;
+            return m + ':' + (s < 10 ? '0' : '') + s;
+        }
+        timerEls.forEach(function (el, i) { el.textContent = fmt(timerSecs[i]); });
+
         var lit = false;
         new IntersectionObserver(function (en) {
             if (!en[0].isIntersecting || lit) return;
@@ -256,6 +265,22 @@
             order.forEach(function (cellIdx, i) {
                 setTimeout(function () { cells[cellIdx].classList.add('on'); }, reduce ? 0 : 90 * i);
             });
+            if (reduce) return;
+            // call timers tick up like real calls in progress
+            setInterval(function () {
+                timerEls.forEach(function (el, i) {
+                    timerSecs[i]++;
+                    if (timerSecs[i] > 420) timerSecs[i] = 12; // call ends, a new one is answered
+                    el.textContent = fmt(timerSecs[i]);
+                });
+            }, 1000);
+            // new calls keep landing: a random line flashes an incoming ring
+            setInterval(function () {
+                var c = cells[Math.floor(Math.random() * cells.length)];
+                if (!c.classList.contains('on') || c.classList.contains('ring')) return;
+                c.classList.add('ring');
+                setTimeout(function () { c.classList.remove('ring'); }, 1350);
+            }, 1150);
         }, { threshold: 0.4 }).observe(callGrid);
     }
 
