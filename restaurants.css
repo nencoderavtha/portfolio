@@ -1314,7 +1314,6 @@ body.rs-scrub .rs-steps__rail { display: block; }
 @media (max-width: 860px) {
     .rs-section { padding: 90px 6%; }
     .rs-routes { grid-template-columns: 1fr; }
-    /* steps become a vertical stack on mobile: pin is disabled in JS */
     .rs-step { padding: 56px 6%; }
     .rs-stats__row { grid-template-columns: repeat(2, 1fr); gap: 2.4rem 1.4rem; }
     .rs-callgrid { grid-template-columns: repeat(5, 1fr); }
@@ -1327,6 +1326,64 @@ body.rs-scrub .rs-steps__rail { display: block; }
     .rs-beam__blade { top: calc(50% - 64px); height: 64px; }
     .rs-chip3d--pay { left: 0; }
     .rs-chip3d--ride { right: 0; }
+
+    /* ── mobile scrub: stacked layout (text top, ride below) ── */
+    body.rs-scrub .rs-steps__pin {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        padding: 0 5vw;
+        gap: 0;
+    }
+    body.rs-scrub .rs-steps__track {
+        height: auto;
+        min-height: 28vh;
+    }
+    body.rs-scrub .rs-step {
+        position: relative;
+        inset: auto;
+        opacity: 0;
+        transform: translateY(14px);
+        pointer-events: none;
+        transition: opacity 0.4s var(--rs-ease), transform 0.4s var(--rs-ease);
+    }
+    body.rs-scrub .rs-step.is-act {
+        opacity: 1;
+        transform: translateY(0);
+        position: relative;
+    }
+    /* hide non-active steps so they don't take space */
+    body.rs-scrub .rs-step:not(.is-act) {
+        position: absolute;
+        inset: 0;
+    }
+    body.rs-scrub .rs-steps__seq {
+        height: auto;
+    }
+    body.rs-scrub .rs-steps__seq canvas {
+        max-height: 46vh;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    body.rs-scrub .rs-steps__rail {
+        bottom: 24px;
+        left: 5vw;
+        right: 5vw;
+    }
+    .rs-step__no {
+        font-size: clamp(2.8rem, 7vw, 4.5rem);
+        margin-bottom: 0.8rem;
+    }
+    .rs-step__title {
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+    }
+    .rs-step__desc {
+        font-size: 0.88rem;
+        line-height: 1.65;
+        margin-bottom: 1rem;
+    }
+    /* hide the 3D micro-objects on mobile scrub to save space */
+    body.rs-scrub .rs-step__objwrap { display: none; }
+    .rs-step--intro .rs-h2 { font-size: clamp(1.5rem, 5.5vw, 2.2rem); }
 }
 @media (max-width: 520px) {
     .rs-hero { padding-left: 6%; padding-right: 6%; }

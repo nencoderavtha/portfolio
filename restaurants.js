@@ -289,7 +289,7 @@
         return true;
     }
 
-    if (pinWrap && rideCanvas && stepsEls.length && !reduce && window.innerWidth > 860) {
+    if (pinWrap && rideCanvas && stepsEls.length && !reduce) {
         // Try immediately; if GSAP isn't ready yet, poll every 50 ms (max ~2.5 s)
         if (!initScrub()) {
             var attempts = 0;
