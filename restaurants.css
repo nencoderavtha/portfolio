@@ -176,33 +176,97 @@
 
 .rs-btn {
     position: relative;
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 17px 32px;
-    border-radius: 100px;
+    display: inline-flex; align-items: center; gap: 12px;
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
     text-decoration: none;
     white-space: nowrap;
-    transition: transform 0.18s var(--rs-ease), box-shadow 0.3s var(--rs-ease), background-color 0.3s var(--rs-ease), border-color 0.3s var(--rs-ease);
     will-change: transform;
 }
-.rs-btn:active { transform: scale(0.97); }
+/* primary: a machined keycap. Light catches the top edge, weight sits at the
+   bottom, a sheen sweeps across on hover, and pressing physically sinks it. */
 .rs-btn--fill {
-    background: var(--rs-blue);
+    padding: 15px 22px 15px 28px;
+    border-radius: 100px;
     color: #fff;
-    box-shadow: 0 14px 40px -14px rgba(26, 59, 200, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    background: linear-gradient(180deg, #3155f0 0%, #1e40d6 48%, #152e9e 100%);
+    border: 1px solid rgba(148, 170, 255, 0.4);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -2px 0 rgba(2, 6, 30, 0.45),
+        0 10px 22px -10px rgba(15, 34, 120, 0.9);
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 0.16s var(--rs-ease), box-shadow 0.16s var(--rs-ease), filter 0.3s var(--rs-ease);
 }
-.rs-btn--fill:hover { background: #2447e0; box-shadow: 0 20px 52px -14px rgba(38, 71, 224, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+.rs-btn--fill::before {
+    content: "";
+    position: absolute;
+    top: -40%; bottom: -40%; left: 0;
+    width: 34%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-160%) skewX(-18deg);
+    transition: transform 0.8s var(--rs-ease);
+    pointer-events: none;
+}
+.rs-btn--fill:hover { filter: brightness(1.08); }
+.rs-btn--fill:hover::before { transform: translateX(420%) skewX(-18deg); }
+.rs-btn--fill:active {
+    transform: translateY(1px) scale(0.99);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -1px 0 rgba(2, 6, 30, 0.45),
+        0 4px 10px -8px rgba(15, 34, 120, 0.9);
+}
+/* the arrow lives in its own disc; on hover it inverts and leans forward */
+.rs-btn__disc {
+    width: 30px; height: 30px;
+    margin: -6px -8px -6px 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    display: grid; place-items: center;
+    flex: none;
+    transition: background-color 0.22s var(--rs-ease), transform 0.22s var(--rs-ease);
+}
+.rs-btn__disc svg {
+    width: 13px; height: 13px;
+    stroke: #fff;
+    transition: stroke 0.22s var(--rs-ease), transform 0.22s var(--rs-ease);
+}
+.rs-btn--fill:hover .rs-btn__disc { background: #fff; transform: translateX(3px); }
+.rs-btn--fill:hover .rs-btn__disc svg { stroke: #1a3bc8; }
+
+/* secondary: a quiet text action, not a second pill. Underline draws on hover,
+   the arrow dips toward where it will take you. */
 .rs-btn--ghost {
-    color: var(--rs-ink);
-    border: 1px solid rgba(167, 182, 255, 0.35);
-    background: rgba(13, 20, 52, 0.3);
+    padding: 15px 4px;
+    color: var(--rs-ink-dim);
+    gap: 9px;
+    transition: color 0.25s var(--rs-ease), transform 0.16s var(--rs-ease);
 }
-.rs-btn--ghost:hover { border-color: var(--rs-blue-hi); background: rgba(26, 59, 200, 0.16); }
-.rs-btn svg { width: 15px; height: 15px; flex: none; }
+.rs-btn--ghost::after {
+    content: "";
+    position: absolute;
+    left: 4px; right: 4px; bottom: 9px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--rs-blue-hi), rgba(167, 182, 255, 0.35));
+    transform: scaleX(0.32);
+    transform-origin: left center;
+    opacity: 0.55;
+    transition: transform 0.35s var(--rs-ease), opacity 0.3s var(--rs-ease);
+}
+.rs-btn--ghost svg {
+    width: 13px; height: 13px;
+    flex: none;
+    transition: transform 0.25s var(--rs-ease);
+}
+.rs-btn--ghost:hover { color: var(--rs-ink); }
+.rs-btn--ghost:hover::after { transform: scaleX(1); opacity: 1; }
+.rs-btn--ghost:hover svg { transform: translateY(2px); }
+.rs-btn--ghost:active { transform: translateY(1px); }
 
 /* ---------- 3D phone ---------- */
 .rs-hero__stage {
@@ -1189,7 +1253,7 @@
 }
 .rs-cta .rs-h2 { font-size: clamp(1.9rem, 3.4vw, 3.1rem); max-width: 22ch; margin: 0 auto 1.4rem; }
 .rs-cta .rs-lead { margin: 0 auto 2.6rem; text-align: center; }
-.rs-cta .rs-btn--fill { padding: 20px 42px; font-size: 0.9rem; }
+.rs-cta .rs-btn--fill { padding: 18px 28px 18px 36px; font-size: 1.05rem; }
 
 /* ============================================================
    RESPONSIVE
