@@ -768,12 +768,16 @@
     position: relative;
     width: 66px; height: 77px;
     transform-style: preserve-3d;
-    animation: rs-hub-3d 8s ease-in-out infinite;
+    animation: rs-hub-3d 14s ease-in-out infinite;
     will-change: transform;
 }
+/* slow elliptical drift: two axes out of phase, so motion never dead-stops */
 @keyframes rs-hub-3d {
-    0%, 100% { transform: rotateX(7deg) rotateY(-27deg); }
-    50% { transform: rotateX(7deg) rotateY(27deg); }
+    0%   { transform: rotateX(7deg) rotateY(-24deg); }
+    25%  { transform: rotateX(14deg) rotateY(0deg); }
+    50%  { transform: rotateX(7deg) rotateY(24deg); }
+    75%  { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(7deg) rotateY(-24deg); }
 }
 .rs-hub-svg {
     position: absolute; inset: 0;
@@ -790,25 +794,27 @@
     stroke: #1c2a6b;
     opacity: 0.9;
 }
-/* light layer: the logo draws itself on, holds with a breathing glow, sweeps off */
+/* light layer: always fully drawn, glow breathing slowly */
 .rs-hub-svg--front {
     stroke: url(#rsHubGrad);
     filter: drop-shadow(0 0 8px rgba(96, 125, 255, 0.7));
+    animation: rs-hub-glow 5.5s ease-in-out infinite;
 }
-.rs-hub-svg--front path {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
-    animation: rs-hub-draw 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+.rs-hub-svg--front path { opacity: 0.88; }
+@keyframes rs-hub-glow {
+    0%, 100% { filter: drop-shadow(0 0 7px rgba(96, 125, 255, 0.55)); }
+    50% { filter: drop-shadow(0 0 15px rgba(120, 148, 255, 0.9)); }
 }
-.rs-hub-svg--front .p-fork { animation-delay: 0.55s; }
-@keyframes rs-hub-draw {
-    0%   { stroke-dashoffset: 100; opacity: 0.15; }
-    6%   { opacity: 1; }
-    26%  { stroke-dashoffset: 0; opacity: 1; }
-    72%  { stroke-dashoffset: 0; opacity: 1; }
-    88%  { stroke-dashoffset: -100; opacity: 0.6; }
-    100% { stroke-dashoffset: -100; opacity: 0.15; }
+/* comet of light travelling the outline forever, slow paced */
+.rs-hub-svg--front .p-trace {
+    stroke: #f2f5ff;
+    opacity: 0.95;
+    stroke-dasharray: 12 88;
+    stroke-dashoffset: 0;
+    animation: rs-hub-trace 7.5s linear infinite;
 }
+.rs-hub-svg--front .p-trace--fork { animation-delay: -3.7s; }
+@keyframes rs-hub-trace { to { stroke-dashoffset: -100; } }
 /* feathered contact glow under the floating logo */
 .rs-hub-mark::after {
     content: "";
@@ -1164,7 +1170,7 @@
     .rs-chip3d--pay, .rs-chip3d--ride,
     .rs-floor,
     .rs-orbit-hub,
-    .rs-hub-mark, .rs-hub-svg--front path,
+    .rs-hub-mark, .rs-hub-svg--front, .rs-hub-svg--front path,
     .rs-beam, .rs-orbit__ring circle,
     .rs-orbit__node > span::after, .rs-orbit__shadow, .rs-orbit__node img,
     .rs-call.on .wave i, .rs-chip3d .rs-dotlive,
@@ -1172,6 +1178,7 @@
     .rs-msg { transition: opacity 0.2s ease; transform: none; filter: none; }
     .rs-connector, .rs-node--cut::after { transition: none; transform: none; }
     .rs-hub-svg--front path { stroke-dashoffset: 0; opacity: 1; }
+    .rs-hub-svg--front .p-trace { opacity: 0; }
     .rs-hub-mark { transform: rotateX(7deg) rotateY(-14deg); }
     .rs-phone { transform: rotateY(0) rotateX(0); }
     .rs-steps__track { flex-direction: column; height: auto; }
