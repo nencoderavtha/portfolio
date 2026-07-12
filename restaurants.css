@@ -66,6 +66,43 @@
     max-width: 58ch;
     margin: 0;
 }
+/* service brand lockup: countr mark + name + a quiet attribution */
+.rs-brandline {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 1.6rem;
+    opacity: 0;
+    transform: translateY(10px);
+}
+.rs-body.rs-loaded .rs-brandline { animation: rs-fadeup 0.8s var(--rs-ease) 0.05s forwards; }
+@keyframes rs-fadeup { to { opacity: 1; transform: translateY(0); } }
+.rs-brandline__mark {
+    width: 17px; height: 20px;
+    fill: none;
+    stroke: var(--rs-blue-soft);
+    stroke-width: 9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 6px rgba(77, 107, 255, 0.55));
+    flex: none;
+}
+.rs-brandline__name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #fff;
+    line-height: 1;
+}
+.rs-brandline__by {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--rs-ink-faint);
+    align-self: flex-end;
+    padding-bottom: 1px;
+}
 .rs-eyebrow {
     display: inline-block;
     font-family: var(--font-body);
@@ -1388,6 +1425,7 @@ body.rs-scrub .rs-steps__rail { display: block; }
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
     .rs-rise { opacity: 1; transform: none; transition: none; }
+    .rs-brandline { opacity: 1; transform: none; animation: none !important; }
     .rs-hero__title .rs-line > span { animation: none; transform: none; opacity: 1; }
     .rs-phone-float, .rs-orbit__spin, .rs-orbit__node > span,
     .rs-obj--chat, .rs-obj--coin, .rs-obj--cube,
