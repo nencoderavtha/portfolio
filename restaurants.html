@@ -32,6 +32,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
     <!-- Microsoft Clarity -->
@@ -101,6 +103,8 @@
     <link rel="stylesheet" href="/restaurants.css">
 </head>
 <body class="rs-body">
+    <!-- un-gate the hero entrance from deferred JS: text animates in as soon as CSS lands -->
+    <script>document.body.classList.add('rs-loaded');</script>
     <a href="#main-content" class="skip-link">Skip to content</a>
     <div class="film-grain"></div>
     <div class="vignette"></div>
@@ -568,6 +572,9 @@
         </div>
     </footer>
 
+    <!-- page motion first: the chat demo and reveals must not wait behind CDN downloads.
+         The scrub init inside polls for GSAP, so this order is safe. -->
+    <script src="./restaurants.js" type="module"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
@@ -581,6 +588,5 @@
     </a>
 
     <script src="./script.js" type="module"></script>
-    <script src="./restaurants.js" type="module"></script>
 </body>
 </html>

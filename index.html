@@ -235,6 +235,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <!-- Warm the Restaurants page in the background: prefetch its HTML on load,
+         fully prerender it the moment a user shows intent on any link to it.
+         Chromium-only; other browsers fall back to the plain prefetch below. -->
+    <script type="speculationrules">
+    {
+      "prefetch": [
+        { "source": "list", "urls": ["/restaurants.html"] }
+      ],
+      "prerender": [
+        { "source": "document", "where": { "href_matches": "/restaurants.html" }, "eagerness": "moderate" }
+      ]
+    }
+    </script>
+    <link rel="prefetch" href="/restaurants.html" as="document">
+
 </head>
 <body class="xk-home">
 

@@ -246,21 +246,44 @@
         function requestRender() {
             if (!rafLock) { rafLock = true; requestAnimationFrame(render); }
         }
-        for (var fi = 0; fi < FRAMES; fi++) {
-            (function (i) {
-                var im = new Image();
-                im.onload = function () {
-                    imgs[i] = im;
-                    while (loadedMax + 1 < FRAMES && imgs[loadedMax + 1]) loadedMax++;
-                    if (i === 0) {
-                        rideCanvas.width = im.naturalWidth;
-                        rideCanvas.height = im.naturalHeight;
-                        curFrame = -1;
-                    }
-                    requestRender();
-                };
-                im.src = frameSrc(i);
-            })(fi);
+        function loadFrame(i, done) {
+            var im = new Image();
+            im.onload = function () {
+                imgs[i] = im;
+                while (loadedMax + 1 < FRAMES && imgs[loadedMax + 1]) loadedMax++;
+                if (i === 0) {
+                    rideCanvas.width = im.naturalWidth;
+                    rideCanvas.height = im.naturalHeight;
+                    curFrame = -1;
+                }
+                requestRender();
+                if (done) done();
+            };
+            im.onerror = function () { if (done) done(); };
+            im.src = frameSrc(i);
+        }
+        // only the first frame loads with the page, so the hero and chat
+        // keep the bandwidth. The remaining 84 stream in (4 at a time)
+        // once the section comes within ~1.6 viewports of the fold.
+        loadFrame(0);
+        var restStarted = false;
+        function loadRest() {
+            if (restStarted) return;
+            restStarted = true;
+            var next = 1;
+            function worker() {
+                if (next >= FRAMES) return;
+                loadFrame(next++, worker);
+            }
+            for (var w = 0; w < 4; w++) worker();
+        }
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (en, obs) {
+                if (en[0].isIntersecting) { loadRest(); obs.disconnect(); }
+            }, { rootMargin: '160% 0px' }).observe(pinWrap);
+            setTimeout(loadRest, 12000); // idle fallback: warm the rest anyway
+        } else {
+            loadRest();
         }
 
         var rail = document.querySelector('.rs-steps__rail i');
@@ -280,6 +303,7 @@
             pin: true,
             scrub: 0.5,
             onUpdate: function (self) {
+                loadRest();
                 pendingFrame = Math.round(self.progress * (FRAMES - 1));
                 requestRender();
                 setStep(self.progress);
