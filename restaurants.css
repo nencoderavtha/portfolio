@@ -645,8 +645,8 @@ body.rs-scrub .rs-steps__seq canvas {
     max-width: 100%;
     width: auto;
     /* feathered edges: the ride floats on the page, no visible plate */
-    -webkit-mask-image: radial-gradient(78% 78% at 50% 50%, #000 56%, transparent 96%);
-    mask-image: radial-gradient(78% 78% at 50% 50%, #000 56%, transparent 96%);
+    -webkit-mask-image: radial-gradient(72% 72% at 50% 52%, #000 38%, rgba(0,0,0,0.6) 60%, transparent 84%);
+    mask-image: radial-gradient(72% 72% at 50% 52%, #000 38%, rgba(0,0,0,0.6) 60%, transparent 84%);
 }
 .rs-step__no {
     font-family: var(--font-heading);
