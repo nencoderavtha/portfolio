@@ -281,10 +281,16 @@
             new IntersectionObserver(function (en, obs) {
                 if (en[0].isIntersecting) { loadRest(); obs.disconnect(); }
             }, { rootMargin: '160% 0px' }).observe(pinWrap);
-            setTimeout(loadRest, 12000); // idle fallback: warm the rest anyway
-        } else {
-            loadRest();
         }
+        // warm the full ride in the background as soon as the page has
+        // finished loading and the main thread is idle, so the animation
+        // is ready before the user ever reaches it
+        var warmRide = function () {
+            if ('requestIdleCallback' in window) requestIdleCallback(loadRest, { timeout: 4000 });
+            else setTimeout(loadRest, 1200);
+        };
+        if (document.readyState === 'complete') warmRide();
+        else window.addEventListener('load', function () { setTimeout(warmRide, 600); });
 
         var rail = document.querySelector('.rs-steps__rail i');
         var actIdx = -1;
