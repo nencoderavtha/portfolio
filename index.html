@@ -38,6 +38,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@400;500;600;700;800&display=block" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500&display=block" rel="stylesheet">
 
     <!-- Preloads for Hero -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syne:wght@400;500;600;700;800&display=block" as="style">
@@ -330,160 +331,124 @@
 
         <!-- ===================== HERO ===================== -->
         <section class="xk-section xk-hero" id="xk-hero">
-            <!-- Floating illustration slots (decorative — swap for your art) -->
-            <div class="xk-floats" aria-hidden="true">
-                <div class="xk-float xk-float--a">
-                    <img src="./art-slot-a.png" loading="lazy" decoding="async" alt="Art slot A" style="width: 100%; height: 100%; object-fit: contain;">
-                </div>
-                <div class="xk-float xk-float--b">
-                    <img src="./art-slot-b.png" loading="lazy" decoding="async" alt="Art slot B" style="width: 100%; height: 100%; object-fit: contain;">
-                </div>
-                <div class="xk-float xk-float--c">
-                    <img src="./art-slot-c.png" loading="lazy" decoding="async" alt="Art slot C" style="width: 100%; height: 100%; object-fit: contain;">
-                </div>
+
+            <!-- GUILD background text -->
+            <div class="guild-hero__guild" aria-hidden="true">
+                <img src="./public/hero/guild.svg" alt="" decoding="async">
             </div>
 
-            <!-- Hero character slot -->
-            <div class="xk-hero__char" aria-hidden="true">
-                <img src="./artboard-1.png" fetchpriority="high" decoding="async" alt="Hero Character" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            <!-- 3D character renders -->
+            <div class="guild-hero__chars" aria-hidden="true">
+                <img class="guild-hero__char-2" src="./public/hero/char-2.png" fetchpriority="high" decoding="async" alt="">
+                <img class="guild-hero__char-1" src="./public/hero/char-1.png" fetchpriority="high" decoding="async" alt="">
             </div>
 
-            <h1 class="xk-display xk-hero__type">
-                <span class="xk-line xk-line--cream">Capture</span>
-                <span class="xk-line xk-line--red">Engage</span>
-                <span class="xk-line xk-line--outline">Convert</span>
-            </h1>
+            <!-- Smiley icon (mix-blend-mode: lighten) -->
+            <div class="guild-hero__smiley" aria-hidden="true">
+                <img src="./public/hero/smiley.png" decoding="async" alt="">
+            </div>
 
-            <p class="xk-hero__lead">
-                An <strong>AI-native studio</strong> building websites, automations, and brand for ambitious founders.
-            </p>
+            <!-- "beyond the" handwritten text -->
+            <img class="guild-hero__beyond" src="./public/hero/beyond-the.svg" decoding="async" alt="beyond the">
 
-            <!-- Mobile-only: statement text fills the empty right-side gap in the hero -->
-            <p class="xk-hero__statement" aria-hidden="true">
-                We use AI to deliver what bigger agencies charge <em>10×</em> for. Same quality, a fraction of the time, none of the bloat.
-            </p>
+            <!-- Fire effect (mix-blend-mode: screen) -->
+            <div class="guild-hero__fire" aria-hidden="true">
+                <img src="./public/hero/fire.png" decoding="async" alt="">
+            </div>
+
+            <!-- "Ordinary" handwritten text -->
+            <img class="guild-hero__ordinary" src="./public/hero/ordinary.svg" decoding="async" alt="Ordinary">
+
+            <!-- Underline stroke (mix-blend-mode: lighten) -->
+            <div class="guild-hero__underline" aria-hidden="true">
+                <img src="./public/hero/underline-stroke.png" decoding="async" alt="">
+            </div>
+
+            <!-- Bottom separator -->
+            <div class="guild-hero__line" aria-hidden="true">
+                <img src="./public/hero/line1.svg" alt="">
+            </div>
 
             <div class="xk-cue" aria-hidden="true">
                 <span>scroll</span>
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
             </div>
-            
-            <div class="xk-mobile-hero-floats" aria-hidden="true">
-                <img src="./donut.png" loading="lazy" decoding="async" alt="" class="xk-float xk-float--b" style="position: absolute; bottom: 2%; left: 0px; width: 140px; opacity: 0.8; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); transform: rotate(-15deg);">
-                <img src="./glass.png" loading="lazy" decoding="async" alt="" class="xk-float xk-float--c" style="position: absolute; bottom: -10%; right: 10px; width: 130px; opacity: 0.9; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); transform: rotate(20deg);">
-            </div>
+
         </section>
 
-        <!-- ===================== STATEMENT + SHOWREEL ===================== -->
-        <section class="xk-section xk-statement">
-            <p class="xk-statement__text xk-reveal">
-                We use AI to deliver what bigger agencies charge <em>10×</em> for. Same quality, a fraction of the time, none of the bloat.
-            </p>
-            <div class="xk-showreel xk-reveal" style="position: relative;">
-                <svg class="xk-scribble" viewBox="0 0 100 100" aria-hidden="true" style="top: -20px; left: -20px; width: 60px; height: 60px;">
-                    <path class="xk-scribble__path" pathLength="100" d="M50 10 Q 50 45 10 50 Q 50 55 50 90 Q 55 50 90 50 Q 50 45 50 10 Z" />
-                </svg>
-                <a class="xk-showreel__badge" href="./work.html" aria-label="See our work showreel">
-                    <span class="xk-showreel__word">Show<br>reel</span>
-                    <span class="xk-showreel__play" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    </span>
-                </a>
-                <div class="xk-showreel__cap">See the work</div>
-            </div>
-        </section>
+        <!-- ===================== NEW GENERATION (screen2 — Figma 91:61, 1920x1080 stage) ===================== -->
+        <section class="xk-section xk-generation">
+            <div class="xk-gen__stage">
+                <img class="xk-gen__float xk-gen__linkedin xk-gen__linkedin--a" src="./public/new-gen/3d-linkedin-a.png" aria-hidden="true" decoding="async" loading="lazy" alt="">
+                <img class="xk-gen__float xk-gen__linkedin xk-gen__linkedin--b" src="./public/new-gen/3d-linkedin-b.png" aria-hidden="true" decoding="async" loading="lazy" alt="">
+                <img class="xk-gen__float xk-gen__spotify xk-gen__spotify--lg" src="./public/new-gen/3d-spotify.png" aria-hidden="true" decoding="async" loading="lazy" alt="">
+                <img class="xk-gen__float xk-gen__slack" src="./public/new-gen/3d-slack.png" aria-hidden="true" decoding="async" loading="lazy" alt="">
 
-        <!-- ===================== WORK ===================== -->
-        <section class="xk-section xk-work" id="work">
-            <div style="position: relative; display: inline-block;">
-                <h2 class="xk-display xk-work__title">Work</h2>
-                <svg class="xk-scribble" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true" style="top: auto; bottom: -15px; left: 0; width: 110%; height: 25px;">
-                    <path class="xk-scribble__path" pathLength="100" d="M10,20 C50,40 150,0 190,30" />
-                </svg>
-            </div>
-            <div class="xk-work__layout">
-                <ul class="xk-work__list">
-                    <li>
-                        <a class="xk-work__row" href="./work/case-study-whatsapp-ordering.html" data-name="Restaurant WhatsApp AI" data-cat="WhatsApp Ordering AI">
-                            <span class="xk-work__name">Restaurant WhatsApp AI</span>
-                            <span class="xk-work__cat">WhatsApp Ordering · +45% orders</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="xk-work__row" href="./work/case-study-ai-receptionist.html" data-name="Healthcare Practice" data-cat="AI Receptionist">
-                            <span class="xk-work__name">Healthcare Practice</span>
-                            <span class="xk-work__cat">AI Receptionist · +22% bookings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="xk-work__row" href="./work/case-study-3d-website.html" data-name="Tech Startup" data-cat="3D Web Experience" style="cursor: none;">
-                            <span class="xk-work__name">Tech Startup</span>
-                            <span class="xk-work__cat">3D Web Experience · 3× time on site</span>
-                        </a>
-                    </li>
-                </ul>
-                <a class="xk-work__more" href="./work.html">
-                    View all work
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                </a>
-            </div>
-        </section>
-
-        <!-- Marquee ticker strip — infinite services belt -->
-        <div class="xk-ticker" aria-hidden="true">
-            <div class="xk-ticker__track">
-                <span>AI Receptionist</span><span class="xk-ticker__sep">✦</span>
-                <span class="xk-ticker__accent">3D Web Design</span><span class="xk-ticker__sep">✦</span>
-                <span>Fullstack Dev</span><span class="xk-ticker__sep">✦</span>
-                <span class="xk-ticker__accent">AI Video Branding</span><span class="xk-ticker__sep">✦</span>
-                <span>Automation</span><span class="xk-ticker__sep">✦</span>
-                <span>Ship Worldwide</span><span class="xk-ticker__sep">✦</span>
-                <span>AI Receptionist</span><span class="xk-ticker__sep">✦</span>
-                <span class="xk-ticker__accent">3D Web Design</span><span class="xk-ticker__sep">✦</span>
-                <span>Fullstack Dev</span><span class="xk-ticker__sep">✦</span>
-                <span class="xk-ticker__accent">AI Video Branding</span><span class="xk-ticker__sep">✦</span>
-                <span>Automation</span><span class="xk-ticker__sep">✦</span>
-                <span>Ship Worldwide</span><span class="xk-ticker__sep">✦</span>
-            </div>
-        </div>
-
-        <!-- Cursor-following "VIEW" badge (desktop hover only) -->
-        <div class="xk-cursor" aria-hidden="true" style="width: 84px; height: 84px; z-index: 9999 !important;">
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-                <span style="font-weight: 800; font-size: 11px; font-family: var(--font-heading, 'Syne', sans-serif); letter-spacing: 0.1em;">VIEW</span>
-            </div>
-        </div>
-
-
-        <!-- ===================== CTA ===================== -->
-        <section class="xk-section xk-cta" id="contact">
-            <!-- 3D floating decorations -->
-            <div class="xk-cta__decor" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;">
-                <img src="./glass.png" loading="lazy" decoding="async" alt="Glass" class="xk-float" style="position: absolute; top: 36px; right: 40px; width: 210px; opacity: 0.8; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5)); transform: rotate(-12deg);">
-                <img src="./donut.png" loading="lazy" decoding="async" alt="Donut" class="xk-float" style="position: absolute; bottom: 44px; right: 56px; width: 180px; opacity: 0.9; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5)); transform: rotate(18deg);">
-            </div>
-            
-            <div class="xk-cta__char" aria-hidden="true">
-                <img src="./artboard-2.png" decoding="async" alt="Closing Character">
-            </div>
-            <div class="xk-cta__body">
-                <h2 class="xk-display xk-cta__type">
-                    <span class="xk-line xk-line--cream">Let's</span>
-                    <span class="xk-line xk-line--red">Talk</span>
-                </h2>
-                <div class="xk-cta__row xk-reveal">
-                    <span class="xk-cta__hint">Got a project in mind? Email us</span>
-                    <a class="xk-cta__email" href="mailto:hello@exter.ai">
-                        hello@exter.ai
-                        <svg class="xk-ellipse" viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
-                            <path pathLength="760" d="M30 52 C 8 28, 70 16, 165 15 C 292 14, 318 42, 296 58 C 278 72, 150 80, 64 73 C 20 69, 14 56, 44 48"/>
-                        </svg>
-                    </a>
+                <div class="xk-gen__char" aria-hidden="true">
+                    <img src="./public/new-gen/char-3.png" decoding="async" loading="lazy" alt="">
                 </div>
+
+                <p class="xk-gen__title xk-reveal">
+                    a new generation of<br>
+                    building for the next generation of
+                </p>
+                <img class="xk-gen__grunge xk-gen__grunge--builders xk-reveal"   src="./public/new-gen/builders.png"   alt="BUILDERS"   decoding="async" loading="lazy">
+                <img class="xk-gen__grunge xk-gen__grunge--businesses xk-reveal" src="./public/new-gen/businesses.png" alt="BUSINESSES" decoding="async" loading="lazy">
+                <img class="xk-gen__star" src="./public/new-gen/star.png" aria-hidden="true" decoding="async" loading="lazy" alt="">
+            </div>
+        </section>
+
+        <!-- ===================== WHAT WE'RE BUILDING ===================== -->
+        <section class="xk-section xk-building" id="work">
+            <div class="xk-building__left">
+                <p class="xk-building__sub xk-reveal">
+                    from <span class="xk-building__circled">intelligent products</span> to creative automations, we build technology around real business needs.
+                </p>
+                <h2 class="xk-building__title xk-reveal">here's what we're building</h2>
+                <div class="xk-building__cards">
+                    <div class="folder-card folder-card--blue xk-reveal">
+                        <div class="folder-card__tab">
+                            <span class="fc-dot fc-dot--red"></span>
+                            <span class="fc-dot fc-dot--yellow"></span>
+                            <span class="fc-dot fc-dot--green"></span>
+                        </div>
+                        <div class="folder-card__body">
+                            <h3 class="folder-card__name">countr</h3>
+                            <p class="folder-card__desc">AI-powered WhatsApp ordering with zero hidden charges and seamless delivery, all in one place.</p>
+                            <a href="./work/case-study-whatsapp-ordering.html" class="folder-card__btn folder-card__btn--solid">View Project ↗</a>
+                        </div>
+                    </div>
+                    <div class="folder-card folder-card--green xk-reveal">
+                        <div class="folder-card__tab">
+                            <span class="fc-dot fc-dot--red"></span>
+                            <span class="fc-dot fc-dot--yellow"></span>
+                            <span class="fc-dot fc-dot--green"></span>
+                        </div>
+                        <div class="folder-card__body">
+                            <h3 class="folder-card__name">meridian</h3>
+                            <p class="folder-card__desc">Quick commerce for local retail shops—fast, reliable, and built for neighborhood commerce.</p>
+                            <button class="folder-card__btn folder-card__btn--ghost" disabled>Coming soon</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="xk-building__char" aria-hidden="true">
+                <img src="./public/building/char-4.png" decoding="async" loading="lazy" alt="">
+            </div>
+        </section>
+
+
+        <!-- ===================== JOIN THE TRIBE ===================== -->
+        <section class="xk-section xk-tribe" id="contact">
+            <img class="xk-tribe__float xk-tribe__reddit" src="./public/tribe/3d-reddit.png" aria-hidden="true" decoding="async" loading="lazy" alt="">
+            <img class="xk-tribe__float xk-tribe__chips"  src="./public/tribe/3d-chips.png"  aria-hidden="true" decoding="async" loading="lazy" alt="">
+            <div class="xk-tribe__content xk-reveal">
+                <h2 class="xk-tribe__title">join the tribe</h2>
+                <p class="xk-tribe__sub">bring your ideas, find your people, build what's next</p>
+                <a href="./book.html" class="xk-tribe__btn">Apply Now</a>
+            </div>
+            <div class="xk-tribe__visual" aria-hidden="true">
+                <img src="./public/tribe/hands.png" decoding="async" loading="lazy" alt="">
             </div>
         </section>
 
@@ -535,128 +500,75 @@
             </div>
         </section>
 
-        <!-- Cross-Linking Sections -->
-        <section class="xk-section xk-more">
-            <div class="xk-more__head">
-                <div>
-                    <span class="xk-more__eyebrow">Explore more</span>
-                    <h2 class="xk-more__title">Read, watch,<br>and dig deeper.</h2>
+        <!-- ===================== FOOTER ===================== -->
+        <footer class="site-footer site-footer--red">
+            <div class="footer-watermark" aria-hidden="true">exter.ai</div>
+            <div class="footer-upper">
+                <div class="footer-brand-col">
+                    <a href="./" class="logo footer-logo">exter.ai</a>
+                    <p>An elite design-engineering studio crafting intelligent interfaces, brand architectures, and next-generation software for forward-thinking enterprises.</p>
                 </div>
-                <div class="xk-more__links">
-                    <a href="./work.html" class="xk-more__pill">
-                        All work
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </a>
-                    <a href="./blog/" class="xk-more__pill">
-                        All articles
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="xk-more__grid">
-                <!-- Featured work -->
-                <a class="xk-card xk-reveal" href="./work/case-study-whatsapp-ordering.html">
-                    <span class="xk-card__tag">Case study</span>
-                    <h3 class="xk-card__title">Restaurant WhatsApp AI</h3>
-                    <p class="xk-card__desc">A WhatsApp AI ordering agent that lifted a restaurant's nightly orders 45% — deployed same day.</p>
-                    <span class="xk-card__cta">View case study
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </span>
-                </a>
-                <a class="xk-card xk-reveal" href="./work/case-study-ai-receptionist.html">
-                    <span class="xk-card__tag">Case study</span>
-                    <h3 class="xk-card__title">Healthcare Practice</h3>
-                    <p class="xk-card__desc">An AI receptionist integration that lifted appointment bookings by 22%.</p>
-                    <span class="xk-card__cta">View case study
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </span>
-                </a>
-                <a class="xk-card xk-reveal" href="./work/case-study-3d-website.html">
-                    <span class="xk-card__tag">Case study</span>
-                    <h3 class="xk-card__title">Tech Startup</h3>
-                    <p class="xk-card__desc">A 3D immersive website that tripled average time on site.</p>
-                    <span class="xk-card__cta">View case study
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </span>
-                </a>
-
-                <!-- Latest from the blog -->
-                <a class="xk-card xk-reveal" href="./blog/what-is-an-ai-receptionist.html">
-                    <span class="xk-card__tag">Blog</span>
-                    <h3 class="xk-card__title">What Is an AI Receptionist?</h3>
-                    <p class="xk-card__desc">The intelligent voice agent that handles 100% of your inbound calls, 24/7.</p>
-                    <span class="xk-card__cta">Read more
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </span>
-                </a>
-                <a class="xk-card xk-reveal" href="./blog/ai-agency-vs-traditional-agency.html">
-                    <span class="xk-card__tag">Blog</span>
-                    <h3 class="xk-card__title">AI vs Traditional Agency</h3>
-                    <p class="xk-card__desc">How AI and traditional agencies compare on speed, cost, and tech stack.</p>
-                    <span class="xk-card__cta">Read more
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </span>
-                </a>
-                <a class="xk-card xk-reveal" href="./blog/how-much-does-a-website-cost-in-2026.html">
-                    <span class="xk-card__tag">Blog</span>
-                    <h3 class="xk-card__title">Website Cost Guide 2026</h3>
-                    <p class="xk-card__desc">A complete pricing guide for what websites and web apps cost in 2026.</p>
-                    <span class="xk-card__cta">Read more
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Footer: Separated Solid Block -->
-        <footer class="site-footer">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="./" class="logo">exter.ai</a>
-                    <p>An AI-native studio for founders who can't afford to look small. Based in India, shipping worldwide.</p>
-                </div>
-<div class="footer-links">
-                <h4>SERVICES</h4>
-                <ul>
-                    <li><a href="./services/ai-receptionist.html">AI Receptionist</a></li>
-                    <li><a href="./services/3d-web-design.html">3D Web Design</a></li>
-                    <li><a href="./services/fullstack-development.html">Fullstack Dev</a></li>
-                    <li><a href="./services/ai-video-branding.html">AI Video Branding</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>COMPANY</h4>
-                <ul>
-                    <li><a href="./about.html">About</a></li>
-                    <li><a href="./work.html">Work / Case Studies</a></li>
-                    <li><a href="./book.html">Book a Call</a></li>
-                </ul>
-            </div>
-<div class="footer-social">
-                    <h4>CONNECT</h4>
+                <div class="footer-nav-col">
+                    <h4 class="footer-col-label">EXPLORE</h4>
                     <ul>
-                        <li><a href="https://www.linkedin.com/company/exter-ai/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                        <li><a href="https://www.instagram.com/directedbysathvik?igsh=d3NtYWswd2NyeXg3" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                        <li><a href="https://x.com/directdbysatvik" target="_blank" rel="noopener noreferrer">X / Twitter</a></li>
-                        <!-- TODO: Add YouTube, GitHub profile URLs when provided -->
+                        <li><a href="./work.html">Work</a></li>
+                        <li><a href="./services/">Services</a></li>
+                        <li><a href="./blog/">Journal</a></li>
+                        <li><a href="./about.html">About</a></li>
+                        <li><a href="./book.html">Newsletter</a></li>
                     </ul>
                 </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div>© 2026 Exter.ai. All rights reserved.</div>
-                <div class="legal-footer-links">
-                    <a href="./privacy.html">Privacy</a>
-                    <a href="./terms.html">Terms</a>
-                    <a href="./cookies.html">Cookies</a>
+                <div class="footer-social-col">
+                    <h4 class="footer-col-label">CONNECT</h4>
+                    <div class="footer-pills">
+                        <a href="https://x.com/directdbysatvik" target="_blank" rel="noopener noreferrer" class="footer-pill">
+                            <svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M9.28 1H11L7.28 5.28 11.65 11H8.27L5.68 7.63 2.74 11H1L4.97 6.44.5 1h3.47l2.33 3.08L9.28 1ZM8.7 10.1h.96L3.38 1.97h-1L8.7 10.1Z"/></svg>
+                            X / Twitter
+                        </a>
+                        <a href="https://www.instagram.com/directedbysathvik" target="_blank" rel="noopener noreferrer" class="footer-pill">
+                            <svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="3"/><circle cx="6" cy="6" r="2.3"/><circle cx="8.8" cy="3.2" r=".6" fill="currentColor" stroke="none"/></svg>
+                            Instagram
+                        </a>
+                        <a href="https://github.com/exter-ai" target="_blank" rel="noopener noreferrer" class="footer-pill">
+                            <svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M6 .5C2.96.5.5 2.96.5 6c0 2.43 1.57 4.49 3.75 5.22.27.05.37-.12.37-.26v-.93C3.06 10.37 2.74 9.3 2.74 9.3c-.25-.64-.61-.81-.61-.81-.5-.34.04-.33.04-.33.55.04.84.57.84.57.49.84 1.28.6 1.6.46.05-.36.19-.6.35-.74-1.22-.14-2.5-.61-2.5-2.71 0-.6.21-1.09.57-1.47-.06-.14-.25-.7.05-1.45 0 0 .47-.15 1.53.57A5.3 5.3 0 0 1 6 3.12c.47 0 .95.06 1.39.18 1.06-.72 1.53-.57 1.53-.57.3.75.11 1.31.05 1.45.36.38.57.87.57 1.47 0 2.11-1.28 2.57-2.51 2.71.2.17.37.51.37 1.03v1.52c0 .15.1.32.38.26C10.43 10.49 12 8.43 12 6 12 2.96 9.54.5 6 .5Z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/company/exter-ai/" target="_blank" rel="noopener noreferrer" class="footer-pill">
+                            <svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M1.5 3.5h2v7h-2zm1-2.8a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2zM5 3.5h1.9v.96h.03C7.2 4 8 3.38 9.18 3.38 11.18 3.38 11.5 4.7 11.5 6.4v4.1h-2V6.8c0-.76-.01-1.74-1.06-1.74-1.06 0-1.22.83-1.22 1.68v3.76H5V3.5Z"/></svg>
+                            LinkedIn
+                        </a>
+                    </div>
                 </div>
-                <a href="#xk-hero" class="back-to-top" aria-label="Back to top">
-                    <span>Back to top</span>
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M12 19V5M6 11l6-6 6 6"/>
-                    </svg>
-                </a>
+                <div class="footer-cta-col">
+                    <a href="./book.html" class="footer-cta-block">
+                        <div class="footer-cta-block__header">
+                            <span>Start a project</span>
+                            <span class="footer-cta-block__arrow">↗</span>
+                        </div>
+                        <div class="footer-cta-block__divider"></div>
+                        <p>Let's build the next paradigm of your product together.</p>
+                    </a>
+                    <a href="./book.html" class="footer-cta-block">
+                        <div class="footer-cta-block__header">
+                            <span>Join the exten tribe</span>
+                            <span class="footer-cta-block__arrow">↗</span>
+                        </div>
+                        <div class="footer-cta-block__divider"></div>
+                        <p>We're always looking for world-class engineering &amp; design people.</p>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom footer-bottom--red">
+                <div>
+                    <span>exter.ai © 2025</span>
+                    <span class="footer-bottom__sep">/</span>
+                    <a href="./privacy.html">Privacy Policy</a>
+                </div>
+                <div class="footer-bottom__right">
+                    <span>Global Studio</span>
+                    <span class="footer-bottom__dot" aria-hidden="true">•</span>
+                    <span>Available for projects</span>
+                </div>
             </div>
         </footer>
     </main>

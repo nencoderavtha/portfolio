@@ -44,32 +44,28 @@
   gsap.registerPlugin(ScrollTrigger);
 
   // ---------------------------------------------------------
-  // 1. Hero entrance — giant lines wipe up after the intro curtain
+  // 1. Hero entrance — guild text and cue fade in after intro curtain
   // ---------------------------------------------------------
-  const heroLines = gsap.utils.toArray('.xk-hero__type .xk-line');
-  if (heroLines.length) {
-    gsap.fromTo(
-      heroLines,
-      { yPercent: 120, opacity: 0 },
-      {
-        yPercent: 0,
-        opacity: 1,
-        duration: 1.1,
-        ease: 'power4.out',
-        stagger: 0.12,
-        delay: 1.65, // begins as the intro curtain lifts
-      }
-    );
-  }
+  gsap.fromTo(
+    ['.guild-hero__beyond', '.guild-hero__ordinary'],
+    { opacity: 0, y: 20 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1.0,
+      ease: 'power3.out',
+      stagger: 0.15,
+      delay: 1.8,
+    }
+  );
 
-  // hero lead + cue gentle fade in
-  gsap.from('.xk-hero__lead, .xk-cue', {
+  // scroll cue gentle fade in
+  gsap.from('.xk-cue', {
     opacity: 0,
     y: 24,
     duration: 0.9,
     ease: 'power2.out',
-    delay: 2.3,
-    stagger: 0.1,
+    delay: 2.4,
   });
 
   // ---------------------------------------------------------
@@ -100,14 +96,11 @@
     );
   };
 
-  // HERO — character = foreground (fastest); objects = mid depths
-  // (each different); giant type = furthest back (slowest).
+  // HERO — char-1 = foreground (fastest), char-2 = mid, guild bg = slowest
   const H = { trigger: '.xk-hero', start: 'top top', end: 'bottom top' };
-  parallax('.xk-hero__char', 0, -300, { ...H, toRot: -4 });
-  parallax('.xk-float--b', 0, -250, { ...H, toRot: -9 });
-  parallax('.xk-float--c', 0, -190, { ...H, toRot: 6 });
-  parallax('.xk-float--a', 0, -120, { ...H, toRot: 7 });
-  parallax('.xk-hero__type', 0, -80, H);
+  parallax('.guild-hero__char-1', 0, -220, { ...H, toRot: -3 });
+  parallax('.guild-hero__char-2', 0, -140, { ...H, toRot: 2 });
+  parallax('.guild-hero__guild',  0, -60,  H);
 
   // STATEMENT — copy and showreel badge travel at different rates
   parallax('.xk-statement__text', 80, -80, { trigger: '.xk-statement' });
@@ -117,13 +110,13 @@
   parallax('.xk-cta__char', 130, -160, { trigger: '.xk-cta', toRot: -3 });
   parallax('.xk-cta__type', 70, -70, { trigger: '.xk-cta' });
 
-  // Gentle idle bob on the float art — target the INNER element so it
-  // never fights the scroll-parallax tween that owns the wrapper's `y`.
-  gsap.utils.toArray('.xk-float').forEach((el, i) => {
-    const inner = el.firstElementChild || el;
-    gsap.to(inner, {
-      y: '+=16',
-      duration: 3 + i * 0.7,
+  // Gentle idle bob on character renders for subtle life
+  ['.guild-hero__char-1', '.guild-hero__char-2'].forEach((sel, i) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    gsap.to(el, {
+      y: '+=10',
+      duration: 4 + i * 0.9,
       ease: 'sine.inOut',
       yoyo: true,
       repeat: -1,

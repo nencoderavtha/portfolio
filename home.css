@@ -294,6 +294,237 @@ body.xk-home .site-header.scrolled {
 }
 
 /* ------------------------------------------------------------
+   GUILD HERO — Figma design (node 53:29)
+   Coordinate system: Figma canvas 1440 × 1080 px
+   All px values → vw: divide by 14.4 (1440 / 100)
+   ------------------------------------------------------------ */
+
+/* Reset xk-hero layout to a simple positioned container */
+.xk-hero {
+    padding: 0;
+    display: block;
+    height: 75vw; /* 1080/1440 ratio */
+    min-height: 100svh;
+}
+
+/* GUILD red background SVG */
+.guild-hero__guild {
+    position: absolute;
+    left: 6.81vw;
+    top: 9.27vw;
+    width: 84.85vw;
+    height: 63.82vw;
+    z-index: 1;
+    pointer-events: none;
+}
+.guild-hero__guild img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 3D character renders */
+.guild-hero__chars {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+.guild-hero__char-2 {
+    position: absolute;
+    left: 12.85vw;
+    top: 15.17vw;
+    width: 80.22vw;
+    height: 59.9vw;
+    object-fit: cover;
+}
+.guild-hero__char-1 {
+    position: absolute;
+    left: 26.18vw;
+    top: 3.82vw;
+    width: 95.42vw;
+    height: 71.25vw;
+    object-fit: cover;
+}
+
+/* Smiley — centred flex wrapper then rotated/blended image */
+.guild-hero__smiley {
+    position: absolute;
+    left: 26.01vw;
+    top: 25.97vw;
+    width: 9.4vw;
+    height: 10.56vw;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+.guild-hero__smiley img {
+    width: 7.67vw;
+    height: 8.88vw;
+    mix-blend-mode: lighten;
+    transform: rotate(-14.34deg) skewX(-1.52deg);
+    flex-shrink: 0;
+}
+
+/* "beyond the" handwritten SVG */
+.guild-hero__beyond {
+    position: absolute;
+    left: 17.77vw;
+    top: 36.09vw;
+    width: 15.13vw;
+    height: 9.27vw;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Fire — centred flex wrapper then rotated/screen-blended image */
+.guild-hero__fire {
+    position: absolute;
+    left: 6.81vw;
+    top: 38.98vw;
+    width: 14.73vw;
+    height: 20.44vw;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+.guild-hero__fire img {
+    width: 12.6vw;
+    height: 18.9vw;
+    mix-blend-mode: screen;
+    transform: rotate(-7.63deg) skewX(-0.83deg);
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* "Ordinary" handwritten SVG */
+.guild-hero__ordinary {
+    position: absolute;
+    left: 18.58vw;
+    top: 42.99vw;
+    width: 26.8vw;
+    height: 16.76vw;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Underline stroke — centred flex wrapper then rotated/lighten-blended */
+.guild-hero__underline {
+    position: absolute;
+    left: 16.7vw;
+    top: 49.82vw;
+    width: 21.02vw;
+    height: 8.56vw;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+.guild-hero__underline img {
+    width: 20.9vw;
+    height: 3.47vw;
+    mix-blend-mode: lighten;
+    transform: rotate(-14.34deg) skewX(-1.52deg);
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* Bottom separator line */
+.guild-hero__line {
+    position: absolute;
+    left: 34.17vw;
+    top: calc(75vw - 1px);
+    width: 65.76vw;
+    height: 1px;
+    z-index: 3;
+    pointer-events: none;
+    overflow: visible;
+}
+.guild-hero__line img {
+    width: 100%;
+    transform: rotate(180deg);
+    transform-origin: center;
+}
+
+/* Scroll cue sits above all layers */
+.xk-hero .xk-cue {
+    z-index: 10;
+}
+
+/* ---- Mobile adaptations (≤ 768 px) ---- */
+@media (max-width: 768px) {
+    .xk-hero {
+        height: 100svh;
+    }
+    .guild-hero__guild {
+        left: 0;
+        top: 6vw;
+        width: 100vw;
+        height: auto;
+    }
+    .guild-hero__chars { pointer-events: none; }
+    .guild-hero__char-2 {
+        left: -5vw;
+        top: 18vw;
+        width: 110vw;
+        height: auto;
+    }
+    .guild-hero__char-1 {
+        left: 5vw;
+        top: 2vw;
+        width: 120vw;
+        height: auto;
+    }
+    .guild-hero__smiley {
+        left: 44vw;
+        top: 40vw;
+        width: 20vw;
+        height: 22vw;
+    }
+    .guild-hero__smiley img {
+        width: 16vw;
+        height: 19vw;
+    }
+    .guild-hero__beyond {
+        left: 8vw;
+        top: 54vw;
+        width: 38vw;
+        height: auto;
+    }
+    .guild-hero__fire {
+        left: 0;
+        top: 62vw;
+        width: 32vw;
+        height: 45vw;
+    }
+    .guild-hero__fire img {
+        width: 26vw;
+        height: 39vw;
+    }
+    .guild-hero__ordinary {
+        left: 10vw;
+        top: 76vw;
+        width: 65vw;
+        height: auto;
+    }
+    .guild-hero__underline {
+        left: 8vw;
+        top: 95vw;
+        width: 55vw;
+        height: 18vw;
+    }
+    .guild-hero__underline img {
+        width: 52vw;
+        height: 9vw;
+    }
+    .guild-hero__line { display: none; }
+}
+
+/* ------------------------------------------------------------
    Placeholder art slot (swap for real PNG/SVG later)
    ------------------------------------------------------------ */
 .xk-slot {
