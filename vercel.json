@@ -61,6 +61,12 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    {
+      "source": "/r/:path*",
+      "destination": "https://whatsapp-bot-server-234845234678.asia-south1.run.app/r/:path*"
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
