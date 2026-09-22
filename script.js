@@ -784,7 +784,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 7.2. Contact Form Submit
-    const bookForm = document.querySelector('#booking-form');
+    const bookForm = document.querySelector('#booking-form, #support-form');
     if (bookForm) {
         bookForm.addEventListener('submit', async (e) => {
             e.preventDefault();

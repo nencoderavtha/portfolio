@@ -21,6 +21,7 @@ export default defineConfig({
           'main': resolve(__dirname, 'index.html'),
           'privacy': resolve(__dirname, 'privacy.html'),
           'restaurants': resolve(__dirname, 'restaurants.html'),
+          'support': resolve(__dirname, 'support.html'),
           'terms': resolve(__dirname, 'terms.html'),
           'work': resolve(__dirname, 'work.html'),
           'blog_ai_agency_vs_traditional_agency': resolve(__dirname, 'blog/ai-agency-vs-traditional-agency.html'),
